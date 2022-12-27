@@ -1,4 +1,8 @@
 ## Endpoint: Masukan dan Keluaran
+### Link API
+```url
+https://ifportal.labftis.net/api/v1/endpoint
+```
 ### Bentuk Masukan
 API menerima masukan dalam tiga bentuk, yaitu: *parameter*, *query*, dan *body*. Pada dokumen ini *parameter* didefinisikan sebagai masukan yang diikutsertakan dalam bagian *path* dari suatu URI. Contoh:
 ```url
