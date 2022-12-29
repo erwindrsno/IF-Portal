@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">TuBes-02</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="role">Role</string>
+    <string name="sign_in">Sign In</string>
+    <string name="input_email">Input Email</string>
+    <string name="input_password">Input Password</string>
+    <string name="input_role">Input Role</string>
+    <string name="login_fail">FaileD!</string>
 </resources>
