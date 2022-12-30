@@ -9,4 +9,5 @@
     <string name="input_password">Input Password</string>
     <string name="input_role">Input Role</string>
     <string name="login_fail">FaileD!</string>
+    <string name="btn_simpan_text">Simpan</string>
 </resources>
