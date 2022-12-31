@@ -10,7 +10,6 @@ import com.example.tubes_02.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginUI{
     private ActivityLoginBinding binding;
-    private User user;
     private LoginPresenter presenter;
 
     @Override
@@ -30,11 +29,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String email = this.binding.etEmail.getText().toString();
             String password = this.binding.etPassword.getText().toString();
             String role = this.binding.etRole.getText().toString();
-            String email2 = "default.admin@domain.local";
-            String password2 = "mu8XyUogLi6Dk7";
-            String role2 = "admin";
 
-            this.presenter.newUser(email2,password2,role2);
+//            String email2 = "default.admin@domain.local";
+//            String password2 = "mu8XyUogLi6Dk7";
+//            String role2 = "admin";
+
+            this.presenter.newUser(email,password,role);
 
             PostAuthenticate authTask = new PostAuthenticate(this, this.presenter);
             authTask.execute(this.presenter.getUser());
@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         else{
             this.binding.tvLoginFail.setText(R.string.login_fail);
+            Log.d("getUserRoleName",this.presenter.getUser().getRole());
         }
     }
 }

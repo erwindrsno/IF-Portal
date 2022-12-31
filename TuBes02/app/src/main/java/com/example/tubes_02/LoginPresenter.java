@@ -1,5 +1,10 @@
 package com.example.tubes_02;
 
+import Users.Admin;
+import Users.Dosen;
+import Users.Mahasiswa;
+import Users.User;
+
 public class LoginPresenter {
     protected LoginUI ui;
     protected User user;
@@ -9,7 +14,15 @@ public class LoginPresenter {
     }
 
     public void newUser(String email, String password, String role){
-        this.user = new User(email,password,role);
+        if(role.equalsIgnoreCase("admin")){
+            this.user = new Admin(email,password,role);
+        }
+        else if(role.equalsIgnoreCase("dosen")){
+            this.user = new Dosen(email,password,role);
+        }
+        else if(role.equalsIgnoreCase("mahasiswa")){
+            this.user = new Mahasiswa(email,password,role);
+        }
     }
 
     public User getUser(){

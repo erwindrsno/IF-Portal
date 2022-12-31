@@ -13,6 +13,8 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import Users.User;
+
 public class PostAuthenticate{
     final String BASE_URL = "https://ifportal.labftis.net/api/v1/authenticate";
     private final Context context;
