@@ -2,7 +2,9 @@ package com.example.tubes_02;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
@@ -18,6 +20,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         this.binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
 
+        Log.d("test masuk activity","masuk");
+
         this.binding.btnLogin.setOnClickListener(this);
 
         this.presenter = new LoginPresenter(this);
@@ -30,11 +34,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String password = this.binding.etPassword.getText().toString();
             String role = this.binding.etRole.getText().toString();
 
-//            String email2 = "default.admin@domain.local";
-//            String password2 = "mu8XyUogLi6Dk7";
-//            String role2 = "admin";
+            String email2 = "default.admin@domain.local";
+            String password2 = "mu8XyUogLi6Dk7";
+            String role2 = "admin";
 
-            this.presenter.newUser(email,password,role);
+            this.presenter.newUser(email2,password2,role2);
 
             PostAuthenticate authTask = new PostAuthenticate(this, this.presenter);
             authTask.execute(this.presenter.getUser());
@@ -45,6 +49,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void updateView(boolean valid) {
         if(valid){
             Log.d("Login attempt","sukses!");
+            Log.d("getUserRoleNameOnSuccess",this.presenter.getUser().getRole());
+
+            Intent intent = new Intent(this,HomeActivity.class);
+            intent.putExtra("user", (Parcelable) this.presenter.getUser());
+            startActivity(intent);
         }
         else{
             this.binding.tvLoginFail.setText(R.string.login_fail);

@@ -1,4 +1,7 @@
 package com.example.tubes_02;
 
-public class DrawerFragment extends Fragment{
+import androidx.fragment.app.Fragment;
+
+public class DrawerFragment extends Fragment {
+
 }
