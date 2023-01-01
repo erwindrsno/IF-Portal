@@ -32,6 +32,9 @@ public class Mahasiswa extends User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeString(super.getEmail());
+        parcel.writeString(super.getPassword());
+        parcel.writeString(super.getRole());
+        parcel.writeString(super.getToken());
     }
 }
