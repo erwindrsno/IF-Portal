@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
+import com.example.tubes_02.HomeActivity;
+import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginUI{
@@ -51,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Log.d("Login attempt","sukses!");
             Log.d("getUserRoleNameOnSuccess",this.presenter.getUser().getRole());
 
-            Intent intent = new Intent(this,HomeActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             intent.putExtra("user", (Parcelable) this.presenter.getUser());
             startActivity(intent);
         }

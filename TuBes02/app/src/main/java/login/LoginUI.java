@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package login;
 
 public interface LoginUI {
     void updateView(boolean valid);

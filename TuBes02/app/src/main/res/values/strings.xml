@@ -23,4 +23,7 @@
     <string name="btn_frs_prs">FRS/PRS</string>
     <string name="btn_pengumuman">Pengumuman</string>
     <string name="btn_pertemuan">Pertemuan</string>
+
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
 </resources>

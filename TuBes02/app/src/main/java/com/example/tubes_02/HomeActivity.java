@@ -33,8 +33,16 @@ public class HomeActivity extends AppCompatActivity {
         this.homeFragment = HomeFragment.newInstance("homeFragment");
 
         //Toolbar
-//        this.toolbar = this.binding.toolbar;
-//        this.setSupportActionBar(this.toolbar);
+        this.toolbar = binding.toolbar;
+        this.setSupportActionBar(toolbar);
+
+        this.drawer = binding.drawerLayout;
+
+        //tombol garis tiga
+        abdt = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.open_drawer,R.string.close_drawer);
+        drawer.addDrawerListener(abdt);
+        abdt.syncState();
+        //Toolbar
 
         Log.d("homeActivity","masuk");
 
