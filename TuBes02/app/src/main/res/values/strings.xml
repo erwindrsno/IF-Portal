@@ -26,4 +26,7 @@
 
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
+    <string name="exit_app">Apakah anda ingin keluar?</string>
+    <string name="btn_iya">Iya</string>
+    <string name="btn_tidak">Tidak</string>
 </resources>
