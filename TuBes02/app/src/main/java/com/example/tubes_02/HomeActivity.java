@@ -86,11 +86,20 @@ public class HomeActivity extends AppCompatActivity {
         }
         else if(page.equals("exit")){
             if(this.exitAppDialogFragment.isAdded()){
-                ft.show(this.exitAppDialogFragment);
+//                Log.d("fragment","exit");
+//                ft.show(this.exitAppDialogFragment);
             }
             else{
-                ft.add(this.binding.fragmentContainer.getId(),this.exitAppDialogFragment);
+                this.exitAppDialogFragment.show(this.fm,"dialog");
+                Log.d("fragment","exit");
+                    ft.addToBackStack(null);
             }
         }
+        ft.commit();
+    }
+
+    public void closeApplication(){
+        this.moveTaskToBack(true);
+        this.finish();
     }
 }

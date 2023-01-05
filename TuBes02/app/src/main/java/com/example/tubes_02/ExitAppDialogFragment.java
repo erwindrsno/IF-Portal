@@ -1,5 +1,6 @@
 package com.example.tubes_02;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -10,12 +11,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.tubes_02.databinding.FragmentExitAppBinding;
 
 public class ExitAppDialogFragment extends DialogFragment {
     private FragmentExitAppBinding binding;
+//    private View view;
 
     public ExitAppDialogFragment(){}
 
@@ -25,6 +28,34 @@ public class ExitAppDialogFragment extends DialogFragment {
         View view = binding.getRoot();
         return view;
     }
+
+//    @NonNull
+//    @Override
+//    public Dialog onCreateDialog(Bundle savedInstanceState){
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//
+//        Log.d("oncreateDialog","masuk");
+//
+//        LayoutInflater inflater = getActivity().getLayoutInflater();
+//        View view = inflater.inflate(R.layout.fragment_exit_app, null);
+//
+//        builder.setView(view)
+//                .setTitle("exit")
+//                .setNegativeButton("CanceL", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        dismiss();
+//                    }
+//                })
+//                .setPositiveButton("ExiT", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Log.d("onclick","exit");
+//                    }
+//                });
+//
+//        return builder.create();
+//    }
 
     public static ExitAppDialogFragment newInstance(String title){
         ExitAppDialogFragment fragment = new ExitAppDialogFragment();

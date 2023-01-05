@@ -19,6 +19,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.binding = FragmentHomeBinding.inflate(inflater);
+        this.binding.btnCoba.setOnClickListener(this);
         return this.binding.getRoot();
     }
 
@@ -32,6 +33,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-
+        if(view.getId() == this.binding.btnCoba.getId()){
+            Bundle result = new Bundle();
+            result.putString("page","exit");
+            this.getParentFragmentManager().setFragmentResult("changePage",result);
+        }
     }
 }

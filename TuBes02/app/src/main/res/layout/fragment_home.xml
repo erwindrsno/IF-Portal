@@ -39,6 +39,13 @@
             android:text="@string/btn_pertemuan">
         </Button>
 
+        <Button
+            android:id="@+id/btn_coba"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COBA">
+        </Button>
+
     </LinearLayout>
 
 </RelativeLayout>
