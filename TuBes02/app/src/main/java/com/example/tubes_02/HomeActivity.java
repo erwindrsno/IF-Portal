@@ -69,6 +69,16 @@ public class HomeActivity extends AppCompatActivity {
                 changePage(page);
             }
         });
+
+        this.getSupportFragmentManager().setFragmentResultListener("exitApp",this, new FragmentResultListener(){
+            @Override
+            public void onFragmentResult(String requestKey, Bundle result){
+                String toExit = result.getString("toExit");
+                if(toExit.equalsIgnoreCase("yes")){
+                    closeApplication();
+                }
+            }
+        });
     }
 
     public void changePage(String page){
