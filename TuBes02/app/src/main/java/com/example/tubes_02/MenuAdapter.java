@@ -88,9 +88,9 @@ public class MenuAdapter extends BaseAdapter {
                 }
                 else if(binding.tvMenu.getText().equals("Exit")){
                     Log.d("masuk menu exit","true");
-//                    result.putString("page","dokterFragment");
+                    result.putString("page","exit");
                 }
-//                drawerFragment.getParentFragmentManager().setFragmentResult("changePage",result);
+                drawerFragment.getParentFragmentManager().setFragmentResult("changePage",result);
             }
         }
     }

@@ -16,13 +16,15 @@ import android.util.Log;
 import Users.User;
 
 public class HomeActivity extends AppCompatActivity {
-    private HomeFragment homeFragment;
     private FragmentManager fm;
     private ActivityHomeBinding binding;
     private Toolbar toolbar;
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle abdt;
+
+    private HomeFragment homeFragment;
+    private ExitAppDialogFragment exitAppDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(this.binding.getRoot());
 
         this.homeFragment = HomeFragment.newInstance("homeFragment");
+        this.exitAppDialogFragment = ExitAppDialogFragment.newInstance("exitAppDialogFragment");
+
 
         //Toolbar
         this.toolbar = binding.toolbar;
@@ -62,7 +66,31 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onFragmentResult(String requestKey, Bundle result){
                 String page = result.getString("page");
+                changePage(page);
             }
         });
+    }
+
+    public void changePage(String page){
+        FragmentTransaction ft = this.fm.beginTransaction();
+        if(page.equals("homeFragment")){
+            if(this.homeFragment.isAdded()){
+                ft.show(this.homeFragment);
+            }
+            else{
+                ft.add(this.binding.fragmentContainer.getId(),this.homeFragment);
+            }
+//            if(this.buatPertemuanFragment.isAdded()){
+//                ft.hide(this.buatPertemuanFragment);
+//            }
+        }
+        else if(page.equals("exit")){
+            if(this.exitAppDialogFragment.isAdded()){
+                ft.show(this.exitAppDialogFragment);
+            }
+            else{
+                ft.add(this.binding.fragmentContainer.getId(),this.exitAppDialogFragment);
+            }
+        }
     }
 }
