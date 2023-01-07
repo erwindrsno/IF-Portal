@@ -1,6 +1,7 @@
-package com.example.tubes_02;
+package pengumuman;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.tubes_02.databinding.ActivityMainBinding;
 import com.example.tubes_02.databinding.ActivityPengumumanBinding;
+
+import Users.User;
 
 public class PengumumanActivity extends AppCompatActivity{
     private ActivityPengumumanBinding binding;
@@ -27,6 +29,13 @@ public class PengumumanActivity extends AppCompatActivity{
         this.pengumumanFragment = new PengumumanFragment();
         this.buatPengumumanFragment = new BuatPengumumanFragment();
         this.fragmentManager = this.getSupportFragmentManager();
+
+        Log.d("masukActivityPengumuman","true");
+
+        if(getIntent().getExtras() != null){
+            this.user = getIntent().getParcelableExtra("user");
+            Log.d("printUserPengumuman",this.user.getEmail());
+        }
 
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         ft.add(this.binding.fragmentContainer.getId(), this.pengumumanFragment)

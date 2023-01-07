@@ -20,6 +20,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="tv_home">HOME</string>
+    <string name="btn_home">Home</string>
     <string name="btn_frs_prs">FRS/PRS</string>
     <string name="btn_pengumuman">Pengumuman</string>
     <string name="btn_pertemuan">Pertemuan</string>

@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package pengumuman;
 
 public class Pengumuman {
     private String judul;
