@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package pengumuman;
 
 import android.content.Context;
 import android.util.Log;
@@ -16,6 +16,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import Users.User;
 
 public class PostAuthenticatePengumuman{
     final String BASE_URL = "https://ifportal.labftis.net/api/v1/annoucements";

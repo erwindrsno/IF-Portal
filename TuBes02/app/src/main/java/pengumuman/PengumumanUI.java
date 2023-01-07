@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package pengumuman;
 
 public interface PengumumanUI {
     void changePage(String page);

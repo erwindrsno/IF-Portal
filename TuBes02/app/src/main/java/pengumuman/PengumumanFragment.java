@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package pengumuman;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

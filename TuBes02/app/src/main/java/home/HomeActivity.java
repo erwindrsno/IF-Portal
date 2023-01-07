@@ -1,5 +1,10 @@
 package home;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,14 +13,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
-import drawer.ExitAppDialogFragment;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityHomeBinding;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import Users.User;
+import drawer.ExitAppDialogFragment;
+import pengumuman.PengumumanActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private FragmentManager fm;
@@ -24,6 +27,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle abdt;
+
+    private User user;
 
     private HomeFragment homeFragment;
     private ExitAppDialogFragment exitAppDialogFragment;
@@ -56,8 +61,7 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction ft = this.fm.beginTransaction();
 
         if(getIntent().getExtras() != null){
-            User user = getIntent().getParcelableExtra("user");
-            Log.d("homeUserActivity",user.getEmail());
+            this.user = getIntent().getParcelableExtra("user");
         }
 
         ft.add(this.binding.fragmentContainer.getId(), this.homeFragment)
@@ -72,6 +76,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        this.getSupportFragmentManager().setFragmentResultListener("changeActivity",this, new FragmentResultListener(){
+            @Override
+            public void onFragmentResult(String requestKey, Bundle result){
+                String activity = result.getString("activity");
+                changeActivity(activity);
+            }
+        });
+
         this.getSupportFragmentManager().setFragmentResultListener("exitApp",this, new FragmentResultListener(){
             @Override
             public void onFragmentResult(String requestKey, Bundle result){
@@ -81,6 +93,25 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void changeActivity(String activity){
+        switch(activity){
+            case "frs/prs":
+                Log.d("actFrs/prs",true+"");
+                break;
+
+            case "pengumuman":
+                Log.d("actPengumuman",true+"");
+                Intent intent = new Intent(this, PengumumanActivity.class);
+                intent.putExtra("user", (Parcelable) this.user);
+                startActivity(intent);
+                break;
+
+            case "pertemuan":
+                Log.d("actPertemuan",true+"");
+                break;
+        }
     }
 
     public void changePage(String page){
