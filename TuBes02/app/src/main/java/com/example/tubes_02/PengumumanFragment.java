@@ -28,12 +28,15 @@ public class PengumumanFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentPengumumanBinding.inflate(inflater);
         View view = binding.getRoot();
+        this.binding.btnBuatPengumuman.setOnClickListener(this::onClick);
         return view;
     }
 
     private void onClick(View view) {
         Bundle result = new Bundle();
-        result.putString("page","#");
+        result.putString("page","buat_pengumuman");
         this.getParentFragmentManager().setFragmentResult("changePage", result);
     }
+
+
 }
