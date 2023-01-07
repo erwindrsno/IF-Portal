@@ -86,8 +86,8 @@ public class MenuAdapter extends BaseAdapter {
                     Log.d("masuk menu settings","true");
 //                    result.putString("page","pertemuanFragment");
                 }
-                else if(binding.tvMenu.getText().equals("Exit")){
-                    Log.d("masuk menu exit","true");
+                else if(binding.tvMenu.getText().equals("Sign Out")){
+                    Log.d("masuk menu sign out","true");
                     result.putString("page","exit");
                 }
                 drawerFragment.getParentFragmentManager().setFragmentResult("changePage",result);

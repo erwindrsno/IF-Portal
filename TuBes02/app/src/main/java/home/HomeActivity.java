@@ -17,7 +17,8 @@ import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityHomeBinding;
 
 import Users.User;
-import drawer.ExitAppDialogFragment;
+import drawer.SignOutDialogFragment;
+import login.LoginActivity;
 import pengumuman.PengumumanActivity;
 
 public class HomeActivity extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
     private User user;
 
     private HomeFragment homeFragment;
-    private ExitAppDialogFragment exitAppDialogFragment;
+    private SignOutDialogFragment signOutDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(this.binding.getRoot());
 
         this.homeFragment = HomeFragment.newInstance("homeFragment");
-        this.exitAppDialogFragment = ExitAppDialogFragment.newInstance("exitAppDialogFragment");
+        this.signOutDialogFragment = SignOutDialogFragment.newInstance("exitAppDialogFragment");
 
 
         //Toolbar
@@ -96,20 +97,29 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void changeActivity(String activity){
+        Intent intent;
         switch(activity){
+            case "home":
+                Log.d("actHome",true+"");
+                break;
+
             case "frs/prs":
                 Log.d("actFrs/prs",true+"");
                 break;
 
             case "pengumuman":
-                Log.d("actPengumuman",true+"");
-                Intent intent = new Intent(this, PengumumanActivity.class);
+                intent = new Intent(this, PengumumanActivity.class);
                 intent.putExtra("user", (Parcelable) this.user);
                 startActivity(intent);
                 break;
 
             case "pertemuan":
                 Log.d("actPertemuan",true+"");
+                break;
+
+            case "login":
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -121,22 +131,17 @@ public class HomeActivity extends AppCompatActivity {
                 ft.show(this.homeFragment);
             }
             else{
-                ft.add(this.binding.fragmentContainer.getId(),this.homeFragment);
+                ft.add(this.binding.fragmentContainer.getId(),this.homeFragment)
+                        .addToBackStack(null);
+
             }
 //            if(this.buatPertemuanFragment.isAdded()){
 //                ft.hide(this.buatPertemuanFragment);
 //            }
         }
         else if(page.equals("exit")){
-            if(this.exitAppDialogFragment.isAdded()){
-//                Log.d("fragment","exit");
-//                ft.show(this.exitAppDialogFragment);
-            }
-            else{
-                this.exitAppDialogFragment.show(this.fm,"dialog");
-                Log.d("fragment","exit");
-                    ft.addToBackStack(null);
-            }
+            this.signOutDialogFragment.show(this.fm,"dialog");
+                ft.addToBackStack(null);
         }
         ft.commit();
     }

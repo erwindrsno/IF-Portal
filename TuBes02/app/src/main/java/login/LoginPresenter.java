@@ -40,6 +40,7 @@ public class LoginPresenter {
         if(email != null && password != null && role != null){
             this.newUser(email,password,role,true);
         }
+        //jika terdapat input yang kosong, maka akan beri warning
         else{
             this.ui.updateViewForInputValidation();
         }

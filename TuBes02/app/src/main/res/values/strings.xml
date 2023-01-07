@@ -5,8 +5,8 @@
     <string name="password">Password</string>
     <string name="role">Role</string>
     <string name="sign_in">Sign In</string>
-    <string name="input_email">Input Email</string>
-    <string name="input_password">Input Password</string>
+    <string name="input_email">Email</string>
+    <string name="input_password">Password</string>
     <string name="input_role">Input Role</string>
     <string name="login_fail">FaileD!</string>
     <string name="btn_simpan_text">Simpan</string>
@@ -29,13 +29,13 @@
     <string name="dosen">dosen</string>
     <string name="mahasiswa">mahasiswa</string>
 
-    <string name="error_input">Mohon untuk memasukkan email, password dan role yang sesuai.</string>
-    <string name="timeout">Time out error! Silahkan dicoba lagi.</string>
+    <string name="error_input">Email, password atau role tidak sesuai</string>
+    <string name="timeout">Mohon dicoba lagi</string>
 
 
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
-    <string name="exit_app">Apakah anda ingin keluar?</string>
+    <string name="sign_out">Apakah anda ingin keluar dari akun ini?</string>
     <string name="btn_iya">Iya</string>
     <string name="btn_tidak">Tidak</string>
 </resources>

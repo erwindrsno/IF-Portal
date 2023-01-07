@@ -26,7 +26,7 @@ public class DrawerFragment extends Fragment{
         binding.lvMenu.setAdapter(adapter);
         this.adapter.addList("My Profile");
         this.adapter.addList("Settings");
-        this.adapter.addList("Exit");
+        this.adapter.addList("Sign Out");
         return view;
     }
 }
