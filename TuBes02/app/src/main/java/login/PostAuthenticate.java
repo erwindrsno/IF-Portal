@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package login;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,6 +12,10 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+
+import Users.User;
 
 public class PostAuthenticate{
     final String BASE_URL = "https://ifportal.labftis.net/api/v1/authenticate";
@@ -50,8 +54,27 @@ public class PostAuthenticate{
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("errorBang", error.toString());
-                presenter.authFailed();
+                Log.d("errorBang",error.toString());
+//                try {
+//                    String body = new String(error.networkResponse.data, "utf-8");
+//                    Log.d("errorBang", body);
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                }
+//                Log.d("errorBang", body.substring(12,body.length()-2));
+//                String body1 = body.substring(12,body.length()-2);
+//                if(body1.equalsIgnoreCase("E_AUTH_FAILED")){
+//                    presenter.authFailed();
+//                }
+//                else{
+//                    presenter.timeOutError();
+//                }
+                if(error.toString().equalsIgnoreCase("com.android.volley.ClientError")){
+                    presenter.authFailed();
+                }
+                else if(error.toString().equalsIgnoreCase("com.android.volley.TimeOutError")){
+                    presenter.timeOutError();
+                }
             }
         });
         request.add(jsonObjectRequest);

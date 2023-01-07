@@ -1,0 +1,40 @@
+package Users;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Mahasiswa extends User implements Parcelable {
+
+    public Mahasiswa(String email, String password, String role){
+        super(email,password,role);
+    }
+
+    protected Mahasiswa(Parcel in) {
+        super(in);
+    }
+
+    public static final Creator<Admin> CREATOR = new Creator<Admin>() {
+        @Override
+        public Admin createFromParcel(Parcel in) {
+            return new Admin(in);
+        }
+
+        @Override
+        public Admin[] newArray(int size) {
+            return new Admin[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(super.getEmail());
+        parcel.writeString(super.getPassword());
+        parcel.writeString(super.getRole());
+        parcel.writeString(super.getToken());
+    }
+}
