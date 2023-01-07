@@ -49,12 +49,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(view.getId() == this.binding.btnLogin.getId()){
             this.email = this.binding.etEmail.getText().toString();
             this.password = this.binding.etPassword.getText().toString();
-//            String email2 = "default.admin@domain.local";
-//            String password2 = "mu8XyUogLi6Dk7";
-//            String role2 = "admin";
+            String email2 = "default.admin@domain.local";
+            String password2 = "mu8XyUogLi6Dk7";
+            String role2 = "admin";
 
-//            this.presenter.validateUser(email,password,role);
-            this.presenter.validateUser(this.email,this.password,this.role);
+            this.presenter.validateUser(email2,password2,role2);
+//            this.presenter.validateUser(this.email,this.password,this.role);
         }
     }
 
@@ -69,10 +69,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if(title.equalsIgnoreCase("wrongCredentials")){
                 Toast toast = Toast.makeText(this,R.string.error_input, Toast.LENGTH_LONG);
                 toast.show();
-//                this.binding.tvLoginFail.setText(R.string.error_input);
             }
             else if(title.equalsIgnoreCase("timeOutError")){
-//                this.binding.tvLoginFail.setText(R.string.timeout);
                 Toast toast = Toast.makeText(this,R.string.timeout, Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -83,7 +81,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void updateViewForInputValidation() {
         Toast toast = Toast.makeText(this,R.string.error_input, Toast.LENGTH_LONG);
         toast.show();
-//        this.binding.tvLoginFail.setText(R.string.error_input);
     }
 
     @Override

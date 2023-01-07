@@ -12,13 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.tubes_02.R;
-import com.example.tubes_02.databinding.FragmentExitAppBinding;
+import com.example.tubes_02.databinding.FragmentSignOutDialogBinding;
 
-public class ExitAppDialogFragment extends DialogFragment {
-    private FragmentExitAppBinding binding;
+public class SignOutDialogFragment extends DialogFragment {
+    private FragmentSignOutDialogBinding binding;
 //    private View view;
 
-    public ExitAppDialogFragment(){}
+    public SignOutDialogFragment(){}
 
 //    @Override
 //    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -35,31 +35,30 @@ public class ExitAppDialogFragment extends DialogFragment {
         Log.d("oncreateDialog","masuk");
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.fragment_exit_app, null);
+        View view = inflater.inflate(R.layout.fragment_sign_out_dialog, null);
 
         builder.setView(view)
-                .setTitle("Exit")
+                .setTitle("Sign Out")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dismiss();
                     }
                 })
-                .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Sign Out", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("onclick","exit");
                         Bundle result = new Bundle();
-                        result.putString("toExit","yes");
-                        getParentFragmentManager().setFragmentResult("exitApp",result);
+                        result.putString("activity","login");
+                        getParentFragmentManager().setFragmentResult("changeActivity",result);
                     }
                 });
 
         return builder.create();
     }
 
-    public static ExitAppDialogFragment newInstance(String title){
-        ExitAppDialogFragment fragment = new ExitAppDialogFragment();
+    public static SignOutDialogFragment newInstance(String title){
+        SignOutDialogFragment fragment = new SignOutDialogFragment();
         Bundle args = new Bundle();
         args.putString("title",title);
         fragment.setArguments(args);
