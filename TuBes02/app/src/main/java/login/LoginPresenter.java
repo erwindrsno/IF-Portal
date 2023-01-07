@@ -1,5 +1,8 @@
 package login;
 
+import android.content.Context;
+import android.util.Log;
+
 import Users.Admin;
 import Users.Dosen;
 import Users.Mahasiswa;
@@ -8,20 +11,37 @@ import Users.User;
 public class LoginPresenter {
     protected LoginUI ui;
     protected User user;
+    protected Context context;
 
-    public LoginPresenter(LoginUI ui){
+    public LoginPresenter(LoginUI ui, Context context){
         this.ui = ui;
+        this.context = context;
     }
 
-    public void newUser(String email, String password, String role){
-        if(role.equalsIgnoreCase("admin")){
-            this.user = new Admin(email,password,role);
+    public void newUser(String email, String password, String role, boolean valid){
+        if(valid){
+            if(role.equalsIgnoreCase("admin")){
+                this.user = new Admin(email,password,role);
+            }
+            else if(role.equalsIgnoreCase("dosen")){
+                this.user = new Dosen(email,password,role);
+            }
+            else if(role.equalsIgnoreCase("mahasiswa")){
+                this.user = new Mahasiswa(email,password,role);
+            }
+            PostAuthenticate authTask = new PostAuthenticate(this.context, this);
+            authTask.execute(this.getUser());
         }
-        else if(role.equalsIgnoreCase("dosen")){
-            this.user = new Dosen(email,password,role);
+    }
+
+    public void validateUser(String email, String password, String role){
+        //cek apakah email dan password terdapat kosong
+        //jika tidak ada, maka object user akan dibuat
+        if(email != null && password != null && role != null){
+            this.newUser(email,password,role,true);
         }
-        else if(role.equalsIgnoreCase("mahasiswa")){
-            this.user = new Mahasiswa(email,password,role);
+        else{
+            this.ui.updateViewForInputValidation();
         }
     }
 
@@ -34,10 +54,14 @@ public class LoginPresenter {
     }
 
     public void authSuccess(){
-        this.ui.updateView(true);
+        this.ui.updateViewFromAPI(true,"berhasil");
     }
 
     public void authFailed(){
-        this.ui.updateView(false);
+        this.ui.updateViewFromAPI(false, "wrongCredentials");
+    }
+
+    public void timeOutError(){
+        this.ui.updateViewFromAPI(false, "timeOutError");
     }
 }

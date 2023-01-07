@@ -1,5 +1,6 @@
 package login;
 
 public interface LoginUI {
-    void updateView(boolean valid);
+    void updateViewFromAPI(boolean valid, String title);
+    void updateViewForInputValidation();
 }

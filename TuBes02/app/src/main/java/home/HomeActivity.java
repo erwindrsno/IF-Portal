@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package home;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
+import drawer.ExitAppDialogFragment;
+import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityHomeBinding;
 
 import android.os.Bundle;
@@ -43,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         this.drawer = binding.drawerLayout;
 
         //tombol garis tiga
-        abdt = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.open_drawer,R.string.close_drawer);
+        abdt = new ActionBarDrawerToggle(this,drawer,toolbar, R.string.open_drawer,R.string.close_drawer);
         drawer.addDrawerListener(abdt);
         abdt.syncState();
         //Toolbar

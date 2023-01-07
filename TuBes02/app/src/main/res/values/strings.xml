@@ -24,6 +24,14 @@
     <string name="btn_pengumuman">Pengumuman</string>
     <string name="btn_pertemuan">Pertemuan</string>
 
+    <string name="admin">admin</string>
+    <string name="dosen">dosen</string>
+    <string name="mahasiswa">mahasiswa</string>
+
+    <string name="error_input">Mohon untuk memasukkan email, password dan role yang sesuai.</string>
+    <string name="timeout">Time out error! Silahkan dicoba lagi.</string>
+
+
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
     <string name="exit_app">Apakah anda ingin keluar?</string>

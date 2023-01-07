@@ -39,7 +39,7 @@
 
         <fragment
             android:id="@+id/fragment_left"
-            android:name="com.example.tubes_02.DrawerFragment"
+            android:name="drawer.DrawerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
