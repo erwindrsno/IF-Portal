@@ -11,10 +11,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.tubes_02.databinding.ActivityMainBinding;
 import com.example.tubes_02.databinding.ActivityPengumumanBinding;
 
-public class PengumumanActivity extends AppCompatActivity {
+public class PengumumanActivity extends AppCompatActivity{
     private ActivityPengumumanBinding binding;
     private PengumumanFragment pengumumanFragment;
+    private BuatPengumumanFragment buatPengumumanFragment;
     private FragmentManager fragmentManager;
+    private PostAuthenticatePengumuman postAuthenticatePengumuman;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +25,7 @@ public class PengumumanActivity extends AppCompatActivity {
         this.binding = ActivityPengumumanBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
         this.pengumumanFragment = new PengumumanFragment();
-
+        this.buatPengumumanFragment = new BuatPengumumanFragment();
         this.fragmentManager = this.getSupportFragmentManager();
 
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
@@ -39,8 +42,11 @@ public class PengumumanActivity extends AppCompatActivity {
                     }
                 }
         );
+        this.postAuthenticatePengumuman = new PostAuthenticatePengumuman(this);
+//        this.postAuthenticatePengumuman.execute();
     }
-    public void changePage(String page){
+
+    public void changePage(String page) {
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
 //                .setCustomAnimations(
 //                        R.anim.fade_in,
@@ -52,7 +58,10 @@ public class PengumumanActivity extends AppCompatActivity {
             ft.replace(binding.fragmentContainer.getId(),this.pengumumanFragment)
                     .addToBackStack(null);
         }
-
+        if(page.equals("buat_pengumuman")){
+            ft.replace(binding.fragmentContainer.getId(),this.buatPengumumanFragment)
+                    .addToBackStack(null);
+        }
 
         ft.commit();
     }
