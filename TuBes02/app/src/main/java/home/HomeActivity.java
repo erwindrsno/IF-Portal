@@ -97,6 +97,10 @@ public class HomeActivity extends AppCompatActivity {
 
     public void changeActivity(String activity){
         switch(activity){
+            case "home":
+                Log.d("actHome",true+"");
+                break;
+
             case "frs/prs":
                 Log.d("actFrs/prs",true+"");
                 break;
@@ -127,17 +131,17 @@ public class HomeActivity extends AppCompatActivity {
 //                ft.hide(this.buatPertemuanFragment);
 //            }
         }
-        else if(page.equals("exit")){
-            if(this.exitAppDialogFragment.isAdded()){
+//        else if(page.equals("exit")){
+//            if(this.exitAppDialogFragment.isAdded()){
+////                Log.d("fragment","exit");
+////                ft.show(this.exitAppDialogFragment);
+//            }
+//            else{
+//                this.exitAppDialogFragment.show(this.fm,"dialog");
 //                Log.d("fragment","exit");
-//                ft.show(this.exitAppDialogFragment);
-            }
-            else{
-                this.exitAppDialogFragment.show(this.fm,"dialog");
-                Log.d("fragment","exit");
-                    ft.addToBackStack(null);
-            }
-        }
+//                    ft.addToBackStack(null);
+//            }
+//        }
         ft.commit();
     }
 

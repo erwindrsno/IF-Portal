@@ -4,103 +4,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_login"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_logo_if"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:textSize="30sp">
-    </TextView>
+        android:src="@drawable/iflogo"
+        android:layout_centerHorizontal="true">
+    </ImageView>
 
     <LinearLayout
-        android:id="@+id/layout_email"
-        android:layout_below="@+id/tv_login"
+        android:background="@drawable/login_background"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@+id/iv_logo_if"
+        android:id="@+id/login_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_login"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/email">
+            android:text="@string/login"
+            android:textSize="30sp">
         </TextView>
 
-        <EditText
-            android:id="@+id/et_email"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:id="@+id/layout_email"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/input_email">
-        </EditText>
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:background="@drawable/input_background"
+            android:layout_marginBottom="12dp">
 
-    <LinearLayout
-        android:id="@+id/layout_password"
-        android:layout_below="@+id/layout_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/email">-->
+<!--            </TextView>-->
 
-        <TextView
-            android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="@string/input_email"
+                android:background="@null"
+                android:textSize="15sp"
+                android:layout_margin="3dp">
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_password"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/password">
-        </TextView>
+            android:orientation="horizontal"
+            android:background="@drawable/input_background"
+            android:layout_marginBottom="12dp">
 
-        <EditText
-            android:id="@+id/et_password"
-            android:inputType="textPassword"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/password">-->
+<!--            </TextView>-->
+
+            <EditText
+                android:id="@+id/et_password"
+                android:inputType="textPassword"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="@string/input_password"
+                android:background="@null"
+                android:textSize="15sp"
+                android:layout_margin="3dp">
+            </EditText>
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/dropdown_roles"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/input_password">
-        </EditText>
-    </LinearLayout>
+            android:layout_marginBottom="12dp">
 
-    <LinearLayout
-        android:id="@+id/layout_role"
-        android:layout_below="@+id/layout_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_admin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/admin">
-
-        </Button>
-
-        <Button
-            android:id="@+id/btn_dosen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dosen">
-
-        </Button>
-
-        <Button
-            android:id="@+id/btn_mahasiswa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mahasiswa">
-
-        </Button>
+        </Spinner>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_login_fail"
-        android:layout_below="@+id/layout_role"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/red">
-
-    </TextView>
 
     <Button
-        android:layout_below="@+id/tv_login_fail"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/login_layout"
         android:layout_centerHorizontal="true"
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"

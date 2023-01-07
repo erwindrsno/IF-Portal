@@ -7,12 +7,17 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import home.HomeActivity;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityLoginBinding;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginUI{
+import java.util.Locale;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginUI, AdapterView.OnItemSelectedListener{
     private ActivityLoginBinding binding;
     private LoginPresenter presenter;
     private String email;
@@ -25,11 +30,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         this.binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
 
-        Log.d("test masuk activity","masuk");
+        //dropdown roles
+        String[] arrRoles = getResources().getStringArray(R.array.roles);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arrRoles);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.binding.dropdownRoles.setAdapter(adapter);
 
-        this.binding.btnAdmin.setOnClickListener(this);
-        this.binding.btnDosen.setOnClickListener(this);
-        this.binding.btnMahasiswa.setOnClickListener(this);
+        this.binding.dropdownRoles.setOnItemSelectedListener(this);
+        //dropdown roles
 
         this.binding.btnLogin.setOnClickListener(this);
 
@@ -38,19 +46,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == this.binding.btnAdmin.getId()){
-            this.role = this.binding.btnAdmin.getText().toString();
-        }
-        if(view.getId() == this.binding.btnDosen.getId()){
-            this.role = this.binding.btnDosen.getText().toString();
-        }
-        if(view.getId() == this.binding.btnMahasiswa.getId()){
-            this.role = this.binding.btnMahasiswa.getText().toString();
-        }
         if(view.getId() == this.binding.btnLogin.getId()){
             this.email = this.binding.etEmail.getText().toString();
             this.password = this.binding.etPassword.getText().toString();
-
 //            String email2 = "default.admin@domain.local";
 //            String password2 = "mu8XyUogLi6Dk7";
 //            String role2 = "admin";
@@ -69,16 +67,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         else{
             if(title.equalsIgnoreCase("wrongCredentials")){
-                this.binding.tvLoginFail.setText(R.string.error_input);
+                Toast toast = Toast.makeText(this,R.string.error_input, Toast.LENGTH_LONG);
+                toast.show();
+//                this.binding.tvLoginFail.setText(R.string.error_input);
             }
             else if(title.equalsIgnoreCase("timeOutError")){
-                this.binding.tvLoginFail.setText(R.string.timeout);
+//                this.binding.tvLoginFail.setText(R.string.timeout);
+                Toast toast = Toast.makeText(this,R.string.timeout, Toast.LENGTH_LONG);
+                toast.show();
             }
         }
     }
 
     @Override
     public void updateViewForInputValidation() {
-        this.binding.tvLoginFail.setText(R.string.error_input);
+        Toast toast = Toast.makeText(this,R.string.error_input, Toast.LENGTH_LONG);
+        toast.show();
+//        this.binding.tvLoginFail.setText(R.string.error_input);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if(adapterView.getId() == this.binding.dropdownRoles.getId()){
+            this.role = adapterView.getItemAtPosition(i).toString().toLowerCase();
+            Log.d("rolebaru",this.role);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

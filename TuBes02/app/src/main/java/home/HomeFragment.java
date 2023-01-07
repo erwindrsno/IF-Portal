@@ -16,7 +16,6 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
     private FragmentHomeBinding binding;
-    private HomeActivity activity;
 
     public HomeFragment(){
         //empty constructor
@@ -31,6 +30,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Bundle result = new Bundle();
+                if(item.getItemId() == R.id.nav_btn_home){
+                    result.putString("activity","home");
+                }
                 if(item.getItemId() == R.id.nav_btn_frs_prs){
                     result.putString("activity","frs/prs");
                 }

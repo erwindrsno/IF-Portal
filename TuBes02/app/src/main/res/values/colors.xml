@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="blue_grey">#33658A</color>
+    <color name="grey">#808080</color>
+    <color name="prussian_blue">#003249</color>
+    <color name="blue_sapphire">#0B4F6C</color>
 </resources>
