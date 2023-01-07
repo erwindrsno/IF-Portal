@@ -64,19 +64,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <Button
+            android:id="@+id/btn_admin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/role">
-        </TextView>
+            android:text="@string/admin">
 
-        <EditText
-            android:id="@+id/et_role"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        </Button>
+
+        <Button
+            android:id="@+id/btn_dosen"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/input_role">
-        </EditText>
+            android:text="@string/dosen">
+
+        </Button>
+
+        <Button
+            android:id="@+id/btn_mahasiswa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mahasiswa">
+
+        </Button>
+
     </LinearLayout>
 
     <TextView

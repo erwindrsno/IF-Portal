@@ -1,15 +1,25 @@
-package com.example.tubes_02;
+package Users;
 
-public class User {
-    String email;
-    String password;
-    String role;
-    String token;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public abstract class User{
+    private String email;
+    private String password;
+    private String role;
+    private String token;
 
     public User(String email, String password, String role) {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    protected User(Parcel in) {
+        email = in.readString();
+        password = in.readString();
+        role = in.readString();
+        token = in.readString();
     }
 
     public String getEmail() {

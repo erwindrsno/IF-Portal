@@ -1,8 +1,4 @@
 ## Endpoint: Masukan dan Keluaran
-### Link API
-```url
-https://ifportal.labftis.net/api/v1/endpoint
-```
 ### Bentuk Masukan
 API menerima masukan dalam tiga bentuk, yaitu: *parameter*, *query*, dan *body*. Pada dokumen ini *parameter* didefinisikan sebagai masukan yang diikutsertakan dalam bagian *path* dari suatu URI. Contoh:
 ```url
@@ -180,7 +176,7 @@ Success:
 ### Melihat Daftar Academic Year
 Request:
 ```
-ACCESS: admin
+ACCESS: all
 GET /academic-years
 ```
 
@@ -492,7 +488,7 @@ POST /users
       "string|role"
     ],
     "npm": "string|length:1-16",
-    "initial_year": "integer|range:1970-9000"
+    "initial_year": "integer|initial_year"
 }
 ```
 
@@ -920,15 +916,15 @@ Success:
 }
 ```
 
-
 ### Melihat Daftar Announcement
-Request:
+Request (Filter):
 * `title`: judul pengumuman
 * `tags`: *id* tag (uuidv4)
 ```
 ACCESS: all
 SCHEMA: Keyset Pagination
 FILTER: title, tags*[]
+GET /announcements?filter=<filter>&cursor=<cursor>&limit=<limit>
 {
   "filter?": "object",
   "cursor?": "string",
@@ -974,7 +970,7 @@ PATCH /student/<user_id>
 {
   "user_id": "string|uuidv4",
   "npm?": "string|length:1-16",
-  "initial_year?": "integer|range:1970-9000" /* tahun awal masuk */
+  "initial_year?": "integer|initial_year"
 }
 ```
 
@@ -983,7 +979,7 @@ Success:
 {
   "user_id": "string|uuidv4",
   "npm": "string|length:1-16",
-  "initial_year": "integer|range:1970-9000" /* tahun awal masuk */
+  "initial_year": "integer|initial_year"
 }
 ```
 
@@ -1010,7 +1006,7 @@ Success:
   "name": "string|length:1-256",
   "email": "string|email",
   "npm": "string|length:1-16",
-  "initial_year": "integer|range:1970-9000" /* tahun awal masuk */
+  "initial_year": "integer|initial_year"
 }
 ```
 
@@ -1019,7 +1015,7 @@ Error:
 
 ### Melihat Student Berdasarkan Id
 Request:
-* `email`: *id* dari mahasiswa yang dicari
+* `id`: *id* dari mahasiswa yang dicari
 ```
 ACCESS: all
 GET /student/id/<id>
@@ -1035,7 +1031,7 @@ Success:
   "name": "string|length:1-256",
   "email": "string|email",
   "npm": "string|length:1-16",
-  "initial_year": "integer|range:1970-9000" /* tahun awal masuk */
+  "initial_year": "integer|initial_year"
 }
 ```
 
@@ -1060,7 +1056,7 @@ Success:
   "name": "string|length:1-256",
   "email": "string|email",
   "npm": "string|length:1-16",
-  "initial_year": "integer|range:1970-9000"
+  "initial_year": "integer|initial_year"
 }
 ```
 
@@ -1083,7 +1079,7 @@ Success:
   "email": "string|email",
   "archived_at": "string|datetime"
   "npm": "string|length:1-16",
-  "initial_year": "integer|range:1970-9000" /* tahun awal masuk */
+  "initial_year": "integer|initial_year"
 }
 ```
 
@@ -1360,8 +1356,6 @@ Error:
 * `E_NOT_EXIST`: *appointment* tidak ditemukan.
 
 ### Melihat Appointment
-Hanya dapat digunakan oleh pengguna pembuat *appointment*.
-
 Request:
 * `id`: *id* referensi ke *appointment* yang hendak dilihat.
 
@@ -1392,7 +1386,7 @@ Error:
 * `E_NOT_EXIST`: *appointment* tidak ditemukan.
 
 ### Melihat Daftar Appointment
-Melihat daftar *appointment* milik sendiri atau di mana pengguna yang direferensikan oleh `user_id` merupakan partisipan dari *appointment* tersebut.
+Melihat daftar *appointment* milik sendiri atau di mana pengguna yang direferensikan oleh `user_id` merupakan partisipan dari *appointment* tersebut (sudah setuju untuk hadir).
 
 Request:
 * `user_id`: *id* dari pengguna yang hendak dilihat *appointment*-nya.
@@ -1423,7 +1417,7 @@ Error:
 * `E_INVALID_VALUE`: jarak antara `start_date` dan `end_date` lebih dari 7 hari.
 
 ### Melihat Daftar Appointment (Owner dan Participant)
-Melihat daftar *appointment* milik sendiri atau di mana pengguna (dengan *id* yang diambil dari *token*) merupakan partisipan dari *appointment* tersebut.
+Melihat daftar *appointment* milik sendiri atau di mana pengguna (dengan *id* yang diambil dari *token*) merupakan partisipan dari *appointment* tersebut (sudah setuju untuk hadir).
 
 Request:
 * `start_date`: batas tanggal awal pencarian.
@@ -1584,10 +1578,10 @@ Success:
 ```
 
 ### Melihat Daftar Undangan Appointment
-Melihat semua undangan yang diterima seorang pengguna.
+Melihat semua undangan yang diterima seorang pengguna, yang mana, waktu mulai janji temu lebih besar atau sama dengan waktu saat ini.
 ```
 ACCESS: all
-GET /appointments/invites
+GET /appointments/invitations
 ```
 Success:
 ```
@@ -1596,6 +1590,10 @@ Success:
     "appointment_id": "string|uuidv4",
     "title": "string|length:1-256",
     "description": "string|length:1-5000|nullable",
+    "start_datetime": "string|datetime",
+    "end_datetime": "string|datetime",
+    "organizer_id": "string|uuidv4",
+    "organizer_name": "string|length:1-256",
     "attending": "boolean",
     "created_at": "string|datetime",
     "updated_at": "string|datetime"
@@ -1709,7 +1707,7 @@ Request:
 
 ```
 ACCESS: student
-DELETE /enrolments/academic-years/<academic_year>
+GET /enrolments/academic-years/<academic_year>
 {
     "academic_year": "integer|academic_year"
 }
@@ -1727,7 +1725,7 @@ Request:
 
 ```
 ACCESS: admin, lecturer
-DELETE /enrolments/academic-years/<academic_year>/students/<student_id>
+GET /enrolments/academic-years/<academic_year>/students/<student_id>
 {
     "academic_year": "integer|academic_year",
     "student_id": "string|uuidv4"
