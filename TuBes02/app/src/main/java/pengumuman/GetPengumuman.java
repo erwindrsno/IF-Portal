@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
@@ -19,14 +20,14 @@ import java.util.Map;
 
 import Users.User;
 
-public class PostAuthenticatePengumuman{
+public class GetPengumuman {
     final String BASE_URL = "https://ifportal.labftis.net/api/v1/annoucements";
     private final Context context;
     private final Gson gson;
     private User user;
-//    private LoginPresenter presenter;
+    private PengumumanPresenter presenter;
 
-    public PostAuthenticatePengumuman(Context context){
+    public GetPengumuman(Context context){
         this.context = context;
         this.gson = new Gson();
 //        this.presenter = presenter;
@@ -37,21 +38,21 @@ public class PostAuthenticatePengumuman{
             this.user = user;
             JSONObject json = new JSONObject(this.gson.toJson(user));
             Log.d("printJSON", json.toString(4));
-            callVolley(json);
+            callVolley();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void callVolley(JSONObject json) {
+    public void callVolley() {
         RequestQueue request = Volley.newRequestQueue(this.context);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BASE_URL, json, new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 Log.d("token user post", user.getToken());
-                Log.d("Respon API", response.toString());
-
+                Log.d("Respon API", request.toString());
+                Pengumuman [] array_pengumuman = gson.fromJson(response,Pengumuman[].class);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -67,7 +68,7 @@ public class PostAuthenticatePengumuman{
                 return headers;
             }
         };
-        request.add(jsonObjectRequest);
+        request.add(stringRequest);
 
     }
 }

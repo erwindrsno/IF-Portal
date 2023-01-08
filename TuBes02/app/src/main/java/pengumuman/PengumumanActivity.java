@@ -18,7 +18,7 @@ public class PengumumanActivity extends AppCompatActivity{
     private PengumumanFragment pengumumanFragment;
     private BuatPengumumanFragment buatPengumumanFragment;
     private FragmentManager fragmentManager;
-    private PostAuthenticatePengumuman postAuthenticatePengumuman;
+    private GetPengumuman getPengumuman;
     private User user;
 
     @Override
@@ -26,7 +26,7 @@ public class PengumumanActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         this.binding = ActivityPengumumanBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
-        this.pengumumanFragment = new PengumumanFragment();
+        this.pengumumanFragment = PengumumanFragment.newInstance(this);
         this.buatPengumumanFragment = new BuatPengumumanFragment();
         this.fragmentManager = this.getSupportFragmentManager();
 
@@ -51,7 +51,7 @@ public class PengumumanActivity extends AppCompatActivity{
                     }
                 }
         );
-        this.postAuthenticatePengumuman = new PostAuthenticatePengumuman(this);
+        this.getPengumuman = new GetPengumuman(this);
 //        this.postAuthenticatePengumuman.execute();
     }
 
