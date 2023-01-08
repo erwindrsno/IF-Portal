@@ -10,11 +10,14 @@ import com.example.tubes_02.databinding.ListPengumumanBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+import Users.User;
+
 public class PengumumanAdapter extends BaseAdapter {
     private List<Pengumuman> pengumumanList;
     private ListPengumumanBinding binding;
     private ViewHolder viewHolder;
     private Activity activity;
+    private User user;
 
     public PengumumanAdapter(Activity activity){
         this.activity = activity;
