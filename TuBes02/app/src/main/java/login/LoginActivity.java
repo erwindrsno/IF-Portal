@@ -49,12 +49,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(view.getId() == this.binding.btnLogin.getId()){
             this.email = this.binding.etEmail.getText().toString();
             this.password = this.binding.etPassword.getText().toString();
-//            String email2 = "default.admin@domain.local";
-//            String password2 = "mu8XyUogLi6Dk7";
-//            String role2 = "admin";
+            String email2 = "default.admin@domain.local";
+            String password2 = "mu8XyUogLi6Dk7";
+            String role2 = "admin";
 
-//            this.presenter.validateUser(email2,password2,role2);
-            this.presenter.validateUser(this.email,this.password,this.role);
+            this.presenter.validateUser(email2,password2,role2);
+//            this.presenter.validateUser(this.email,this.password,this.role);
         }
     }
 

@@ -29,7 +29,7 @@ public class PengumumanPresenter {
 
     public void executeAPI(){
         GetPengumuman task = new GetPengumuman(this.context,this);
-        task.execute(this.user);
+        task.execute();
     }
 
     public void setArrayListPengumuman(ArrayList<Pengumuman> arrListPengumuman){

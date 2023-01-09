@@ -29,6 +29,8 @@ public class PengumumanActivity extends AppCompatActivity implements PengumumanU
         this.binding = ActivityPengumumanBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
 
+        Log.d("masukActPengumuman",true+"");
+
         //presenter
         this.presenter = new PengumumanPresenter(this,this);
 
