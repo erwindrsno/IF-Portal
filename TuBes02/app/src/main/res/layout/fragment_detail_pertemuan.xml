@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_pertemuan_detail_tv_organizer_text"
+        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+    <TextView
+        android:id="@+id/tv_organizer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_pertemuan_tambah_tv_tanggal_text"
+        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_pertemuan_detail_tv_waktu_text"
+        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="9">
+
+        <TextView
+            android:id="@+id/tv_time_start"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="-"
+            android:textAlignment="center"
+            android:textSize="@dimen/fragment_pertemuan_form_text_size"/>
+
+        <TextView
+            android:id="@+id/tv_time_end"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_pertemuan_detail_tv_partisipan_text"
+        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+    <TextView
+        android:id="@+id/tv_participant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_pertemuan_detail_tv_deskripsi_text"
+        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+</LinearLayout>
