@@ -1,10 +1,12 @@
 package pengumuman;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -17,27 +19,34 @@ import com.example.tubes_02.databinding.FragmentPengumumanBinding;
 
 public class PengumumanFragment extends Fragment {
     private FragmentPengumumanBinding binding;
-    private Context context;
+    private PengumumanAdapter adapter;
+    private PengumumanPresenter presenter;
 
     public PengumumanFragment(){
     }
 
-    public static PengumumanFragment newInstance(Context context) {
+    public static PengumumanFragment newInstance(PengumumanPresenter presenter) {
         PengumumanFragment fragment = new PengumumanFragment();
-        fragment.context = context;
+        fragment.presenter = presenter;
         return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentPengumumanBinding.inflate(inflater);
+        this.binding = FragmentPengumumanBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-//        this.binding.btnBuatPengumuman.setOnClickListener(this::onClick);
+//        this.binding.btnBuatPengumuman.setOnClickListener(this::onClick);\
+
+        //adapter dropdown pilih search by title/ filter by tag
         String [] filter = getResources().getStringArray(R.array.sort);
-        ArrayAdapter adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, filter);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.binding.spinner.setAdapter(adapter);
+        ArrayAdapter dropdownAdapter = new ArrayAdapter(this.presenter.getContext(), android.R.layout.simple_spinner_item, filter);
+        dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.binding.spinner.setAdapter(dropdownAdapter);
+        //adapter dropdown
+
+        this.adapter = new PengumumanAdapter(this.presenter, inflater,this);
+        this.binding.listPengumuman.setAdapter(this.adapter);
         return view;
     }
 
@@ -46,6 +55,4 @@ public class PengumumanFragment extends Fragment {
         result.putString("page","buat_pengumuman");
         this.getParentFragmentManager().setFragmentResult("changePage", result);
     }
-
-
 }
