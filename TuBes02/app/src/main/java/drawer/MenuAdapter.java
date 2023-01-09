@@ -90,6 +90,10 @@ public class MenuAdapter extends BaseAdapter {
                     Log.d("masuk menu sign out","true");
                     result.putString("page","exit");
                 }
+                else if(binding.tvMenu.getText().equals("Admin Features")){
+                    Log.d("masuk menu Admin Features","true");
+                    result.putString("page","fitur_admin");
+                }
                 drawerFragment.getParentFragmentManager().setFragmentResult("changePage",result);
             }
         }
