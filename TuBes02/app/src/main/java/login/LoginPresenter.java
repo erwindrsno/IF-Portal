@@ -27,6 +27,7 @@ public class LoginPresenter {
                 this.user = new Dosen(email,password,role);
             }
             else if(role.equalsIgnoreCase("mahasiswa")){
+                role = "student";
                 this.user = new Mahasiswa(email,password,role);
             }
             PostAuthenticate authTask = new PostAuthenticate(this.context, this);

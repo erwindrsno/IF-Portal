@@ -11,31 +11,38 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tubes_02.databinding.ActivityPengumumanBinding;
 
+import java.util.ArrayList;
+
 import Users.User;
 
-public class PengumumanActivity extends AppCompatActivity{
+public class PengumumanActivity extends AppCompatActivity implements PengumumanUI{
     private ActivityPengumumanBinding binding;
     private PengumumanFragment pengumumanFragment;
     private BuatPengumumanFragment buatPengumumanFragment;
     private FragmentManager fragmentManager;
-    private GetPengumuman getPengumuman;
     private User user;
+    private PengumumanPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.binding = ActivityPengumumanBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
-        this.pengumumanFragment = PengumumanFragment.newInstance(this);
-        this.buatPengumumanFragment = new BuatPengumumanFragment();
-        this.fragmentManager = this.getSupportFragmentManager();
 
-        Log.d("masukActivityPengumuman","true");
+        //presenter
+        this.presenter = new PengumumanPresenter(this,this);
+
+        //instantiate fragment
+        this.pengumumanFragment = PengumumanFragment.newInstance(this.presenter);
+//        this.buatPengumumanFragment = BuatPengumumanFragment.newInstance(this);
 
         if(getIntent().getExtras() != null){
             this.user = getIntent().getParcelableExtra("user");
-            Log.d("printUserPengumuman",this.user.getEmail());
+            this.presenter.setUser(this.user);
+            this.presenter.executeAPI();
         }
+
+        this.fragmentManager = this.getSupportFragmentManager();
 
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         ft.add(this.binding.fragmentContainer.getId(), this.pengumumanFragment)
@@ -51,8 +58,6 @@ public class PengumumanActivity extends AppCompatActivity{
                     }
                 }
         );
-        this.getPengumuman = new GetPengumuman(this);
-//        this.postAuthenticatePengumuman.execute();
     }
 
     public void changePage(String page) {
@@ -73,5 +78,10 @@ public class PengumumanActivity extends AppCompatActivity{
         }
 
         ft.commit();
+    }
+
+    @Override
+    public void updateView(ArrayList<Pengumuman> arrList) {
+
     }
 }

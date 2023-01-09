@@ -17,7 +17,6 @@ public class MenuAdapter extends BaseAdapter {
     private ItemListMenuBinding binding;
     private DrawerFragment drawerFragment;
     private LayoutInflater inflater;
-    private Activity activity;
 
     public MenuAdapter(DrawerFragment drawerFragment, LayoutInflater inflater){
         this.listMenu = new ArrayList<>();

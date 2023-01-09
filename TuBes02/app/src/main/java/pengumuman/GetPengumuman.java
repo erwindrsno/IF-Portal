@@ -15,22 +15,24 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import Users.User;
 
 public class GetPengumuman {
-    final String BASE_URL = "https://ifportal.labftis.net/api/v1/annoucements";
+    final String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
     private final Context context;
     private final Gson gson;
     private User user;
     private PengumumanPresenter presenter;
 
-    public GetPengumuman(Context context){
+    public GetPengumuman(Context context, PengumumanPresenter presenter){
         this.context = context;
         this.gson = new Gson();
-//        this.presenter = presenter;
+        this.presenter = presenter;
     }
 
     public void execute(User user){
@@ -52,7 +54,9 @@ public class GetPengumuman {
             public void onResponse(String response) {
                 Log.d("token user post", user.getToken());
                 Log.d("Respon API", request.toString());
-                Pengumuman [] array_pengumuman = gson.fromJson(response,Pengumuman[].class);
+                Pengumuman[] array_pengumuman = gson.fromJson(response,Pengumuman[].class);
+                ArrayList<Pengumuman> arrListPengumuman = (ArrayList<Pengumuman>) Arrays.asList(array_pengumuman);
+                presenter.setArrayListPengumuman(arrListPengumuman);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -69,6 +73,5 @@ public class GetPengumuman {
             }
         };
         request.add(stringRequest);
-
     }
 }
