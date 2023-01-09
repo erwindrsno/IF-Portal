@@ -38,4 +38,5 @@
     <string name="sign_out">Apakah anda ingin keluar dari akun ini?</string>
     <string name="btn_iya">Iya</string>
     <string name="btn_tidak">Tidak</string>
+    <string name="judul_add_user">Add User</string>
 </resources>

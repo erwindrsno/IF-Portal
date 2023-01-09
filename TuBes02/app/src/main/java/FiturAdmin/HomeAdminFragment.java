@@ -34,6 +34,10 @@ public class HomeAdminFragment extends Fragment {
     }
 
     private void onclick(View view) {
-
+        if(view.getId() == this.binding.btnAddUser.getId()){
+            Bundle result = new Bundle();
+            result.putString("page","add_user");
+            this.getParentFragmentManager().setFragmentResult("changePage",result);
+        }
     }
 }
