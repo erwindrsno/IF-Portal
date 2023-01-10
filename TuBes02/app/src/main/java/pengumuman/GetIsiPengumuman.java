@@ -12,33 +12,31 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import pengumuman.model.Pengumuman;
 
-public class GetPengumuman {
-    final String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
+public class GetIsiPengumuman {
+    private String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
     private final Context context;
     private final Gson gson;
     private PengumumanPresenter presenter;
+    private Pengumuman pengumuman;
 
-    public GetPengumuman(Context context, PengumumanPresenter presenter){
+    public GetIsiPengumuman(Context context, PengumumanPresenter presenter, Pengumuman pengumuman){
         this.context = context;
         this.gson = new Gson();
         this.presenter = presenter;
+        this.pengumuman = pengumuman;
     }
 
     public void execute(){
         try{
-            Log.d("masukTaskAnnouncements",true+"");
-            Log.d("tokenpresenter",this.presenter.user.getToken());
             callVolley();
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,24 +46,15 @@ public class GetPengumuman {
     public void callVolley() {
         RequestQueue request = Volley.newRequestQueue(this.context);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL, new Response.Listener<String>() {
+        String query = BASE_URL + "/" +this.pengumuman.getId();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, query, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                JSONObject objResponse;
-                JSONArray arrData = new JSONArray();
                 try{
-                    objResponse = new JSONObject(response);
-                    arrData = objResponse.getJSONArray("data");
-                    ArrayList<Pengumuman> arrPengumuman = new ArrayList<>();
-//                    ListPengumuman pengumuman = gson.fromJson(arrData.getString(0), ListPengumuman.class);
-//                    Log.d("tagPengumuman",pengumuman.getTags().get(0).getTag());
-                    for (int i = 0; i < arrData.length(); i++) {
-                        Pengumuman pengumuman = gson.fromJson(arrData.getString(i), Pengumuman.class);
-                        arrPengumuman.add(pengumuman);
-                    }
-                    Log.d("masukVolley",true+"");
-                    presenter.getListFromAPI(arrPengumuman);
-//                    Log.d("printPengumuman",arrData.toString());
+                    JSONObject objResponse = new JSONObject(response);
+                    String content = objResponse.getString("content");
+                    Log.d("isi konten",content);
                 } catch(JSONException ex){
                     ex.printStackTrace();
                 }

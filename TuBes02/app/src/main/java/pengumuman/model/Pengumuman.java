@@ -2,14 +2,15 @@ package pengumuman.model;
 
 import java.util.ArrayList;
 
-public class ListPengumuman {
+public class Pengumuman {
     private String id;
     private String title;
     private String updated_at;
     private String created_at;
     private ArrayList<Tag> tags;
+    private String content;
 
-    public ListPengumuman(String id, String title, String updated_at, String created_at){
+    public Pengumuman(String id, String title, String updated_at, String created_at){
         this.id = id;
         this.title = title;
         this.updated_at = updated_at;
@@ -54,5 +55,13 @@ public class ListPengumuman {
 
     public void setTags(ArrayList<Tag> tags) {
         this.tags = tags;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

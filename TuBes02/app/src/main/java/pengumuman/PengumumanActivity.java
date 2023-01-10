@@ -14,7 +14,7 @@ import com.example.tubes_02.databinding.ActivityPengumumanBinding;
 import java.util.ArrayList;
 
 import Users.User;
-import pengumuman.model.ListPengumuman;
+import pengumuman.model.Pengumuman;
 
 public class PengumumanActivity extends AppCompatActivity implements ListPengumumanUI{
     private ActivityPengumumanBinding binding;
@@ -42,7 +42,7 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
         if(getIntent().getExtras() != null){
             this.user = getIntent().getParcelableExtra("user");
             this.presenter.setUser(this.user);
-            this.presenter.executeAPI();
+            this.presenter.executeGetPengumumanAPI();
         }
 
         this.fragmentManager = this.getSupportFragmentManager();
@@ -84,7 +84,7 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
     }
 
     @Override
-    public void updateList(ArrayList<ListPengumuman> daftarPengumuman) {
+    public void updateList(ArrayList<Pengumuman> daftarPengumuman) {
         this.pengumumanFragment.updateListToAdapter(daftarPengumuman);
     }
 }

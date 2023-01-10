@@ -1,15 +1,10 @@
 package pengumuman;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +15,7 @@ import com.example.tubes_02.databinding.FragmentPengumumanBinding;
 
 import java.util.ArrayList;
 
-import pengumuman.model.ListPengumuman;
+import pengumuman.model.Pengumuman;
 
 public class PengumumanFragment extends Fragment{
     private FragmentPengumumanBinding binding;
@@ -61,7 +56,7 @@ public class PengumumanFragment extends Fragment{
         this.getParentFragmentManager().setFragmentResult("changePage", result);
     }
 
-    public void updateListToAdapter(ArrayList<ListPengumuman> daftarPengumuman) {
+    public void updateListToAdapter(ArrayList<Pengumuman> daftarPengumuman) {
         for (int i = 0; i < daftarPengumuman.size(); i++) {
             this.adapter.addList(daftarPengumuman.get(i));
         }

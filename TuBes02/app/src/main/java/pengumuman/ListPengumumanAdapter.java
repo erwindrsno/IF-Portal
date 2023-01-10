@@ -1,7 +1,5 @@
 package pengumuman;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,18 +7,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.tubes_02.databinding.ItemListDaftarPengumumanBinding;
-import com.example.tubes_02.databinding.ItemListMenuBinding;
-import com.example.tubes_02.databinding.ItemListDaftarPengumumanBinding;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import Users.User;
-import pengumuman.model.ListPengumuman;
+import pengumuman.model.Pengumuman;
 import pengumuman.model.Tag;
 
 public class ListPengumumanAdapter extends BaseAdapter {
-    private ArrayList<ListPengumuman> daftarPengumuman;
+    private ArrayList<Pengumuman> daftarPengumuman;
     private ItemListDaftarPengumumanBinding binding;
     private ViewHolder viewHolder;
     private User user;
@@ -41,7 +36,7 @@ public class ListPengumumanAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Pengumuman getItem(int i) {
         return this.daftarPengumuman.get(i);
     }
 
@@ -56,7 +51,7 @@ public class ListPengumumanAdapter extends BaseAdapter {
         if(view==null){
             this.binding = ItemListDaftarPengumumanBinding.inflate(this.inflater);
             view = this.binding.getRoot();
-            viewHolder = new ViewHolder(this.binding);
+            viewHolder = new ViewHolder(this.binding, this.presenter, i);
             view.setTag(viewHolder);
         }
         else{
@@ -67,26 +62,26 @@ public class ListPengumumanAdapter extends BaseAdapter {
         return view;
     }
 
-    public void addList(ListPengumuman listPengumuman){
-        this.daftarPengumuman.add(listPengumuman);
+    public void addList(Pengumuman pengumuman){
+        this.daftarPengumuman.add(pengumuman);
         this.notifyDataSetChanged();
     }
 
-//    public void update(ArrayList<ListPengumuman> daftarPengumuman){
-//        this.daftarPengumuman = daftarPengumuman;
-//    }
-
     private class ViewHolder implements View.OnClickListener{
         protected ItemListDaftarPengumumanBinding binding;
+        protected PengumumanPresenter presenter;
+        protected int position;
 
-        public ViewHolder(ItemListDaftarPengumumanBinding binding){
+        public ViewHolder(ItemListDaftarPengumumanBinding binding, PengumumanPresenter presenter, int position){
             this.binding= binding;
-
+            this.presenter = presenter;
+            this.position = position;
             this.binding.layoutDaftarPengumuman.setOnClickListener(this);
         }
 
-        public void updateView(ListPengumuman daftarPengumuman){
+        public void updateView(Pengumuman daftarPengumuman){
             this.binding.tvTitleDaftarPengumuman.setText(daftarPengumuman.getTitle());
+            Log.d("id",daftarPengumuman.getId());
             ArrayList<Tag> listTags = daftarPengumuman.getTags();
             String tags = "";
             for (int i = 0; i < listTags.size(); i++) {
@@ -104,6 +99,7 @@ public class ListPengumumanAdapter extends BaseAdapter {
         public void onClick(View view) {
             if(view.getId() == this.binding.layoutDaftarPengumuman.getId()){
                 Log.d("masukdialogdaftarpengumuman",true+"");
+                this.presenter.executeGetIsiPengumumanAPI(getItem(this.position));
             }
         }
     }
