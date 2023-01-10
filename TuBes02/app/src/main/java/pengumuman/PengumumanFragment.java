@@ -3,6 +3,7 @@ package pengumuman;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,10 @@ public class PengumumanFragment extends Fragment{
                 dialogFragment.show(fm,"message");
             }
         });
+
+        Menu menu = this.binding.bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
 
         this.binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
