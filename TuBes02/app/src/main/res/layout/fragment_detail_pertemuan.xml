@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -7,87 +8,129 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fragment_pertemuan_detail_tv_organizer_text"
-        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
-
-    <TextView
-        android:id="@+id/tv_organizer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_pertemuan_tambah_tv_tanggal_text"
-        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
-
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_pertemuan_detail_tv_waktu_text"
-        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
+        android:textColor="@color/normal_text"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="9">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_pertemuan_detail_tv_organizer_text"
+            android:textSize="18sp"
+            android:textColor="@color/normal_text"
+            android:textStyle="italic"/>
 
         <TextView
-            android:id="@+id/tv_time_start"
-            android:layout_width="0px"
+            android:id="@+id/tv_organizer"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+            android:textSize="@dimen/fragment_pertemuan_form_text_size"
+            android:textColor="@color/normal_text"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            />
 
         <TextView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="-"
-            android:textAlignment="center"
-            android:textSize="@dimen/fragment_pertemuan_form_text_size"/>
+            android:text="@string/fragment_pertemuan_tambah_tv_tanggal_text"
+            android:textSize="18sp"
+            android:textColor="@color/normal_text"
+            android:layout_marginTop="5dp"
+            android:textStyle="italic"/>
 
         <TextView
-            android:id="@+id/tv_time_end"
-            android:layout_width="0px"
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+            android:textSize="@dimen/fragment_pertemuan_form_text_size"
+            android:textColor="@color/normal_text"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_pertemuan_detail_tv_waktu_text"
+            android:textSize="18sp"
+            android:textColor="@color/normal_text"
+            android:textStyle="italic"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="9"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_time_start"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size"/>
+
+            <TextView
+                android:id="@+id/tv_time_end"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_pertemuan_detail_tv_partisipan_text"
+            android:textSize="18sp"
+            android:textColor="@color/normal_text"
+            android:textStyle="italic"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_participant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fragment_pertemuan_form_text_size"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_pertemuan_detail_tv_deskripsi_text"
+            android:textSize="18sp"
+            android:textColor="@color/normal_text"
+            android:textStyle="italic"
+            android:layout_marginTop="5dp"/>
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fragment_pertemuan_form_text_size"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"/>
+
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_pertemuan_detail_tv_partisipan_text"
-        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
-
-    <TextView
-        android:id="@+id/tv_participant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_pertemuan_detail_tv_deskripsi_text"
-        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
-    <TextView
-        android:id="@+id/tv_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
 
 </LinearLayout>
