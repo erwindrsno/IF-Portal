@@ -17,6 +17,7 @@ import java.util.List;
 
 import Users.User;
 import pengumuman.model.ListPengumuman;
+import pengumuman.model.Tag;
 
 public class ListPengumumanAdapter extends BaseAdapter {
     private ArrayList<ListPengumuman> daftarPengumuman;
@@ -68,24 +69,35 @@ public class ListPengumumanAdapter extends BaseAdapter {
 
     public void addList(ListPengumuman listPengumuman){
         this.daftarPengumuman.add(listPengumuman);
-        Log.d("berhasil ter add",true+"");
         this.notifyDataSetChanged();
     }
 
-    public void update(ArrayList<ListPengumuman> daftarPengumuman){
-        this.daftarPengumuman = daftarPengumuman;
-    }
+//    public void update(ArrayList<ListPengumuman> daftarPengumuman){
+//        this.daftarPengumuman = daftarPengumuman;
+//    }
 
     private class ViewHolder implements View.OnClickListener{
         protected ItemListDaftarPengumumanBinding binding;
 
         public ViewHolder(ItemListDaftarPengumumanBinding binding){
             this.binding= binding;
+
+            this.binding.layoutDaftarPengumuman.setOnClickListener(this);
         }
 
         public void updateView(ListPengumuman daftarPengumuman){
             this.binding.tvTitleDaftarPengumuman.setText(daftarPengumuman.getTitle());
-            this.binding.idDaftarPengumuman.setText(daftarPengumuman.getId());
+            ArrayList<Tag> listTags = daftarPengumuman.getTags();
+            String tags = "";
+            for (int i = 0; i < listTags.size(); i++) {
+                if(i == listTags.size() - 1){
+                    tags += listTags.get(i).getTag();
+                }
+                else{
+                    tags += listTags.get(i).getTag()+", ";
+                }
+            }
+            this.binding.tvTags.setText(tags);
         }
 
         @Override

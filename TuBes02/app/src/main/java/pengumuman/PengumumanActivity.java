@@ -85,6 +85,6 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
 
     @Override
     public void updateList(ArrayList<ListPengumuman> daftarPengumuman) {
-
+        this.pengumumanFragment.updateListToAdapter(daftarPengumuman);
     }
 }

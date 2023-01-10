@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 import pengumuman.model.ListPengumuman;
 
-public class PengumumanFragment extends Fragment implements ListPengumumanUI{
+public class PengumumanFragment extends Fragment{
     private FragmentPengumumanBinding binding;
     private ListPengumumanAdapter adapter;
     private PengumumanPresenter presenter;
@@ -61,11 +61,9 @@ public class PengumumanFragment extends Fragment implements ListPengumumanUI{
         this.getParentFragmentManager().setFragmentResult("changePage", result);
     }
 
-    @Override
-    public void updateList(ArrayList<ListPengumuman> daftarPengumuman) {
+    public void updateListToAdapter(ArrayList<ListPengumuman> daftarPengumuman) {
         for (int i = 0; i < daftarPengumuman.size(); i++) {
             this.adapter.addList(daftarPengumuman.get(i));
         }
-        Log.d("updateListKeAdapter",true+"");
     }
 }

@@ -25,6 +25,7 @@
     <string name="btn_pengumuman">Pengumuman</string>
     <string name="btn_pertemuan">Pertemuan</string>
     <string name="search">Search</string>
+    <string name="tags">Tags:</string>
 
     <string name="admin">admin</string>
     <string name="dosen">dosen</string>
