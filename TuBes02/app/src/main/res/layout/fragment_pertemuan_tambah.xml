@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:text="@string/fragment_pertemuan_tambah_judul_text"
+        android:textSize="@dimen/fragment_pertemuan_judul_text_size" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_pertemuan_tambah_tv_topik_text"
+                android:textColor="@color/blue_grey"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+            <EditText
+                android:id="@+id/et_judul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_pertemuan_tambah_tv_tanggal_text"
+                android:textColor="@color/blue_grey"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+            <EditText
+                android:id="@+id/et_tanggal_mulai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:drawableEnd="@android:drawable/ic_menu_my_calendar"
+                android:focusable="false"
+                android:hint="@string/fragment_pertemuan_tambah_et_tgl_hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_pertemuan_tambah_tv_waktu_text"
+                android:textColor="@color/blue_grey"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+            <EditText
+                android:id="@+id/et_jam_mulai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:drawableEnd="@android:drawable/ic_menu_recent_history"
+                android:focusable="false"
+                android:hint="@string/fragment_pertemuan_tambah_et_jam_hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_pertemuan_tambah_tv_waktu_selesai_text"
+                android:textColor="@color/blue_grey"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+            <EditText
+                android:focusableInTouchMode="false"
+
+                android:id="@+id/et_jam_selesai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:drawableEnd="@android:drawable/ic_menu_recent_history"
+                android:focusable="false"
+                android:hint="@string/fragment_pertemuan_tambah_et_jam_hint" />
+
+            <LinearLayout
+                android:id="@+id/ll_field_partisipan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_pertemuan_tambah_tv_partisipan_text"
+                        android:textColor="@color/blue_grey"
+                        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+                    <ImageView
+                        android:id="@+id/iv_tambah_partisipan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/btn_add_height"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@android:drawable/ic_input_add" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/fragment_pertemuan_tambah_btn_lihat_jadwal_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_pertemuan_tambah_tv_deskrip_text"
+                android:textColor="@color/blue_grey"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+            <EditText
+                android:id="@+id/et_desk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:hint="@string/fragment_pertemuan_tambah_et_deskrip_hint"
+                android:inputType="textMultiLine"
+                android:lines="6" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_simpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_simpan_text" />
+
+    </LinearLayout>
+
+</LinearLayout>
