@@ -3,6 +3,7 @@ package pengumuman;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentResultListener;
 
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.FragmentPengumumanBinding;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
@@ -61,11 +63,30 @@ public class PengumumanFragment extends Fragment{
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result){
                 String judul = result.getString("title");
                 String isi = result.getString("content");
-                Log.d("fragmentresultlistener judul",judul);
-                Log.d("fragmentresultlistener isi",isi);
                 dialogFragment.setTitle(judul);
                 dialogFragment.setContent(isi);
                 dialogFragment.show(fm,"message");
+            }
+        });
+
+        this.binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Bundle result = new Bundle();
+                if(item.getItemId() == R.id.nav_btn_home){
+                    result.putString("activity","home");
+                }
+                if(item.getItemId() == R.id.nav_btn_frs_prs){
+                    result.putString("activity","frs/prs");
+                }
+                else if(item.getItemId() == R.id.nav_btn_pengumuman){
+                    result.putString("activity","pengumuman");
+                }
+                else if(item.getItemId() == R.id.nav_btn_pertemuan){
+                    result.putString("activity","pertemuan");
+                }
+                getParentFragmentManager().setFragmentResult("changeActivity",result);
+                return true;
             }
         });
 

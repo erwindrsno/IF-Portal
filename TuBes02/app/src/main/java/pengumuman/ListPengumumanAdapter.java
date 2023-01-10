@@ -99,7 +99,8 @@ public class ListPengumumanAdapter extends BaseAdapter {
         public void onClick(View view) {
             if(view.getId() == this.binding.layoutDaftarPengumuman.getId()){
                 Log.d("masukdialogdaftarpengumuman",true+"");
-                this.presenter.executeGetIsiPengumumanAPI(getItem(this.position));
+//                this.presenter.executeGetIsiPengumumanAPI(getItem(this.position));
+                this.presenter.sendPengumuman(getItem(this.position));
             }
         }
     }
