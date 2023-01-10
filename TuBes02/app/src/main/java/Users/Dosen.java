@@ -3,14 +3,24 @@ package Users;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Dosen extends User implements Parcelable {
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Dosen(String email, String password, String role){
-        super(email,password,role);
+public class Dosen extends User implements Parcelable {
+    private List<TimeSlot> timeSlots;
+
+    public Dosen(String email, String password, String role) {
+        super(email, password, role);
+        this.timeSlots = new ArrayList<>();
     }
+
+    public void addTimeSlot(){}
 
     protected Dosen(Parcel in) {
         super(in);
+        this.timeSlots = new ArrayList<>();
+        in.readTypedList(this.timeSlots, TimeSlot.CREATOR);
     }
 
     public static final Creator<Admin> CREATOR = new Creator<Admin>() {
@@ -36,5 +46,8 @@ public class Dosen extends User implements Parcelable {
         parcel.writeString(super.getPassword());
         parcel.writeString(super.getRole());
         parcel.writeString(super.getToken());
+        parcel.writeTypedList(this.timeSlots);
     }
+
+
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_pertemuan_judul_text_size">26sp</dimen>
+    <dimen name="item_pertemaun_subjudul_text_size">20sp</dimen>
+
+    <dimen name="fragment_pertemuan_judul_text_size">36sp</dimen>
+    <dimen name="fragment_pertemuan_form_text_size">20sp</dimen>
+
+    <dimen name="btn_add_height">36dp</dimen>
+    <dimen name="btn_del_height">30dp</dimen>
+</resources>
