@@ -57,15 +57,11 @@ public class GetPengumuman {
                     objResponse = new JSONObject(response);
                     arrData = objResponse.getJSONArray("data");
                     ArrayList<Pengumuman> arrPengumuman = new ArrayList<>();
-//                    ListPengumuman pengumuman = gson.fromJson(arrData.getString(0), ListPengumuman.class);
-//                    Log.d("tagPengumuman",pengumuman.getTags().get(0).getTag());
                     for (int i = 0; i < arrData.length(); i++) {
                         Pengumuman pengumuman = gson.fromJson(arrData.getString(i), Pengumuman.class);
                         arrPengumuman.add(pengumuman);
                     }
-                    Log.d("masukVolley",true+"");
                     presenter.getListFromAPI(arrPengumuman);
-//                    Log.d("printPengumuman",arrData.toString());
                 } catch(JSONException ex){
                     ex.printStackTrace();
                 }
@@ -73,7 +69,6 @@ public class GetPengumuman {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-//                Log.d("errorBang", error.toString());
                 try {
                     String body = new String(error.networkResponse.data,"UTF-8");
                     Log.d("bodyErrorResponse",body);

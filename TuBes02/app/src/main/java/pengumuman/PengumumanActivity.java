@@ -1,10 +1,12 @@
 package pengumuman;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -43,6 +45,9 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
         super.onCreate(savedInstanceState);
         this.binding = ActivityPengumumanBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
+
+//        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(this.binding.etFilter.getWindowToken(), 0);
 
         //Toolbar
         this.toolbar = this.binding.toolbar;

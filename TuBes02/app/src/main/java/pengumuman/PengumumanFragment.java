@@ -1,5 +1,6 @@
 package pengumuman;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
@@ -44,7 +46,6 @@ public class PengumumanFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.binding = FragmentPengumumanBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-//        this.binding.btnBuatPengumuman.setOnClickListener(this::onClick);\
 
         //adapter dropdown pilih search by title/ filter by tag
         String [] filter = getResources().getStringArray(R.array.sort);
