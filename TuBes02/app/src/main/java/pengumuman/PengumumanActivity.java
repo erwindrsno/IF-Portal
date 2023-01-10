@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
@@ -39,12 +40,14 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
     private DrawerLayout drawer;
     private ActionBarDrawerToggle abdt;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.binding = ActivityPengumumanBinding.inflate(getLayoutInflater());
-        setContentView(this.binding.getRoot());
+        View view = this.binding.getRoot();
+//        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(),0);
+        setContentView(view);
 
 //        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 //        imm.hideSoftInputFromWindow(this.binding.etFilter.getWindowToken(), 0);
