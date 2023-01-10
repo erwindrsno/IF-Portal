@@ -7,11 +7,15 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
         android:text="@string/fragment_pertemuan_tambah_judul_text"
-        android:textSize="@dimen/fragment_pertemuan_judul_text_size" />
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
+        android:textColor="@color/normal_text"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,7 +25,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -143,7 +149,12 @@
                 android:gravity="top"
                 android:hint="@string/fragment_pertemuan_tambah_et_deskrip_hint"
                 android:inputType="textMultiLine"
-                android:lines="6" />
+                android:lines="6"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/et_box_style"
+                />
 
         </LinearLayout>
 
@@ -153,7 +164,10 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
 
         <Button
             android:id="@+id/btn_simpan"

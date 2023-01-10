@@ -7,10 +7,14 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fragment_pertemuan_home_judul_text"
-        android:textSize="@dimen/fragment_pertemuan_judul_text_size"/>
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
+        android:textColor="@color/normal_text"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
     <ListView
         android:id="@+id/lv_pertemuan_daftar"
