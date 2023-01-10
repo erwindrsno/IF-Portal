@@ -23,4 +23,16 @@
     <string name="fragment_pertemuan_detail_tv_waktu_text">Waktu Pertemuan</string>
     <string name="fragment_pertemuan_detail_tv_partisipan_text">Partisipan</string>
     <string name="fragment_pertemuan_detail_tv_deskripsi_text">Deskripsi</string>
+    <string name="fragment_jadwal_dosen_title_text">Jadwal Dosen</string>
+    <string name="hari_senin">Senin</string>
+    <string name="fragment_pertemuan_detail_notification_text">Jadwal tidak ditemukan.</string>
+    <string name="hari_selasa">Selasa</string>
+    <string name="hari_rabu">Rabu</string>
+    <string name="hari_kamis">Kamis</string>
+    <string name="hari_jumat">Jumat</string>
+    <string name="hari_sabtu">Sabtu</string>
+    <string name="hari_minggu">Minggu</string>
+    <string name="fragment_jadwal_dosen_tambah_judul_text">Tambah Time Slot</string>
+    <string name="fragment_jadwal_dosen_tambah_nama_text">Nama</string>
+    <string name="fragment_pertemuan_detail_btn_terima_text">Terima</string>
 </resources>

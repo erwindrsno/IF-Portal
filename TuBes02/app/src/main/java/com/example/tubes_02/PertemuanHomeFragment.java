@@ -18,6 +18,7 @@ public class PertemuanHomeFragment extends Fragment {
     private PertemuanPresenter presenter;
     private FragmentManager fm;
     private PertemuanListAdapter adapter;
+    private boolean isInInvitationList;
 
     public PertemuanHomeFragment() {
     }
@@ -36,22 +37,38 @@ public class PertemuanHomeFragment extends Fragment {
         this.binding = FragmentPertemuanHomeBinding.inflate(inflater, container, false);
         this.fm = getParentFragmentManager();
         this.adapter = new PertemuanListAdapter(presenter);
+        this.isInInvitationList = false;
 
         // Listener
         this.binding.fabTambah.setOnClickListener(this::onTambahClick);
-
+        this.binding.tvMenuAttending.setOnClickListener(this::onAttendingClick);
+        this.binding.tvMenuInvitation.setOnClickListener(this::onInvitationClick);
 
         this.binding.lvPertemuanDaftar.setOnItemClickListener(this::onItemClick);
         this.binding.lvPertemuanDaftar.setAdapter(this.adapter);
 
+        this.presenter.getThisWeekAppointmentsFromServer();
+
         return this.binding.getRoot();
+    }
+
+    private void onInvitationClick(View view) {
+        this.isInInvitationList = true;
+        this.presenter.getInvitationsFromServer();
+    }
+
+    private void onAttendingClick(View view) {
+        this.isInInvitationList = false;
+        this.presenter.getThisWeekAppointmentsFromServer();
     }
 
     private void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         String id = this.presenter.getPertemuanId(i);
         Bundle args = new Bundle();
         args.putString("id", id);
-        args.putString("page", "detail");
+        if (isInInvitationList)
+            args.putString("page", "detailUndangan");
+        else args.putString("page", "detailPertemuan");
         fm.setFragmentResult("showDetail", args);
     }
 
@@ -60,7 +77,6 @@ public class PertemuanHomeFragment extends Fragment {
         result.putString("page", "tambah");
         this.fm.setFragmentResult("changePage", result);
     }
-
 
     public void updateListData(ArrayList<Pertemuan> pertemuanList) {
         this.adapter.updateData(pertemuanList);

@@ -8,8 +8,12 @@ class IFPortalDateTimeFormatter {
     private static final String dateFormat = "%04d-%02d-%02d";
     private static final String timeFormatZ = "%02d:%02d%s";
     private static final String timeFormat = "%02d:%02d";
-    private static final String[] MONTHS_IDN = new String[]{"Januari", "Februari", "Maret", "April",
+    public static final String[] MONTHS_IDN = new String[]{"Januari", "Februari", "Maret", "April",
             "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"};
+    public static final String[] DAYS_IDN = new String[]{"Senin", "Selasa", "Rabu", "Kamis", "Jumat",
+            "Sabtu", "Minggu"};
+    public static final String[] DAYS_ABBRV = new String[]{"mon", "tue", "wed", "thu", "fri",
+            "sat", "sun"};
 
     public static String formatDateTime(int year, int month, int day, int hour, int minute,
                                  String zoneOffset){
@@ -25,7 +29,8 @@ class IFPortalDateTimeFormatter {
     }
 
     public static int getMinuteFromTime(String timeString){
-        return Integer.parseInt(timeString.substring(timeString.lastIndexOf(':') + 1));
+        return Integer.parseInt(timeString.substring(timeString.lastIndexOf(':') + 1,
+                timeString.lastIndexOf(':') + 3));
     }
 
     public static int getHourFromTime(String timeString){
@@ -65,4 +70,7 @@ class IFPortalDateTimeFormatter {
         return getYearFromDate(dateTime);
     }
 
+    public static String appendZone(String time, String offset) {
+        return time + offset;
+    }
 }

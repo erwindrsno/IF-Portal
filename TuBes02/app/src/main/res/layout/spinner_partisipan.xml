@@ -9,13 +9,15 @@
     <TextView
         android:layout_width="0px"
         android:layout_height="wrap_content"
-        android:layout_weight="30"/>
+        android:layout_weight="30"
+        android:textSize="18sp"/>
 
     <TextView
         android:layout_width="0px"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:text=":"/>
+        android:text="@string/fragment_pertemuan_form_delimiter"
+        android:textSize="18sp"/>
 
     <Spinner
         android:layout_width="0px"

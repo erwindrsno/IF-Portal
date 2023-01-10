@@ -1,6 +1,7 @@
 package com.example.tubes_02;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,12 @@ public class PertemuanTambahPartisipanDialogFragment extends DialogFragment {
         binding.btnTambah.setOnClickListener(this::onTambahClick);
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     private void onTambahClick(View view) {

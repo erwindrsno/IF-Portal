@@ -41,4 +41,5 @@
     <string name="btn_iya">Iya</string>
     <string name="btn_tidak">Tidak</string>
     <string name="judul_add_user">Add User</string>
+    <string name="fragment_jadwal_dosen_hari_text">Hari</string>
 </resources>

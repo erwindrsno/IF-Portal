@@ -1,6 +1,5 @@
 package com.example.tubes_02;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 
 import android.os.Bundle;
@@ -56,32 +55,28 @@ public class PertemuanTambahFragment extends Fragment {
         // Listener
         this.binding.ivTambahPartisipan.setOnClickListener((View v) -> {
             this.presenter.showTambahPartisipanDialog();
-//            this.addSpinnerPartisipan(inflater, container);
         });
         this.binding.etJamMulai.setOnClickListener(this::onTimeMulaiClick);
         this.binding.etJamSelesai.setOnClickListener(this::onTimeSelesaiClick);
         this.binding.etTanggalMulai.setOnClickListener(this::onDateClick);
         this.binding.btnSimpan.setOnClickListener(this::onSimpanClick);
-
+        this.binding.btnSchedule.setOnClickListener(this::onScheduleClick);
 
 
         return this.binding.getRoot();
     }
 
+    private void onScheduleClick(View view) {
+        Bundle result = new Bundle();
+        result.putString("page", "jadwal");
+        this.fm.setFragmentResult("changePage", result);
+    }
+
     private void onDelPartisipanClick(View view) {
-        if (this.partisipanSpinners.size() == 1) {
-            new AlertDialog.Builder(this.presenter.getUIContext())
-                    .setTitle("Gagal Menghapus Partisipan")
-                    .setMessage("Harus ada setidaknya seorang partisipan yang ditunjuk untuk " +
-                            "mengikuti pertemuan.")
-                    .setPositiveButton("OK", null)
-                    .setIcon(android.R.drawable.ic_dialog_info)
-                    .show();
-        } else {
-            View spinnerPartisipan = (View) view.getParent();
-            this.llPartisipan.removeView(spinnerPartisipan);
-            this.partisipanSpinners.remove(spinnerPartisipan.getId());
-        }
+        View spinnerPartisipan = (View) view.getParent();
+        this.partisipanSpinners.remove(spinnerPartisipan.getTag());
+        this.llPartisipan.removeView(spinnerPartisipan);
+
     }
 
     private void onDateClick(View view) {
@@ -96,7 +91,7 @@ public class PertemuanTambahFragment extends Fragment {
     }
 
     private void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String text = IFPortalDateTimeFormatter.formatDate(year, month+1, dayOfMonth);
+        String text = IFPortalDateTimeFormatter.formatDate(year, month + 1, dayOfMonth);
         this.binding.etTanggalMulai.setText(text);
     }
 
@@ -143,7 +138,7 @@ public class PertemuanTambahFragment extends Fragment {
         this.binding.etJamMulai.setText(text);
         String endTimeStr = this.binding.etJamSelesai.getText().toString();
         if (endTimeStr.length() > 0) {
-            Log.d("Debug", ""+ (IFPortalDateTimeFormatter.getHourFromTime(endTimeStr) < hour));
+            Log.d("Debug", "" + (IFPortalDateTimeFormatter.getHourFromTime(endTimeStr) < hour));
             if ((IFPortalDateTimeFormatter.getHourFromTime(endTimeStr) == hour &&
                     IFPortalDateTimeFormatter.getMinuteFromTime(endTimeStr) < minute) ||
                     IFPortalDateTimeFormatter.getHourFromTime(endTimeStr) < hour) {
@@ -159,6 +154,7 @@ public class PertemuanTambahFragment extends Fragment {
         LayoutInflater inflater = this.getLayoutInflater();
         SpinnerPartisipanBinding viewPartisipanBinding = SpinnerPartisipanBinding.inflate(inflater);
         View viewPartisipan = viewPartisipanBinding.getRoot();
+        viewPartisipan.setTag(this.partisipanSpinners.size());
 
         // Buat option
         TextView tvRole = (TextView) ((ViewGroup) viewPartisipan).getChildAt(0);
@@ -170,14 +166,14 @@ public class PertemuanTambahFragment extends Fragment {
                 tvRole.setText("Mahasiswa");
                 adapter = new ArrayAdapter<>(spinnerPartisipan.getContext(),
                         androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                        this.presenter.getMahasiswaList());
+                        this.presenter.getStudentsList());
                 spinnerPartisipan.setTag(OtherUser.ROLE_STUDENT);
                 break;
             case OtherUser.ROLE_LECTURER:
                 tvRole.setText("Dosen");
                 adapter = new ArrayAdapter<>(spinnerPartisipan.getContext(),
                         androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                        this.presenter.getDosenList());
+                        this.presenter.getLecturerList());
                 spinnerPartisipan.setTag(OtherUser.ROLE_LECTURER);
                 break;
         }
@@ -209,6 +205,15 @@ public class PertemuanTambahFragment extends Fragment {
             }
         }
         this.presenter.createAppointment(judul, tanggal, jamMulai, jamSelesai, deskripsi, idUndangan);
+    }
+
+    public void resetForm() {
+        this.binding.etJudul.setText("");
+        this.binding.etTanggalMulai.setText("");
+        this.binding.etJamMulai.setText("");
+        this.binding.etJamSelesai.setText("");
+        this.binding.etDesk.setText("");
+        this.llPartisipan.removeAllViews();
     }
 
     public void addSpinner(String role) {
