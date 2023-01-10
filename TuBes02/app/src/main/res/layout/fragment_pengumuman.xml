@@ -9,13 +9,16 @@
         android:layout_height="wrap_content"
         android:text="Pengumuman"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
+        android:textColor="@color/normal_text"
+        android:layout_marginTop="10dp"
         />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="7dp">
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
@@ -49,7 +52,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
         <ListView
             android:id="@+id/list_pengumuman"
             android:layout_width="match_parent"

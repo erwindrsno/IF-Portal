@@ -16,6 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityHomeBinding;
 
+import FiturAdmin.AddUserFragment;
+import FiturAdmin.HomeAdminFragment;
 import Users.User;
 import drawer.SignOutDialogFragment;
 import login.LoginActivity;
@@ -33,6 +35,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private HomeFragment homeFragment;
     private SignOutDialogFragment signOutDialogFragment;
+    private AddUserFragment addUserFragment;
+    private HomeAdminFragment homeAdminFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,8 @@ public class HomeActivity extends AppCompatActivity {
 
         this.homeFragment = HomeFragment.newInstance("homeFragment");
         this.signOutDialogFragment = SignOutDialogFragment.newInstance("exitAppDialogFragment");
-
+        this.addUserFragment = AddUserFragment.newInstance(this);
+        this.homeAdminFragment = HomeAdminFragment.newInstance();
 
         //Toolbar
         this.toolbar = binding.toolbar;
@@ -143,6 +148,16 @@ public class HomeActivity extends AppCompatActivity {
         else if(page.equals("exit")){
             this.signOutDialogFragment.show(this.fm,"dialog");
                 ft.addToBackStack(null);
+        }
+        else if(page.equals("fitur_admin")){
+            ft.replace(binding.fragmentContainer.getId(),this.homeAdminFragment)
+                    .addToBackStack(null);
+        }
+        else if(page.equals("add_user")){
+
+            ft.replace(binding.fragmentContainer.getId(),this.addUserFragment)
+                    .addToBackStack(null);
+
         }
         ft.commit();
     }

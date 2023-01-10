@@ -11,7 +11,10 @@
         android:layout_height="wrap_content"
         android:text="@string/tv_home"
         android:textSize="50sp"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/normal_text"
+        android:textStyle="bold">
 
     </TextView>
 

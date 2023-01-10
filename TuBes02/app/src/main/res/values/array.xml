@@ -4,4 +4,9 @@
         <item>Title</item>
         <item>Tags</item>
     </string-array>
+    <string-array name="admin_add_user">
+        <item>Admin</item>
+        <item>Dosen</item>
+        <item>Mahasiswa</item>
+    </string-array>
 </resources>
