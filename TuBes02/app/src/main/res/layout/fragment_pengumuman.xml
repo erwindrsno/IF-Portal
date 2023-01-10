@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pengumuman"
+        android:text="@string/btn_pengumuman"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -15,50 +16,56 @@
         android:layout_marginTop="10dp"
         />
     <LinearLayout
+        android:id="@+id/layout_search"
+        android:layout_below="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="7dp">
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        >
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:layout_marginLeft="20dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
             />
         <EditText
             android:id="@+id/et_filter"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.7"
-            android:hint="Input Filter Here"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/search" />
         <ImageButton
             android:id="@+id/btn_filter"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.5"
             android:src="@drawable/ic_baseline_search_24"
+            android:layout_weight="0.2"
             android:backgroundTint="@color/white"
-            android:layout_marginRight="20dp"
             />
-<!--        <Button-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="2.5"-->
-<!--            android:background="@drawable/png_transparent_computer_icons_google_search_search_miscellaneous_desktop_wallpaper_android_thumbnail"/>-->
 
 
     </LinearLayout>
     <LinearLayout
+        android:layout_below="@+id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
+        android:orientation="vertical">
         <ListView
             android:id="@+id/list_pengumuman"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/btm_nav_menu" />
 
-</LinearLayout>
+
+</RelativeLayout>

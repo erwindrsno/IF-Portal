@@ -13,8 +13,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.tubes_02.PertemuanActivity;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityHomeBinding;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import FiturAdmin.AddUserFragment;
 import FiturAdmin.HomeAdminFragment;
@@ -67,8 +72,14 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction ft = this.fm.beginTransaction();
 
         if(getIntent().getExtras() != null){
-            this.user = getIntent().getParcelableExtra("user");
-            Log.d("halo reina, email kamu ini kan :", this.user.getEmail());
+            try{
+                this.user = getIntent().getParcelableExtra("user");
+//                Gson gson = new Gson();
+//                JSONObject json = new JSONObject(gson.toJson(user));
+//                Log.d("printJSONFromHomeActivity", json.toString(4));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         ft.add(this.binding.fragmentContainer.getId(), this.homeFragment)
@@ -120,7 +131,10 @@ public class HomeActivity extends AppCompatActivity {
                 break;
 
             case "pertemuan":
-                Log.d("actPertemuan",true+"");
+//                Log.d("actPertemuan",true+"");
+                intent = new Intent(this, PertemuanActivity.class);
+                intent.putExtra("user", (Parcelable) this.user);
+                startActivity(intent);
                 break;
 
             case "login":

@@ -24,6 +24,7 @@ public class LoginPresenter {
                 this.user = new Admin(email,password,role);
             }
             else if(role.equalsIgnoreCase("dosen")){
+                role = "lecturer";
                 this.user = new Dosen(email,password,role);
             }
             else if(role.equalsIgnoreCase("mahasiswa")){
