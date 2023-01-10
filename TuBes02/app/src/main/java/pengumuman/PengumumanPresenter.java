@@ -1,20 +1,20 @@
 package pengumuman;
 
 import android.content.Context;
-
-import androidx.fragment.app.FragmentTransaction;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 import Users.User;
+import pengumuman.model.ListPengumuman;
 
 public class PengumumanPresenter {
-    protected PengumumanUI ui;
+    protected ListPengumumanUI ui;
     protected Context context;
     protected User user;
-    protected ArrayList<Pengumuman> arrListPengumuman;
+    protected ArrayList<ListPengumuman> daftarPengumuman;
 
-    public PengumumanPresenter(PengumumanUI ui, Context context){
+    public PengumumanPresenter(ListPengumumanUI ui, Context context){
         this.ui = ui;
         this.context = context;
     }
@@ -32,7 +32,14 @@ public class PengumumanPresenter {
         task.execute();
     }
 
-    public void setArrayListPengumuman(ArrayList<Pengumuman> arrListPengumuman){
-        this.arrListPengumuman = arrListPengumuman;
+    public void getListFromAPI(ArrayList<ListPengumuman> daftarPengumuman){
+        this.daftarPengumuman = daftarPengumuman;
+        Log.d("presenterSizeDaftarPengumuman",daftarPengumuman.size()+"");
+        updateToAdapter();
+    }
+
+    public void updateToAdapter(){
+        Log.d("updateToAdapter",true+"");
+        this.ui.updateList(this.daftarPengumuman);
     }
 }

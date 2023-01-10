@@ -3,6 +3,7 @@ package pengumuman;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,13 @@ import androidx.fragment.app.Fragment;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.FragmentPengumumanBinding;
 
-public class PengumumanFragment extends Fragment {
+import java.util.ArrayList;
+
+import pengumuman.model.ListPengumuman;
+
+public class PengumumanFragment extends Fragment implements ListPengumumanUI{
     private FragmentPengumumanBinding binding;
-    private PengumumanAdapter adapter;
+    private ListPengumumanAdapter adapter;
     private PengumumanPresenter presenter;
 
     public PengumumanFragment(){
@@ -45,7 +50,7 @@ public class PengumumanFragment extends Fragment {
         this.binding.spinner.setAdapter(dropdownAdapter);
         //adapter dropdown
 
-        this.adapter = new PengumumanAdapter(this.presenter, inflater,this);
+        this.adapter = new ListPengumumanAdapter(this.presenter, inflater,this);
         this.binding.listPengumuman.setAdapter(this.adapter);
         return view;
     }
@@ -54,5 +59,13 @@ public class PengumumanFragment extends Fragment {
         Bundle result = new Bundle();
         result.putString("page","buat_pengumuman");
         this.getParentFragmentManager().setFragmentResult("changePage", result);
+    }
+
+    @Override
+    public void updateList(ArrayList<ListPengumuman> daftarPengumuman) {
+        for (int i = 0; i < daftarPengumuman.size(); i++) {
+            this.adapter.addList(daftarPengumuman.get(i));
+        }
+        Log.d("updateListKeAdapter",true+"");
     }
 }

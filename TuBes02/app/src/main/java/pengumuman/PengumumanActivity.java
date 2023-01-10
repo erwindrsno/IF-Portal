@@ -14,8 +14,9 @@ import com.example.tubes_02.databinding.ActivityPengumumanBinding;
 import java.util.ArrayList;
 
 import Users.User;
+import pengumuman.model.ListPengumuman;
 
-public class PengumumanActivity extends AppCompatActivity implements PengumumanUI{
+public class PengumumanActivity extends AppCompatActivity implements ListPengumumanUI{
     private ActivityPengumumanBinding binding;
     private PengumumanFragment pengumumanFragment;
     private BuatPengumumanFragment buatPengumumanFragment;
@@ -83,7 +84,7 @@ public class PengumumanActivity extends AppCompatActivity implements PengumumanU
     }
 
     @Override
-    public void updateView(ArrayList<Pengumuman> arrList) {
+    public void updateList(ArrayList<ListPengumuman> daftarPengumuman) {
 
     }
 }

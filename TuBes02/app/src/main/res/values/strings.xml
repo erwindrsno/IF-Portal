@@ -24,6 +24,7 @@
     <string name="btn_frs_prs">FRS/PRS</string>
     <string name="btn_pengumuman">Pengumuman</string>
     <string name="btn_pertemuan">Pertemuan</string>
+    <string name="search">Search</string>
 
     <string name="admin">admin</string>
     <string name="dosen">dosen</string>
