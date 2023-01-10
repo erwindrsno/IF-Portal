@@ -68,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if(getIntent().getExtras() != null){
             this.user = getIntent().getParcelableExtra("user");
+            Log.d("halo reina, email kamu ini kan :", this.user.getEmail());
         }
 
         ft.add(this.binding.fragmentContainer.getId(), this.homeFragment)
