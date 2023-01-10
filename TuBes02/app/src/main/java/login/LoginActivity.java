@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(view.getId() == this.binding.btnLogin.getId()){
             this.email = this.binding.etEmail.getText().toString();
             this.password = this.binding.etPassword.getText().toString();
-            
+
             String email2 = "default.admin@domain.local";
             String password2 = "mu8XyUogLi6Dk7";
             String role2 = "admin";
