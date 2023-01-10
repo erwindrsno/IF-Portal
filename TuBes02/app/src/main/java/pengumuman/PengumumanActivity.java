@@ -19,6 +19,7 @@ import pengumuman.model.Pengumuman;
 public class PengumumanActivity extends AppCompatActivity implements ListPengumumanUI{
     private ActivityPengumumanBinding binding;
     private PengumumanFragment pengumumanFragment;
+    private DialogFragmentKontenPengumuman dialogFragmentKontenPengumuman;
     private BuatPengumumanFragment buatPengumumanFragment;
     private FragmentManager fragmentManager;
     private User user;
@@ -36,7 +37,8 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
         this.presenter = new PengumumanPresenter(this,this);
 
         //instantiate fragment
-        this.pengumumanFragment = PengumumanFragment.newInstance(this.presenter);
+        this.dialogFragmentKontenPengumuman = DialogFragmentKontenPengumuman.newInstance("Dialog Konten Pengumuman");
+        this.pengumumanFragment = PengumumanFragment.newInstance(this.presenter, this.dialogFragmentKontenPengumuman);
 //        this.buatPengumumanFragment = BuatPengumumanFragment.newInstance(this);
 
         if(getIntent().getExtras() != null){
@@ -86,5 +88,10 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
     @Override
     public void updateList(ArrayList<Pengumuman> daftarPengumuman) {
         this.pengumumanFragment.updateListToAdapter(daftarPengumuman);
+    }
+
+    @Override
+    public void updateDialogView(Pengumuman pengumuman) {
+        this.pengumumanFragment.openDialog(pengumuman);
     }
 }

@@ -6,4 +6,5 @@ import pengumuman.model.Pengumuman;
 
 public interface ListPengumumanUI {
     void updateList(ArrayList<Pengumuman> daftarPengumuman);
+    void updateDialogView(Pengumuman pengumuman);
 }

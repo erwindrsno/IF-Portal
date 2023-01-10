@@ -39,12 +39,18 @@ public class PengumumanPresenter {
 
     public void getListFromAPI(ArrayList<Pengumuman> daftarPengumuman){
         this.daftarPengumuman = daftarPengumuman;
-        Log.d("presenterSizeDaftarPengumuman",daftarPengumuman.size()+"");
         sendList();
     }
 
     public void sendList(){
-        Log.d("updateToAdapter",true+"");
         this.ui.updateList(this.daftarPengumuman);
+    }
+
+//    public void getContentFromAPI(String content){
+//        sendContent();
+//    }
+
+    public void sendPengumuman(Pengumuman pengumuman){
+        this.ui.updateDialogView(pengumuman);
     }
 }

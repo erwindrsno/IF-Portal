@@ -54,7 +54,9 @@ public class GetIsiPengumuman {
                 try{
                     JSONObject objResponse = new JSONObject(response);
                     String content = objResponse.getString("content");
-                    Log.d("isi konten",content);
+                    pengumuman.setContent(content);
+                    presenter.sendPengumuman(pengumuman);
+//                    Log.d("isi konten",content);
                 } catch(JSONException ex){
                     ex.printStackTrace();
                 }
