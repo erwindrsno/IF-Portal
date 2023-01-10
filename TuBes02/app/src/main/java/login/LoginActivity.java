@@ -2,11 +2,13 @@ package login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -49,10 +51,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(view.getId() == this.binding.btnLogin.getId()){
             this.email = this.binding.etEmail.getText().toString();
             this.password = this.binding.etPassword.getText().toString();
+            
             String email2 = "default.admin@domain.local";
             String password2 = "mu8XyUogLi6Dk7";
             String role2 = "admin";
-
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
             this.presenter.validateUser(email2,password2,role2);
 //            this.presenter.validateUser(this.email,this.password,this.role);
         }

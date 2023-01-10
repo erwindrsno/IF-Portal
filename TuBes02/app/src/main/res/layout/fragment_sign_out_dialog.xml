@@ -14,7 +14,8 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:layout_marginStart="22dp"
-            android:text="@string/sign_out">
+            android:text="@string/sign_out"
+            android:textColor="@color/normal_text">
 
         </TextView>
 
