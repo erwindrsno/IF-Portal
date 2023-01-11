@@ -32,6 +32,10 @@ public class PengumumanPresenter {
         task1.execute();
     }
 
+    public User getUser(){
+        return this.user;
+    }
+
 //    public void executeGetIsiPengumumanAPI(Pengumuman pengumuman){
 //        GetIsiPengumuman task2 = new GetIsiPengumuman(this.context, this, pengumuman);
 //        task2.execute();

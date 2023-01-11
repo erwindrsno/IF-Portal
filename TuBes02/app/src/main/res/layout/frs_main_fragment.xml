@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:id="@+id/cont_atas"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_weight="10"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_semester"
+            android:text="SEMESTER"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <ListView
+            android:id="@+id/list_semester"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="10dp"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true"
+            android:divider="@color/white">
+        </ListView>
+    </LinearLayout>
+</LinearLayout>

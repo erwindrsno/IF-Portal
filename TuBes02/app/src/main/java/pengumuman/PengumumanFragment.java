@@ -1,7 +1,9 @@
 package pengumuman;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,7 +33,8 @@ public class PengumumanFragment extends Fragment{
     private ListPengumumanAdapter adapter;
     private PengumumanPresenter presenter;
     private DialogFragmentKontenPengumuman dialogFragment;
-
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
     public PengumumanFragment(){
     }
 
@@ -65,14 +68,18 @@ public class PengumumanFragment extends Fragment{
         this.binding.listPengumuman.setAdapter(this.adapter);
         //adapter
 
+
         FragmentManager fm = this.getParentFragmentManager();
         this.getParentFragmentManager().setFragmentResultListener("openDialogKonten", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result){
                 String judul = result.getString("title");
                 String isi = result.getString("content");
+                String id = result.getString("id");
+
                 dialogFragment.setTitle(judul);
                 dialogFragment.setContent(isi);
+                dialogFragment.setId(id);
                 dialogFragment.show(fm,"message");
             }
         });
@@ -121,6 +128,8 @@ public class PengumumanFragment extends Fragment{
         Bundle result = new Bundle();
         String judul = pengumuman.getTitle();
         String isi = pengumuman.getContent();
+        String id = pengumuman.getId();
+        result.putString("id",id);
         result.putString("title",judul);
         result.putString("content", isi);
         this.getParentFragmentManager().setFragmentResult("openDialogKonten",result);

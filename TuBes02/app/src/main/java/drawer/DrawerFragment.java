@@ -1,6 +1,7 @@
 package drawer;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tubes_02.databinding.FragmentDrawerBinding;
 
-public class DrawerFragment extends Fragment{
+import home.HomeUI;
+
+public class DrawerFragment extends Fragment implements HomeUI {
     private FragmentDrawerBinding binding;
     private MenuAdapter adapter;
 
@@ -28,5 +31,15 @@ public class DrawerFragment extends Fragment{
         this.adapter.addList("Settings");
         this.adapter.addList("Sign Out");
         return view;
+    }
+
+    @Override
+    public void hideView() {
+
+    }
+
+    @Override
+    public void hideMenu(){
+        Log.d("masuk hideMenu",true+"");
     }
 }
