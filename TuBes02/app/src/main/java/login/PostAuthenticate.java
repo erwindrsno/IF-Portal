@@ -6,14 +6,13 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 
 import Users.User;
 
@@ -75,6 +74,22 @@ public class PostAuthenticate{
                 else if(error.toString().equalsIgnoreCase("com.android.volley.TimeOutError")){
                     presenter.timeOutError();
                 }
+            }
+        });
+        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 55000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 55000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
             }
         });
         request.add(jsonObjectRequest);

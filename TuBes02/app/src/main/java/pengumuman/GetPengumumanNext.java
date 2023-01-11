@@ -23,13 +23,13 @@ import java.util.Map;
 
 import pengumuman.model.Pengumuman;
 
-public class GetPengumuman {
-    final String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
+public class GetPengumumanNext {
+    private String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
     private final Context context;
     private final Gson gson;
     private PengumumanPresenter presenter;
 
-    public GetPengumuman(Context context, PengumumanPresenter presenter){
+    public GetPengumumanNext(Context context, PengumumanPresenter presenter){
         this.context = context;
         this.gson = new Gson();
         this.presenter = presenter;
