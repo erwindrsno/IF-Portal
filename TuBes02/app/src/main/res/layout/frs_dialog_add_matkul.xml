@@ -20,6 +20,8 @@
                 android:layout_height="wrap_content"
                 android:text="Pilih Mata Kuliah"
                 android:textSize="20dp"
+                android:textColor="@color/normal_text"
+                android:textStyle="bold"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"/>
             <RelativeLayout
@@ -34,6 +36,7 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Masukan nama mata kuliah"
                         />
                     <ImageView
                         android:id="@+id/btn_search"
@@ -47,7 +50,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
                 <ListView
                     android:id="@+id/lv_list_matkul_dialog"
                     android:layout_width="match_parent"
@@ -63,7 +67,10 @@
             android:layout_height="40dp"
             android:background="@color/grey"
             android:textStyle="bold"
-            android:textSize="15dp"/>
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:text="Perangkat Bergerak"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 </FrameLayout>

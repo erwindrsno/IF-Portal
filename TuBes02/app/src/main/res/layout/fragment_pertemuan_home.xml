@@ -80,7 +80,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/text_info"
-        android:src="@android:drawable/ic_input_add" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/bar_header"
+        android:src="@android:drawable/ic_input_add"
+        />
 </RelativeLayout>
