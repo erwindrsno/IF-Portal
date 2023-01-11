@@ -16,11 +16,45 @@
         android:textStyle="bold"
         android:textAlignment="center"/>
 
+    <LinearLayout
+        android:id="@+id/ll_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_menu_attending"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/blue_grey"
+            android:clickable="true"
+            android:padding="@dimen/mdtp_ampm_left_padding"
+            android:text="@string/fragment_pertemuan_home_tv_attending_text"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+
+        <TextView
+            android:id="@+id/tv_menu_invitation"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/blue_grey"
+            android:clickable="true"
+            android:padding="@dimen/mdtp_ampm_left_padding"
+            android:text="@string/fragment_pertemuan_home_tv_invitation_text"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/lv_pertemuan_daftar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_title" />
+        android:layout_below="@+id/ll_menu" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_tambah"

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:text="@string/fragment_pertemuan_tambah_judul_text"
+        android:text="@string/fragment_jadwal_dosen_tambah_judul_text"
         android:layout_marginTop="10dp"
         android:textSize="30sp"
         android:textColor="@color/normal_text"
@@ -32,34 +32,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fragment_pertemuan_tambah_tv_topik_text"
+                android:text="@string/fragment_jadwal_dosen_tambah_nama_text"
                 android:textColor="@color/blue_grey"
                 android:textSize="@dimen/fragment_pertemuan_form_text_size" />
 
-            <EditText
-                android:hint="@string/fragment_pertemuan_tambah_et_topik_text"
-                android:id="@+id/et_judul"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fragment_pertemuan_tambah_tv_tanggal_text"
+                android:text="@string/fragment_jadwal_dosen_hari_text"
                 android:textColor="@color/blue_grey"
                 android:textSize="@dimen/fragment_pertemuan_form_text_size" />
 
-            <EditText
-                android:id="@+id/et_tanggal_mulai"
+            <Spinner
+                android:id="@+id/spinner_day"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:drawableEnd="@android:drawable/ic_menu_my_calendar"
-                android:focusable="false"
-                android:hint="@string/fragment_pertemuan_tambah_et_tgl_hint" />
+                android:layout_height="match_parent"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -105,58 +98,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/fragment_pertemuan_tambah_tv_partisipan_text"
-                        android:textColor="@color/blue_grey"
-                        android:textSize="@dimen/fragment_pertemuan_form_text_size" />
-
-                    <ImageView
-                        android:id="@+id/iv_tambah_partisipan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/btn_add_height"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@android:drawable/ic_input_add" />
-
-                </LinearLayout>
-
             </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_schedule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/fragment_pertemuan_tambah_btn_lihat_jadwal_text" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fragment_pertemuan_tambah_tv_deskrip_text"
-                android:textColor="@color/blue_grey"
-                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
-
-            <EditText
-                android:id="@+id/et_desk"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:hint="@string/fragment_pertemuan_tambah_et_deskrip_hint"
-                android:inputType="textMultiLine"
-                android:lines="6"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/et_box_style"
-                />
 
         </LinearLayout>
 

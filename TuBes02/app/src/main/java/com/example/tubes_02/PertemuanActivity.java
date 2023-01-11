@@ -2,10 +2,9 @@ package com.example.tubes_02;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +19,8 @@ import com.example.tubes_02.databinding.ActivityPengumumanBinding;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Users.User;
+
 public class PertemuanActivity extends AppCompatActivity implements PertemuanPresenter.PertemuanUI {
     private ActivityPengumumanBinding binding;
     private HashMap<String, Fragment> fragments;
@@ -30,23 +31,25 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        Intent receivedIntent = getIntent();
+        Intent receivedIntent = getIntent();
 
         // Inisialisasi atribut-atribut
         this.binding = ActivityPengumumanBinding.inflate(this.getLayoutInflater());
         this.fragments = new HashMap<>();
         this.manager = this.getSupportFragmentManager();
-//        this.presenter = new PertemuanPresenter(this,
-//                (User) receivedIntent.getParcelableExtra("user"));
+        this.presenter = new PertemuanPresenter(this,
+                (User) receivedIntent.getParcelableExtra("user"));
         this.presenter = new PertemuanPresenter(this, null);
 
         // Buat fragment-fragment, masukkan ke Hash<ap
         Fragment home = PertemuanHomeFragment.newInstance(this.presenter);
         Fragment tambah = PertemuanTambahFragment.newInstance(this.presenter);
+        Fragment jadwal = PertemuanTimeSlotFragment.newInstance(this.presenter);
+        Fragment tambahJadwal = PertemuanTimeSlotAddFragment.newInstance(this.presenter);
         fragments.put("home", home);
         fragments.put("tambah", tambah);
-
-        this.presenter.getThisWeekScheduleFromServer();
+        fragments.put("jadwal", jadwal);
+        fragments.put("tambahJadwal", tambahJadwal);
 
         // Listener
         this.manager.setFragmentResultListener("changePage", this,
@@ -61,11 +64,17 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
         this.manager.setFragmentResultListener("showDetail", this,
                 new FragmentResultListener() {
                     @Override
-                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                    public void onFragmentResult(@NonNull String requestKey,
+                                                 @NonNull Bundle result) {
                         String id = result.getString("id");
                         String page = result.getString("page");
-                        fragments.put("detail", PertemuanDetailFragment.newInstance(presenter, id));
-                        changePage(page);
+                        if (page.equals("detailPertemuan"))
+                            fragments.put("detail", PertemuanDetailFragment
+                                    .newInstance(presenter, id));
+                        else
+                            fragments.put("detail", PertemuanDetailUndanganFragment
+                                    .newInstance(presenter, id));
+                        changePage("detail");
                     }
                 });
 
@@ -111,7 +120,7 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
         DialogFragment fragment = PertemuanTambahPartisipanDialogFragment
                 .newInstance(this.presenter);
         FragmentTransaction transaction = this.manager.beginTransaction();
-        fragment.show(transaction, "");
+        fragment.show(transaction, null);
     }
 
     @Override
@@ -138,7 +147,7 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
     public void updateTitleDetail(String title) {
         PertemuanDetailFragment detailFragment =
                 (PertemuanDetailFragment) this.fragments.get("detail");
-        if (detailFragment != null){
+        if (detailFragment != null) {
             detailFragment.updateTitle(title);
         }
     }
@@ -147,7 +156,7 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
     public void updateOrganizerDetail(String organizer) {
         PertemuanDetailFragment detailFragment =
                 (PertemuanDetailFragment) this.fragments.get("detail");
-        if (detailFragment != null){
+        if (detailFragment != null) {
             detailFragment.updateOrganizer(organizer);
         }
     }
@@ -156,7 +165,7 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
     public void updateTimeDetail(String pertemuanDate, String pertemuanStartTime, String pertemuanEndTime) {
         PertemuanDetailFragment detailFragment =
                 (PertemuanDetailFragment) this.fragments.get("detail");
-        if (detailFragment != null){
+        if (detailFragment != null) {
             detailFragment.updateDate(pertemuanDate);
             detailFragment.updateTime(pertemuanStartTime, pertemuanEndTime);
         }
@@ -166,8 +175,115 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
     public void updateDescDetail(String description) {
         PertemuanDetailFragment detailFragment =
                 (PertemuanDetailFragment) this.fragments.get("detail");
-        if (detailFragment != null){
+        if (detailFragment != null) {
             detailFragment.updateDescription(description);
         }
+    }
+
+    @Override
+    public void showPertemuanSuccessMsg(String msg) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle("Berhasil")
+                .setMessage(msg)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        changePage("home");
+                        PertemuanTambahFragment fragment =
+                                (PertemuanTambahFragment) fragments.get("tambah");
+                        fragment.resetForm();
+                    }
+                })
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                changePage("home");
+                                PertemuanTambahFragment fragment =
+                                        (PertemuanTambahFragment) fragments.get("tambah");
+                                fragment.resetForm();
+                            }
+                        });
+        AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void showInvitationSuccessMsg(String msg) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle("Berhasil")
+                .setMessage(msg)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        changePage("home");
+                    }
+                })
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                changePage("home");
+                            }
+                        });
+        AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void updateDetailFragmentInvitees(String invitees,
+                                             String attendees) {
+        PertemuanDetailFragment detailFragment =
+                (PertemuanDetailFragment) this.fragments.get("detail");
+        if (detailFragment != null) {
+            detailFragment.updateInvitees(invitees, attendees);
+        }
+    }
+
+    @Override
+    public void removeParticipantDetail() {
+        PertemuanDetailFragment detailFragment =
+                (PertemuanDetailFragment) this.fragments.get("detail");
+        if (detailFragment != null) {
+            detailFragment.removeParticipantField();
+        }
+    }
+
+    @Override
+    public void updateTimeSlots(ArrayList<TimeSlot> mondaySlots,
+                                ArrayList<TimeSlot> tuesdaySlots,
+                                ArrayList<TimeSlot> wednesdaySlots,
+                                ArrayList<TimeSlot> thursdaySlots,
+                                ArrayList<TimeSlot> fridaySlots,
+                                ArrayList<TimeSlot> saturdaySlots,
+                                ArrayList<TimeSlot> sundaySlots) {
+        PertemuanTimeSlotFragment fragment =
+                (PertemuanTimeSlotFragment) this.fragments.get("jadwal");
+        if (fragment != null) {
+            fragment.updateTimeSlots(mondaySlots, tuesdaySlots, wednesdaySlots, thursdaySlots,
+                    fridaySlots, saturdaySlots, sundaySlots);
+        }
+    }
+
+    @Override
+    public void showTimeSlotSuccessMsg(String msg) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle("Berhasil")
+                .setMessage(msg)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        changePage("jadwal");
+                    }
+                })
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                changePage("jadwal");
+                            }
+                        });
+        AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
     }
 }

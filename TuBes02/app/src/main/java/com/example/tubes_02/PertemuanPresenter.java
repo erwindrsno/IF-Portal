@@ -1,51 +1,64 @@
 package com.example.tubes_02;
 
 import android.content.Context;
-import android.util.Log;
+import android.icu.text.TimeZoneFormat;
 
 import androidx.annotation.Nullable;
 
 import org.json.JSONException;
 
 import java.net.MalformedURLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 import Users.*;
 
 public class PertemuanPresenter {
     private final PertemuanUI ui;
     private final User user;
+    private String userName;
+    private String userId;
     private final PertemuanAPIWorker apiWorker;
+    private static final String JOIN_DELIMITER = "\n";
     private ArrayList<OtherUser> studentsList;
     private ArrayList<OtherUser> lecturersList;
     private ArrayList<Pertemuan> pertemuanList;
 
     public PertemuanPresenter(PertemuanUI ui, User user) {
         this.ui = ui;
-//        this.user = user;
-        this.user = new Dosen(null, null, null);
-        this.user.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOiIxNDkzZTMzZC0zMjJhLTQ5NDktODc5YS04MmM2MTk4ODIyMmEiLCJyb2xlIjoic3R1ZGVudCJ9LCJpYXQiOjE2NzMwODEzMzl9.tKaaEsEf0_ZdE81wTGR1eL5vy6j0qKmQ-SfN2EZQPgE");
+        this.user = user;
         this.studentsList = new ArrayList<>();
         this.lecturersList = new ArrayList<>();
         this.apiWorker = new PertemuanAPIWorker(this);
         this.pertemuanList = new ArrayList<>();
+        this.getLoggedInUserIdFromServer();
+    }
+
+    private void getLoggedInUserIdFromServer() {
+        try {
+            this.apiWorker.getLoggedInUserIdAndName();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean loggedInUserIsLecturer(){
+        return this.user instanceof Dosen;
     }
 
     public Context getUIContext() {
         return this.ui.getUIContext();
     }
 
-    public String getUserToken() {
+    public String getLoggedInUserToken() {
         return this.user.getToken();
     }
 
     public void getUsersFromServer() {
         try {
-            this.apiWorker.getUsers(OtherUser.ROLE_LECTURER);
-            this.apiWorker.getUsers(OtherUser.ROLE_STUDENT);
+            this.apiWorker.getUsers(OtherUser.ROLE_LECTURER, null, 0);
+            this.apiWorker.getUsers(OtherUser.ROLE_STUDENT, null, 0);
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -68,11 +81,11 @@ public class PertemuanPresenter {
         this.ui.fragmentTambahAddSpinner(role);
     }
 
-    public ArrayList<OtherUser> getMahasiswaList() {
+    public ArrayList<OtherUser> getStudentsList() {
         return this.studentsList;
     }
 
-    public ArrayList<OtherUser> getDosenList() {
+    public ArrayList<OtherUser> getLecturerList() {
         return this.lecturersList;
     }
 
@@ -140,7 +153,7 @@ public class PertemuanPresenter {
         return this.pertemuanList.get(idx).getPertemuanStartStr();
     }
 
-    public void getThisWeekScheduleFromServer() {
+    public void getThisWeekAppointmentsFromServer() {
         Calendar thisWeek = Calendar.getInstance();
         thisWeek.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         int currYear = thisWeek.get(Calendar.YEAR);
@@ -150,6 +163,14 @@ public class PertemuanPresenter {
         String endDate = IFPortalDateTimeFormatter.formatDate(currYear, currMonth, mondayDate + 6);
         try {
             this.apiWorker.getAppointments(startDate, endDate);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getInvitationsFromServer() {
+        try {
+            this.apiWorker.getInvitations();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -182,19 +203,135 @@ public class PertemuanPresenter {
         int day = IFPortalDateTimeFormatter.getDayFromDateTime(startDateTime);
         int year = IFPortalDateTimeFormatter.getYearFromDateTime(startDateTime);
         String pertemuanDate = String.format("%2d %s %d", day, monthStr, year);
-        
+
         String pertemuanStartTime = startDateTime.substring(11, 16);
         String pertemuanEndTime = endDateTime.substring(11, 16);
         this.ui.updateTimeDetail(pertemuanDate, pertemuanStartTime, pertemuanEndTime);
     }
 
     public void updateDescriptionDetail(String description) {
-        if (description == null) description ="";
+        if (description == null) description = "";
         this.ui.updateDescDetail(description);
     }
 
     public String getPertemuanId(int i) {
         return this.pertemuanList.get(i).getId();
+    }
+
+    public void showPertemuanCreationSuccess() {
+        String msg = "Pertemuan berhasil dibuat.";
+        this.ui.showPertemuanSuccessMsg(msg);
+    }
+
+    public void showInvitationSuccess() {
+        String msg = "Undangan berhasil dibuat.";
+        this.ui.showPertemuanSuccessMsg(msg);
+    }
+
+    public void createInvitation(String idPertemuan, ArrayList<String> idUndangan) {
+        try {
+            this.apiWorker.addParticipants(idPertemuan, idUndangan);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void postAcceptInvitation(String idUndangan) {
+        try {
+            this.apiWorker.postAcceptInvitation(idUndangan);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getLoggedInUserId() {
+        return this.userId;
+    }
+
+    public void setLoggedInUserId(String id) {
+        this.userId = id;
+    }
+
+    public void showInviteAcceptSuccess() {
+        String msg = "Undangan berhasil diterima.";
+        this.ui.showInvitationSuccessMsg(msg);
+    }
+
+    public void updateInviteeDetail(ArrayList<String> invitees,
+                                    ArrayList<String> attendees) {
+        String inviteesStr = String.join(JOIN_DELIMITER, invitees);
+        String attendeesStr = String.join(JOIN_DELIMITER, attendees);
+        this.ui.updateDetailFragmentInvitees(inviteesStr, attendeesStr);
+    }
+
+    public void removeParticipantField() {
+        this.ui.removeParticipantDetail();
+    }
+
+    public void getParticipantsFromServer(String id) {
+        try {
+            this.apiWorker.getAppointmentParticipants(id);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getTimeslotsFromServer(String userId) {
+        try {
+            this.apiWorker.getTimeslots(userId);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateTimeSlots(ArrayList<TimeSlot> mondaySlots,
+                                ArrayList<TimeSlot> tuesdaySlots,
+                                ArrayList<TimeSlot> wednesdaySlots,
+                                ArrayList<TimeSlot> thursdaySlots,
+                                ArrayList<TimeSlot> fridaySlots,
+                                ArrayList<TimeSlot> saturdaySlots,
+                                ArrayList<TimeSlot> sundaySlots) {
+        Collections.sort(mondaySlots);
+        Collections.sort(tuesdaySlots);
+        Collections.sort(wednesdaySlots);
+        Collections.sort(thursdaySlots);
+        Collections.sort(fridaySlots);
+        Collections.sort(saturdaySlots);
+        Collections.sort(sundaySlots);
+        this.ui.updateTimeSlots(mondaySlots, tuesdaySlots, wednesdaySlots, thursdaySlots,
+                fridaySlots, saturdaySlots, sundaySlots);
+    }
+
+    public String getLoggedInUserName() {
+        return this.userName;
+    }
+
+    public void setLoggedInUserName(String name) {
+        this.userName = name;
+    }
+
+    public void addTimeSlot(int dayIdx, String startTime, String endTime) {
+        String day = IFPortalDateTimeFormatter.DAYS_ABBRV[dayIdx];
+        String startTimeStr = IFPortalDateTimeFormatter.appendZone(startTime,
+                IFPortalDateTimeFormatter.GMT_OFFSET_JAKARTA);
+        String endTimeStr = IFPortalDateTimeFormatter.appendZone(endTime,
+                IFPortalDateTimeFormatter.GMT_OFFSET_JAKARTA);
+        try {
+            this.apiWorker.postAddTimeSlot(day, startTimeStr, endTimeStr);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showTimeSlotSuccess() {
+        String msg = "Time Slot berhasil ditambahkan.";
+        this.ui.showTimeSlotSuccessMsg(msg);
     }
 
 
@@ -214,9 +351,24 @@ public class PertemuanPresenter {
         void updateTitleDetail(String title);
 
         void updateOrganizerDetail(String organizer);
-        
+
         void updateTimeDetail(String pertemuanDate, String pertemuanStartTime, String pertemuanEndTime);
 
         void updateDescDetail(String description);
+
+        void showPertemuanSuccessMsg(String msg);
+
+        void showInvitationSuccessMsg(String msg);
+
+        void updateDetailFragmentInvitees(String invitees, String attendees);
+
+        void removeParticipantDetail();
+
+        void updateTimeSlots(ArrayList<TimeSlot> mondaySlots, ArrayList<TimeSlot> tuesdaySlots,
+                             ArrayList<TimeSlot> wednesdaySlots, ArrayList<TimeSlot> thursdaySlots,
+                             ArrayList<TimeSlot> fridaySlots, ArrayList<TimeSlot> saturdaySlots,
+                             ArrayList<TimeSlot> sundaySlots);
+
+        void showTimeSlotSuccessMsg(String msg);
     }
 }
