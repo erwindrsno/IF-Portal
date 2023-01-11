@@ -196,15 +196,21 @@ public class PertemuanTambahFragment extends Fragment {
         String jamMulai = this.binding.etJamMulai.getText().toString();
         String jamSelesai = this.binding.etJamSelesai.getText().toString();
         String deskripsi = this.binding.etDesk.getText().toString();
-        ArrayList<String> idUndangan = new ArrayList<>();
-        for (Spinner spinner : partisipanSpinners) {
-            int pos = spinner.getSelectedItemPosition();
-            String role = (String) spinner.getTag();
-            if (pos > AdapterView.INVALID_POSITION && role != null) {
-                idUndangan.add(this.presenter.getUserId(role, pos));
+        if (judul.length() > 0 && tanggal.length() > 0 && jamMulai.length() > 0 &&
+                jamSelesai.length() > 0) {
+            ArrayList<String> idUndangan = new ArrayList<>();
+            for (Spinner spinner : partisipanSpinners) {
+                int pos = spinner.getSelectedItemPosition();
+                String role = (String) spinner.getTag();
+                if (pos > AdapterView.INVALID_POSITION && role != null) {
+                    idUndangan.add(this.presenter.getUserId(role, pos));
+                }
             }
+            this.presenter.createAppointment(judul, tanggal, jamMulai, jamSelesai, deskripsi, idUndangan);
+        } else {
+            Toast.makeText(getActivity(), "Field selain deskripsi dan partisipan wajib diisi.",
+                    Toast.LENGTH_LONG).show();
         }
-        this.presenter.createAppointment(judul, tanggal, jamMulai, jamSelesai, deskripsi, idUndangan);
     }
 
     public void resetForm() {

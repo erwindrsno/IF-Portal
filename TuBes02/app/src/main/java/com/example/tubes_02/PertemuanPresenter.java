@@ -2,6 +2,7 @@ package com.example.tubes_02;
 
 import android.content.Context;
 import android.icu.text.TimeZoneFormat;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -43,7 +44,7 @@ public class PertemuanPresenter {
         }
     }
 
-    public boolean loggedInUserIsLecturer(){
+    public boolean loggedInUserIsLecturer() {
         return this.user instanceof Dosen;
     }
 
@@ -230,7 +231,7 @@ public class PertemuanPresenter {
 
     public void createInvitation(String idPertemuan, ArrayList<String> idUndangan) {
         try {
-            this.apiWorker.addParticipants(idPertemuan, idUndangan);
+            this.apiWorker.addParticipants(idPertemuan, (idUndangan.size() > 0) ? idUndangan : null);
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {

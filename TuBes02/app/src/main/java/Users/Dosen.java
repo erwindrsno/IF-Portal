@@ -8,30 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dosen extends User implements Parcelable {
-    private List<TimeSlot> timeSlots;
-
     public Dosen(String email, String password, String role) {
         super(email, password, role);
-        this.timeSlots = new ArrayList<>();
     }
 
-    public void addTimeSlot(){}
 
     protected Dosen(Parcel in) {
         super(in);
-        this.timeSlots = new ArrayList<>();
-        in.readTypedList(this.timeSlots, TimeSlot.CREATOR);
     }
 
-    public static final Creator<Admin> CREATOR = new Creator<Admin>() {
+    public static final Creator<Dosen> CREATOR = new Creator<Dosen>() {
         @Override
-        public Admin createFromParcel(Parcel in) {
-            return new Admin(in);
+        public Dosen createFromParcel(Parcel in) {
+            return new Dosen(in);
         }
 
         @Override
-        public Admin[] newArray(int size) {
-            return new Admin[size];
+        public Dosen[] newArray(int size) {
+            return new Dosen[size];
         }
     };
 
@@ -46,7 +40,6 @@ public class Dosen extends User implements Parcelable {
         parcel.writeString(super.getPassword());
         parcel.writeString(super.getRole());
         parcel.writeString(super.getToken());
-        parcel.writeTypedList(this.timeSlots);
     }
 
 
