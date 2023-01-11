@@ -88,22 +88,22 @@ public class getMatkulSemester {
             }
         };
 
-        jsonRequest.setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 55000;
-            }
-
-            @Override
-            public int getCurrentRetryCount() {
-                return 55000;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
-            }
-        });
+//        jsonRequest.setRetryPolicy(new RetryPolicy() {
+//            @Override
+//            public int getCurrentTimeout() {
+//                return 55000;
+//            }
+//
+//            @Override
+//            public int getCurrentRetryCount() {
+//                return 55000;
+//            }
+//
+//            @Override
+//            public void retry(VolleyError error) throws VolleyError {
+//
+//            }
+//        });
         request.add(jsonRequest);
     }
 }

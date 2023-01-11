@@ -5,10 +5,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -21,12 +25,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import Users.User;
+import drawer.SignOutDialogFragment;
+import frs.FRSActivity;
+import home.HomeActivity;
+import home.HomePresenter;
+import login.LoginActivity;
+import pengumuman.PengumumanActivity;
 
 public class PertemuanActivity extends AppCompatActivity implements PertemuanPresenter.PertemuanUI {
     private ActivityPengumumanBinding binding;
     private HashMap<String, Fragment> fragments;
     private FragmentManager manager;
     private PertemuanPresenter presenter;
+    private User user;
+
+    private SignOutDialogFragment signOutDialogFragment;
+
+    private Toolbar toolbar;
+
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle abdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +59,50 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
         this.manager = this.getSupportFragmentManager();
         this.presenter = new PertemuanPresenter(this, user);
 
+        //Toolbar
+        this.toolbar = binding.toolbar;
+        this.setSupportActionBar(toolbar);
+
+        this.drawer = binding.drawerLayout;
+
+        //tombol garis tiga
+        abdt = new ActionBarDrawerToggle(this,drawer,toolbar, R.string.open_drawer,R.string.close_drawer);
+        drawer.addDrawerListener(abdt);
+        abdt.syncState();
+        //Toolbar
+
         // Buat fragment-fragment, masukkan ke Hash<ap
         Fragment home = PertemuanHomeFragment.newInstance(this.presenter);
         Fragment tambah = PertemuanTambahFragment.newInstance(this.presenter);
         Fragment jadwal = PertemuanTimeSlotFragment.newInstance(this.presenter);
         Fragment tambahJadwal = PertemuanTimeSlotAddFragment.newInstance(this.presenter);
+//        this.signOutDialogFragment = SignOutDialogFragment.newInstance("exitAppDialogFragment");
+        this.signOutDialogFragment = SignOutDialogFragment.newInstance("exitAppDialogFragment");
         fragments.put("home", home);
         fragments.put("tambah", tambah);
         fragments.put("jadwal", jadwal);
         fragments.put("tambahJadwal", tambahJadwal);
+//        fragments.put("signoutDialogFragment",signoutDialogFragment);
+
+        if(getIntent().getExtras() != null){
+            try{
+                this.user = getIntent().getParcelableExtra("user");
+//                this.presenter = new HomePresenter(this.user,this);
+//                this.presenter.checkUserRole();
+//                this.presenter.toHideView();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        this.getSupportFragmentManager().setFragmentResultListener("changeActivity",this, new FragmentResultListener(){
+            @Override
+            public void onFragmentResult(String requestKey, Bundle result){
+                String activity = result.getString("activity");
+                changeActivity(activity);
+            }
+        });
 
         // Listener
         this.manager.setFragmentResultListener("changePage", this,
@@ -57,7 +110,14 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         String page = result.getString("page");
-                        changePage(page);
+                        if(page.equalsIgnoreCase("exit")){
+                            signOutDialogFragment.show(manager,"dialog");
+                            DrawerLayout drawerLayout = findViewById(drawer.getId());
+                            drawerLayout.closeDrawers();
+                        }
+                        else{
+                            changePage(page);
+                        }
                     }
                 });
 
@@ -83,6 +143,44 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
 
         this.changePage("home");
     }
+
+    public void changeActivity(String activity){
+        Intent intent;
+        switch(activity){
+            case "home":
+                Log.d("actHome",true+"");
+                intent = new Intent(this, HomeActivity.class);
+                intent.putExtra("user", (Parcelable) this.user);
+                startActivity(intent);
+                break;
+
+            case "frs/prs":
+                Log.d("actFrs/prs",true+"");
+                intent = new Intent(this, FRSActivity.class);
+                intent.putExtra("user", (Parcelable) this.user);
+                startActivity(intent);
+                break;
+
+            case "pengumuman":
+                intent = new Intent(this, PengumumanActivity.class);
+                intent.putExtra("user", (Parcelable) this.user);
+                startActivity(intent);
+                break;
+
+            case "pertemuan":
+//                Log.d("actPertemuan",true+"");
+                intent = new Intent(this, PertemuanActivity.class);
+                intent.putExtra("user", (Parcelable) this.user);
+                startActivity(intent);
+                break;
+
+            case "login":
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
 
     public void changePage(String page) {
         this.binding.drawerLayout.closeDrawers();

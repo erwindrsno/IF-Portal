@@ -2,14 +2,18 @@ package com.example.tubes_02;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.tubes_02.databinding.FragmentPertemuanHomeBinding;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
@@ -48,6 +52,31 @@ public class PertemuanHomeFragment extends Fragment {
         this.binding.lvPertemuanDaftar.setAdapter(this.adapter);
 
         this.presenter.getThisWeekAppointmentsFromServer();
+
+        Menu menu = this.binding.bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(3);
+        menuItem.setChecked(true);
+
+        this.binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Bundle result = new Bundle();
+                if(item.getItemId() == R.id.nav_btn_home){
+                    result.putString("activity","home");
+                }
+                if(item.getItemId() == R.id.nav_btn_frs_prs){
+                    result.putString("activity","frs/prs");
+                }
+                else if(item.getItemId() == R.id.nav_btn_pengumuman){
+                    result.putString("activity","pengumuman");
+                }
+                else if(item.getItemId() == R.id.nav_btn_pertemuan){
+                    result.putString("activity","pertemuan");
+                }
+                getParentFragmentManager().setFragmentResult("changeActivity",result);
+                return true;
+            }
+        });
 
         return this.binding.getRoot();
     }
