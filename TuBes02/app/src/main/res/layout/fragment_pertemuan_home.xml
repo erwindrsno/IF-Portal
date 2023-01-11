@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/text_info"
+        android:backgroundTint="@color/bar_header"
         android:src="@android:drawable/ic_input_add"
         android:layout_above="@+id/bottomNavigationView"/>
 
