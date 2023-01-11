@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.tubes_02.databinding.FragmentPertemuanTimeslotBinding;
+import com.example.tubes_02.databinding.ItemListTimeSlotBinding;
 
 import java.util.ArrayList;
 
@@ -21,6 +25,7 @@ public class PertemuanTimeSlotFragment extends Fragment {
     private PertemuanPresenter presenter;
     private FragmentPertemuanTimeslotBinding binding;
     private FragmentManager fm;
+    private String notifText;
 
     public PertemuanTimeSlotFragment() {
     }
@@ -36,6 +41,8 @@ public class PertemuanTimeSlotFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         this.binding = FragmentPertemuanTimeslotBinding.inflate(inflater, container, false);
         this.fm = getParentFragmentManager();
+        this.notifText = getResources()
+                .getString(R.string.fragment_pertemuan_detail_notification_text);
 
         Spinner spinnerLecturer = this.binding.spinnerLecturer;
         ArrayAdapter<OtherUser> adapter = new ArrayAdapter<>(spinnerLecturer.getContext(),
@@ -72,81 +79,40 @@ public class PertemuanTimeSlotFragment extends Fragment {
                                 ArrayList<TimeSlot> fridaySlots,
                                 ArrayList<TimeSlot> saturdaySlots,
                                 ArrayList<TimeSlot> sundaySlots) {
-        String notifText =
-                getResources().getString(R.string.fragment_pertemuan_detail_notification_text);
 
-        ListView lvMonday = this.binding.lvMonday;
-        ListView lvTuesday = this.binding.lvTuesday;
-        ListView lvWednesday = this.binding.lvWednesday;
-        ListView lvThursday = this.binding.lvThursday;
-        ListView lvFriday = this.binding.lvFriday;
-        ListView lvSaturday = this.binding.lvSaturday;
-        ListView lvSunday = this.binding.lvSunday;
+        LayoutInflater inflater = getLayoutInflater();
 
-        // Monday
-        if (mondaySlots.size() > 0) {
-            lvMonday.setAdapter(new ArrayAdapter<TimeSlot>(lvMonday.getContext(),
-                    R.layout.item_list_time_slot, mondaySlots));
-            this.binding.tvNotifMonday.setText("");
+        this.addSlotChilds(inflater, this.binding.llMondaySlots, mondaySlots,
+                this.binding.tvNotifMonday);
+        this.addSlotChilds(inflater, this.binding.llTuesdaySlots, tuesdaySlots,
+                this.binding.tvNotifTuesday);
+        this.addSlotChilds(inflater, this.binding.llWednesdaySlots, wednesdaySlots,
+                this.binding.tvNotifWednesday);
+        this.addSlotChilds(inflater, this.binding.llThursdaySlots, thursdaySlots,
+                this.binding.tvNotifThursday);
+        this.addSlotChilds(inflater, this.binding.llFridaySlots, fridaySlots,
+                this.binding.tvNotifFriday);
+        this.addSlotChilds(inflater, this.binding.llSaturdaySlots, saturdaySlots,
+                this.binding.tvNotifSaturday);
+        this.addSlotChilds(inflater, this.binding.llSundaySlots, sundaySlots,
+                this.binding.tvNotifSunday);
+    }
+
+    private void addSlotChilds(LayoutInflater inflater, LinearLayout slotsContainer,
+                               ArrayList<TimeSlot> timeSlots, TextView tvNotif) {
+        if (timeSlots.size() > 0) {
+            for (TimeSlot slot : timeSlots) {
+                ItemListTimeSlotBinding bindingItem = ItemListTimeSlotBinding.inflate(inflater);
+                bindingItem.tvText.setText(slot.toString());
+                slotsContainer.addView(bindingItem.getRoot());
+            }
+            LinearLayout lastChild = (LinearLayout) slotsContainer
+                    .getChildAt(slotsContainer.getChildCount() - 1);
+            lastChild.removeView(lastChild.getChildAt(lastChild.getChildCount() - 1));
+            tvNotif.setText("");
         } else {
-            lvMonday.setAdapter(null);
-            this.binding.tvNotifMonday.setText(notifText);
-        }
-
-        //Tuesday
-        if (tuesdaySlots.size() > 0) {
-            lvTuesday.setAdapter(new ArrayAdapter<TimeSlot>(lvTuesday.getContext(),
-                    R.layout.item_list_time_slot, tuesdaySlots));
-            this.binding.tvNotifTuesday.setText("");
-        } else {
-            lvTuesday.setAdapter(null);
-            this.binding.tvNotifTuesday.setText(notifText);
-        }
-
-        //Wednesday
-        if (wednesdaySlots.size() > 0) {
-            lvWednesday.setAdapter(new ArrayAdapter<TimeSlot>(lvWednesday.getContext(),
-                    R.layout.item_list_time_slot, wednesdaySlots));
-            this.binding.tvNotifWednesday.setText("");
-        } else {
-            lvWednesday.setAdapter(null);
-            this.binding.tvNotifWednesday.setText(notifText);
-        }
-
-        if (thursdaySlots.size() > 0) {
-            lvThursday.setAdapter(new ArrayAdapter<TimeSlot>(lvThursday.getContext(),
-                    R.layout.item_list_time_slot, thursdaySlots));
-            this.binding.tvNotifThursday.setText("");
-        } else {
-            lvThursday.setAdapter(null);
-            this.binding.tvNotifThursday.setText(notifText);
-        }
-
-        if (fridaySlots.size() > 0) {
-            lvFriday.setAdapter(new ArrayAdapter<TimeSlot>(lvFriday.getContext(),
-                    R.layout.item_list_time_slot, fridaySlots));
-            this.binding.tvNotifFriday.setText("");
-        } else {
-            lvFriday.setAdapter(null);
-            this.binding.tvNotifFriday.setText(notifText);
-        }
-
-        if (saturdaySlots.size() > 0) {
-            lvSaturday.setAdapter(new ArrayAdapter<TimeSlot>(lvSaturday.getContext(),
-                    R.layout.item_list_time_slot, saturdaySlots));
-            this.binding.tvNotifSaturday.setText("");
-        } else {
-            lvSaturday.setAdapter(null);
-            this.binding.tvNotifSaturday.setText(notifText);
-        }
-
-        if (sundaySlots.size() > 0) {
-            lvSunday.setAdapter(new ArrayAdapter<TimeSlot>(lvSunday.getContext(),
-                    R.layout.item_list_time_slot, sundaySlots));
-            this.binding.tvNotifSunday.setText("");
-        } else {
-            lvSunday.setAdapter(null);
-            this.binding.tvNotifSunday.setText(notifText);
+            slotsContainer.removeAllViews();
+            tvNotif.setText(this.notifText);
         }
     }
 }
