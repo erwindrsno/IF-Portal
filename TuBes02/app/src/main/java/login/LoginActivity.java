@@ -51,9 +51,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             this.email = this.binding.etEmail.getText().toString();
             this.password = this.binding.etPassword.getText().toString();
 
-            String email2 = "reinasya@mail.com";
-            String password2 = "1q2w3e45";
-            String role2 = "student";
+//            String email2 = "reinasya@mail.com";
+//            String password2 = "1q2w3e45";
+//            String role2 = "student";
+
+            String email2 = "default.admin@domain.local";
+            String password2 = "mu8XyUogLi6Dk7";
+            String role2 = "admin";
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
             this.presenter.validateUser(email2,password2,role2);
