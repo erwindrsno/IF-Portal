@@ -16,15 +16,12 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.tubes_02.PertemuanActivity;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityHomeBinding;
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import FiturAdmin.AddUserFragment;
 import FiturAdmin.HomeAdminFragment;
 import Users.User;
 import drawer.SignOutDialogFragment;
+import frs.FRSActivity;
 import login.LoginActivity;
 import pengumuman.PengumumanActivity;
 
@@ -125,6 +122,9 @@ public class HomeActivity extends AppCompatActivity implements HomeUI{
 
             case "frs/prs":
                 Log.d("actFrs/prs",true+"");
+                intent = new Intent(this, FRSActivity.class);
+                intent.putExtra("user", (Parcelable) this.user);
+                startActivity(intent);
                 break;
 
             case "pengumuman":
