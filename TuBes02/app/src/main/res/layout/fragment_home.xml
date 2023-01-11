@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight="1"
-                android:text="COBA"
+                android:text="EXIT"
                 android:backgroundTint="@color/bar_header"
                 android:layout_marginLeft="7dp"
                 >
