@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="fragment_pertemuan_home_judul_text">Pertemuan</string>
+    <string name="fragment_pertemuan_home_tv_invitation_text">Undangan</string>
+    <string name="fragment_pertemuan_home_tv_attending_text">Menghadiri</string>
+
     <string name="fragment_pertemuan_tambah_judul_text">Tambah Pertemuan</string>
     <string name="fragment_pertemuan_form_delimiter">:</string>
 
@@ -10,9 +13,10 @@
     <string name="fragment_pertemuan_tambah_tv_waktu_selesai_text">Waktu Selesai</string>
     <string name="fragment_pertemuan_tambah_tv_partisipan_text">Partisipan</string>
     <string name="fragment_pertemuan_tambah_tv_deskrip_text">Deskripsi</string>
+    <string name="fragment_pertemuan_tambah_et_topik_text">Topik pertemuan...</string>
     <string name="fragment_pertemuan_tambah_et_tgl_hint">yyyy-mm-dd</string>
     <string name="fragment_pertemuan_tambah_et_jam_hint">hh:mm</string>
-    <string name="fragment_pertemuan_tambah_et_deskrip_hint">Keterangan dari pertemuan...</string>
+    <string name="fragment_pertemuan_tambah_et_deskrip_hint">Hal yang ingin Anda diskusikan di pertemuan ini...</string>
     <string name="fragment_pertemuan_tambah_btn_lihat_jadwal_text">Lihat Jadwal Dosen</string>
     <string name="fragment_pertemuan_tambah_rb_dosen_text">Dosen</string>
     <string name="fragment_pertemuan_tambah_rb_mhs_text">Mahasiswa</string>
@@ -21,18 +25,24 @@
     <string name="fragment_pertemuan_detail_tv_organizer_text">Organizer</string>
     <string name="fragment_pertemuan_detail_tv_tanggal_text">Tanggal Pertemuan</string>
     <string name="fragment_pertemuan_detail_tv_waktu_text">Waktu Pertemuan</string>
-    <string name="fragment_pertemuan_detail_tv_partisipan_text">Partisipan</string>
+    <string name="fragment_pertemuan_detail_tv_partisipan_hadir_text">Partisipan yang Dapat Hadir</string>
+    <string name="fragment_pertemuan_detail_tv_partisipan_undang_text">Partisipan yang Diundang</string>
     <string name="fragment_pertemuan_detail_tv_deskripsi_text">Deskripsi</string>
-    <string name="fragment_jadwal_dosen_title_text">Jadwal Dosen</string>
-    <string name="hari_senin">Senin</string>
+    <string name="fragment_pertemuan_detail_btn_terima_text">Terima Undangan</string>
     <string name="fragment_pertemuan_detail_notification_text">Jadwal tidak ditemukan.</string>
+
+    <string name="fragment_jadwal_dosen_title_text">Jadwal Dosen</string>
+    <string name="fragment_jadwal_dosen_hari_text">Hari</string>
+    <string name="fragment_jadwal_dosen_tambah_judul_text">Tambah Time Slot</string>
+    <string name="fragment_jadwal_dosen_tambah_nama_text">Nama Dosen</string>
+
+    <string name="hari_senin">Senin</string>
     <string name="hari_selasa">Selasa</string>
     <string name="hari_rabu">Rabu</string>
     <string name="hari_kamis">Kamis</string>
     <string name="hari_jumat">Jumat</string>
     <string name="hari_sabtu">Sabtu</string>
     <string name="hari_minggu">Minggu</string>
-    <string name="fragment_jadwal_dosen_tambah_judul_text">Tambah Time Slot</string>
-    <string name="fragment_jadwal_dosen_tambah_nama_text">Nama</string>
-    <string name="fragment_pertemuan_detail_btn_terima_text">Terima</string>
+
+
 </resources>

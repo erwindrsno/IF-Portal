@@ -71,6 +71,11 @@ public class ListPengumumanAdapter extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
+    public void clearList(){
+        this.daftarPengumuman.clear();
+        this.notifyDataSetChanged();
+    }
+
     private class ViewHolder implements View.OnClickListener{
         protected ItemListDaftarPengumumanBinding binding;
         protected PengumumanPresenter presenter;

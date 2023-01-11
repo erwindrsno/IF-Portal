@@ -24,10 +24,11 @@ import java.util.Map;
 import pengumuman.model.Pengumuman;
 
 public class GetPengumuman {
-    final String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
+    private String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
     private final Context context;
     private final Gson gson;
     private PengumumanPresenter presenter;
+    private String page;
 
     public GetPengumuman(Context context, PengumumanPresenter presenter){
         this.context = context;
@@ -35,10 +36,17 @@ public class GetPengumuman {
         this.presenter = presenter;
     }
 
+    public GetPengumuman(Context context, PengumumanPresenter presenter, String page){
+        this.context = context;
+        this.gson = new Gson();
+        this.presenter = presenter;
+        this.page = page;
+        this.BASE_URL = this.BASE_URL + "?cursor=" + page + "&limit=5";
+        Log.d("url",this.BASE_URL);
+    }
+
     public void execute(){
         try{
-            Log.d("masukTaskAnnouncements",true+"");
-            Log.d("tokenpresenter",this.presenter.user.getToken());
             callVolley();
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,12 +63,19 @@ public class GetPengumuman {
                 JSONArray arrData = new JSONArray();
                 try{
                     objResponse = new JSONObject(response);
+                    String nextPage = objResponse.getJSONObject("metadata").getString("next");
                     arrData = objResponse.getJSONArray("data");
                     ArrayList<Pengumuman> arrPengumuman = new ArrayList<>();
                     for (int i = 0; i < arrData.length(); i++) {
                         Pengumuman pengumuman = gson.fromJson(arrData.getString(i), Pengumuman.class);
                         arrPengumuman.add(pengumuman);
-                        Log.d("muncul sekali",true+"");
+                    }
+                    if(!nextPage.equals(null)){
+                        presenter.addNextPage(nextPage);
+                        Log.d("masuk pindah page",true+"");
+                    }
+                    else{
+                        presenter.setNextPageFalse(false);
                     }
                     presenter.getListFromAPI(arrPengumuman);
                 } catch(JSONException ex){

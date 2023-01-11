@@ -77,7 +77,7 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
         if(getIntent().getExtras() != null){
             this.user = getIntent().getParcelableExtra("user");
             this.presenter.setUser(this.user);
-            this.presenter.executeGetPengumumanAPI();
+            this.presenter.executeGetPengumumanAPI(true);
         }
 
         this.fragmentManager = this.getSupportFragmentManager();

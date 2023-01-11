@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
@@ -28,13 +29,15 @@ import java.util.ArrayList;
 
 import pengumuman.model.Pengumuman;
 
-public class PengumumanFragment extends Fragment{
+public class PengumumanFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener{
     private FragmentPengumumanBinding binding;
     private ListPengumumanAdapter adapter;
     private PengumumanPresenter presenter;
     private DialogFragmentKontenPengumuman dialogFragment;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
+    private String preference;
+    private boolean useFilter;
     public PengumumanFragment(){
     }
 
@@ -42,6 +45,7 @@ public class PengumumanFragment extends Fragment{
         PengumumanFragment fragment = new PengumumanFragment();
         fragment.presenter = presenter;
         fragment.dialogFragment = dialogFragment;
+        fragment.useFilter = false;
         return fragment;
     }
 
@@ -67,6 +71,11 @@ public class PengumumanFragment extends Fragment{
         this.adapter = new ListPengumumanAdapter(this.presenter, inflater,this);
         this.binding.listPengumuman.setAdapter(this.adapter);
         //adapter
+
+        this.binding.btnPengumumanBack.setOnClickListener(this);
+        this.binding.btnPengumumanForward.setOnClickListener(this);
+        this.binding.btnFilter.setOnClickListener(this);
+        this.binding.spinner.setOnItemSelectedListener(this);
 
 
         FragmentManager fm = this.getParentFragmentManager();
@@ -133,5 +142,54 @@ public class PengumumanFragment extends Fragment{
         result.putString("title",judul);
         result.putString("content", isi);
         this.getParentFragmentManager().setFragmentResult("openDialogKonten",result);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == this.binding.btnPengumumanBack.getId()){
+            if(!this.useFilter){
+                this.presenter.clearPengumumanList();
+                this.adapter.clearList();
+                this.presenter.executeGetPengumumanAPI(false);
+                Log.d("masuk back",true+"");
+            }
+            else{
+                this.presenter.clearPengumumanList();
+                this.adapter.clearList();
+                this.presenter.executeGetPengumumanFilterSearch(this.preference, this.binding.etFilter.getText().toString(),false);
+            }
+        }
+        else if(view.getId() == this.binding.btnPengumumanForward.getId()){
+            if(!this.useFilter){
+                this.presenter.clearPengumumanList();
+                this.adapter.clearList();
+                this.presenter.executeGetPengumumanAPI(true);
+                Log.d("masuk forward",true+"");
+            }
+            else{
+                this.presenter.clearPengumumanList();
+                this.adapter.clearList();
+                this.presenter.executeGetPengumumanFilterSearch(this.preference, this.binding.etFilter.getText().toString(),true);
+            }
+        }
+        else if(view.getId() == this.binding.btnFilter.getId()){
+            this.useFilter = true;
+            this.presenter.clearPengumumanList();
+            this.adapter.clearList();
+            this.presenter.executeGetPengumumanFilterSearch(this.preference, this.binding.etFilter.getText().toString(), false);
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if(adapterView.getId() == this.binding.spinner.getId()){
+            this.preference = adapterView.getItemAtPosition(i).toString().toLowerCase();
+            Log.d("preference",this.preference);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
