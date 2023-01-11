@@ -70,4 +70,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             this.getParentFragmentManager().setFragmentResult("changePage",result);
         }
     }
+
+    public void hideAdminMenu(){
+
+    }
 }

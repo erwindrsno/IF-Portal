@@ -1,5 +1,7 @@
 package pengumuman;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,8 @@ public class ListPengumumanAdapter extends BaseAdapter {
     private PengumumanPresenter presenter;
     private LayoutInflater inflater;
     private PengumumanFragment fragment;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
     public ListPengumumanAdapter(PengumumanPresenter presenter, LayoutInflater inflater, PengumumanFragment fragment){
         this.presenter = presenter;
@@ -98,6 +102,14 @@ public class ListPengumumanAdapter extends BaseAdapter {
         @Override
         public void onClick(View view) {
             if(view.getId() == this.binding.layoutDaftarPengumuman.getId()){
+                //sharedpref
+//                Context context = getActivity();
+//                sharedPref = context.getSharedPreferences(presenter.getUser().getEmail(), Context.MODE_PRIVATE);
+//                editor = sharedPref.edit();
+//                editor.putString(id,"true");
+//                editor.apply();
+
+                //sharedpref
                 Log.d("masukdialogdaftarpengumuman",true+"");
 //                this.presenter.executeGetIsiPengumumanAPI(getItem(this.position));
                 this.presenter.sendPengumuman(getItem(this.position));

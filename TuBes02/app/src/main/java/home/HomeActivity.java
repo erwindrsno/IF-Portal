@@ -28,7 +28,7 @@ import drawer.SignOutDialogFragment;
 import login.LoginActivity;
 import pengumuman.PengumumanActivity;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements HomeUI{
     private FragmentManager fm;
     private ActivityHomeBinding binding;
     private Toolbar toolbar;
@@ -42,6 +42,8 @@ public class HomeActivity extends AppCompatActivity {
     private SignOutDialogFragment signOutDialogFragment;
     private AddUserFragment addUserFragment;
     private HomeAdminFragment homeAdminFragment;
+
+    private HomePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +76,10 @@ public class HomeActivity extends AppCompatActivity {
         if(getIntent().getExtras() != null){
             try{
                 this.user = getIntent().getParcelableExtra("user");
-//                Gson gson = new Gson();
-//                JSONObject json = new JSONObject(gson.toJson(user));
-//                Log.d("printJSONFromHomeActivity", json.toString(4));
+                this.presenter = new HomePresenter(this.user,this);
+                this.presenter.checkUserRole();
+                this.presenter.toHideView();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -179,5 +182,15 @@ public class HomeActivity extends AppCompatActivity {
     public void closeApplication(){
         this.moveTaskToBack(true);
         this.finish();
+    }
+
+    @Override
+    public void hideView() {
+        this.homeFragment.hideAdminMenu();
+    }
+
+    @Override
+    public void hideMenu(){
+
     }
 }
