@@ -32,13 +32,13 @@
                 android:textSize="30sp">
             </TextView>
 
-<!--            <ImageView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:layout_weight="0.1"-->
-<!--                android:src="@drawable/ic_baseline_done_24"-->
-<!--                android:layout_gravity="center">-->
-<!--            </ImageView>-->
+            <!--            <ImageView-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="30dp"-->
+            <!--                android:layout_weight="0.1"-->
+            <!--                android:src="@drawable/ic_baseline_done_24"-->
+            <!--                android:layout_gravity="center">-->
+            <!--            </ImageView>-->
 
         </LinearLayout>
 

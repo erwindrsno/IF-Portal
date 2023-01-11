@@ -9,22 +9,20 @@
         android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mohon maaf"
-            android:textSize="20dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="fitur FRS milik Mahasiswa"
-            android:textSize="20dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="fitur untuk anda masih dalam pengerjaan!"
-            android:textSize="20dp"/>
+            android:text="Fitur FRS khusus untuk mahasiswa !!"
+            android:textSize="20dp"
+            android:textColor="@color/normal_text"
+            android:textStyle="bold"
+
+            />
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

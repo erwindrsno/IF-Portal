@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_pertemuan_detail_tv_organizer_text"
                     android:textSize="@dimen/title_form"
-                    android:textColor="@color/text_info"
+                    android:textColor="@color/title_form"
                     />
 
                 <TextView
@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/fragment_pertemuan_form_text_size"
-                    android:textColor="@color/normal_text"
+                    android:textColor="@color/title_form"
                     android:layout_marginTop="5dp"
                     />
 
@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_pertemuan_tambah_tv_tanggal_text"
                     android:textSize="@dimen/title_form"
-                    android:textColor="@color/text_info"
+                    android:textColor="@color/title_form"
                     android:layout_marginTop="15dp"
                     />
 
@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/fragment_pertemuan_form_text_size"
-                    android:textColor="@color/normal_text"
+                    android:textColor="@color/title_form"
                     android:layout_marginTop="5dp"
 
                     />
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_pertemuan_detail_tv_waktu_text"
                     android:textSize="@dimen/title_form"
-                    android:textColor="@color/text_info"
+                    android:textColor="@color/title_form"
                     android:layout_marginTop="15dp"/>
 
                 <LinearLayout
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_pertemuan_detail_tv_partisipan_undang_text"
                         android:textSize="@dimen/title_form"
-                        android:textColor="@color/text_info"
+                        android:textColor="@color/title_form"
                         android:layout_marginTop="15dp"/>
 
                     <TextView
@@ -132,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_pertemuan_detail_tv_partisipan_hadir_text"
                         android:textSize="@dimen/title_form"
-                        android:textColor="@color/text_info"
+                        android:textColor="@color/title_form"
                         android:layout_marginTop="15dp"/>
 
                     <TextView
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_pertemuan_detail_tv_deskripsi_text"
                     android:textSize="@dimen/title_form"
-                    android:textColor="@color/text_info"
+                    android:textColor="@color/title_form"
                     android:layout_marginTop="15dp"/>
                 <TextView
                     android:id="@+id/tv_desc"

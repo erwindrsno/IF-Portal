@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginLeft="5dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center">
@@ -20,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SEMESTER"
-            android:textStyle="bold"
+            android:textColor="@color/normal_text"
             android:textSize="18dp"
             >
         </TextView>
@@ -29,8 +28,8 @@
             android:id="@+id/item_semester_bawah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/normal_text"
             android:text="aaaa">
         </TextView>
     </LinearLayout>

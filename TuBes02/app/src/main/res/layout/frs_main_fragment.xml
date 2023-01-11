@@ -4,23 +4,47 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_margin="10dp">
+    >
 
     <LinearLayout
         android:id="@+id/cont_atas"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_weight="10"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp">
         <TextView
             android:id="@+id/tv_semester"
             android:text="SEMESTER"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="@color/normal_text"
+            android:textStyle="bold">
 
         </TextView>
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bar_header"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tv_title">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bar_header"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_weight="10"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp">
         <ListView
             android:id="@+id/list_semester"
             android:layout_width="match_parent"
@@ -28,7 +52,8 @@
             android:dividerHeight="10dp"
             android:footerDividersEnabled="true"
             android:headerDividersEnabled="true"
-            android:divider="@color/white">
+            android:divider="@color/white"
+            android:layout_marginTop="15dp">
         </ListView>
     </LinearLayout>
 

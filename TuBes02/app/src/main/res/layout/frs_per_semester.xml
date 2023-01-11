@@ -10,13 +10,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp">
         <TextView
             android:text="FRS"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/normal_text"
+            android:textStyle="bold"
+            >
         </TextView>
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,30 +32,46 @@
                 android:layout_height="wrap_content"
                 android:text="SEMESTER"
                 android:textSize="20dp"
-                android:layout_marginLeft="10dp">
+                android:textColor="@color/normal_text"
+                android:textStyle="bold">
             </TextView>
             <TextView
                 android:id="@+id/tv_semester"
-                android:text="SEMESTER"
+                android:text="6"
                 android:textSize="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/normal_text">
             </TextView>
         </LinearLayout>
     </LinearLayout>
-
+    <LinearLayout
+        android:id="@+id/bar_header"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_title">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bar_header"/>
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20sp">
         <Button
             android:id="@+id/btn_matkul_enroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="tambah mata kuliah"
-            android:textSize="10dp"/>
+            android:textSize="10dp"
+            android:backgroundTint="@color/button_form"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -58,7 +79,9 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_weight="10"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
         <ListView
             android:id="@+id/list_matkul"
             android:layout_width="match_parent"

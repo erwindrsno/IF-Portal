@@ -42,6 +42,6 @@
         android:layout_height="wrap_content"
         android:text="@string/fragment_pertemuan_btn_tambah_text"
         android:layout_marginTop="15dp"
-        android:backgroundTint="@color/text_info"/>
+        android:backgroundTint="@color/button_form"/>
 
 </LinearLayout>
