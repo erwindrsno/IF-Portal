@@ -2,16 +2,17 @@ package frs;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import Users.Mahasiswa;
 import Users.User;
 
 public class FRSPresenter{
     protected User user;
     protected Context context;
     protected int initial_year;
+    protected int active_year;
     protected StorageInitialYear storageIY;
 
     protected ArrayList<Integer> semester;
@@ -47,8 +48,12 @@ public class FRSPresenter{
             int temp = this.storageIY.getInitialYear()+0;
             Log.d("temp initial year", temp+"");
             if(temp==0){
-                user = new Mahasiswa("reinasya@mail.com", "1q2w3e45", "student");
-                this.user.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOiJkZWYyZjkwNC0wZTFiLTQyNDctYTM5Yi00NjdjZTRmMDk1ZGYiLCJyb2xlIjoic3R1ZGVudCJ9LCJpYXQiOjE2NzMzMjY5NjB9.TkCb0-ofNsCrUvhSJRYgP9h_gJARHRgRdqXOvEV0c18");
+
+                Context context = this.context;
+                CharSequence text = "Harap tunggu!";
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
 
                 getSemester task = new getSemester(this.context, this);
                 task.execute(this.user);
@@ -98,6 +103,12 @@ public class FRSPresenter{
 //            user = new Mahasiswa("reinasya@mail.com", "1q2w3e45", "student");
 //            this.user.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOiJkZWYyZjkwNC0wZTFiLTQyNDctYTM5Yi00NjdjZTRmMDk1ZGYiLCJyb2xlIjoic3R1ZGVudCJ9LCJpYXQiOjE2NzMzMjY5NjB9.TkCb0-ofNsCrUvhSJRYgP9h_gJARHRgRdqXOvEV0c18");
 
+            Context context = this.context;
+            CharSequence text = "Harap tunggu!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
             getMatkulSemester task = new getMatkulSemester(this.context, this);
             task.execute(this.user, academic_year);
         }
@@ -120,6 +131,12 @@ public class FRSPresenter{
 //            user = new Mahasiswa("reinasya@mail.com", "1q2w3e45", "student");
 //            this.user.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOiJkZWYyZjkwNC0wZTFiLTQyNDctYTM5Yi00NjdjZTRmMDk1ZGYiLCJyb2xlIjoic3R1ZGVudCJ9LCJpYXQiOjE2NzMzMjY5NjB9.TkCb0-ofNsCrUvhSJRYgP9h_gJARHRgRdqXOvEV0c18");
 
+            Context context = this.context;
+            CharSequence text = "Harap tunggu!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
             getMatkulForEnrol taskE = new getMatkulForEnrol(this.context, this);
             taskE.executeAwal(user);
         }
@@ -130,6 +147,12 @@ public class FRSPresenter{
             matkulE.clear();
 //            user = new Mahasiswa("reinasya@mail.com", "1q2w3e45", "student");
 //            this.user.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOiJkZWYyZjkwNC0wZTFiLTQyNDctYTM5Yi00NjdjZTRmMDk1ZGYiLCJyb2xlIjoic3R1ZGVudCJ9LCJpYXQiOjE2NzMzMjY5NjB9.TkCb0-ofNsCrUvhSJRYgP9h_gJARHRgRdqXOvEV0c18");
+
+            Context context = this.context;
+            CharSequence text = "Harap tunggu!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
 
             getMatkulForEnrol taskE = new getMatkulForEnrol(this.context, this);
             taskE.executeSearch(user, search);
@@ -149,6 +172,12 @@ public class FRSPresenter{
 //        user = new Mahasiswa("reinasya@mail.com", "1q2w3e45", "student");
 //        this.user.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOiJkZWYyZjkwNC0wZTFiLTQyNDctYTM5Yi00NjdjZTRmMDk1ZGYiLCJyb2xlIjoic3R1ZGVudCJ9LCJpYXQiOjE2NzMzMjY5NjB9.TkCb0-ofNsCrUvhSJRYgP9h_gJARHRgRdqXOvEV0c18");
 
+        Context context = this.context;
+        CharSequence text = "Harap tunggu!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
         postTambahEnrol post = new postTambahEnrol(this.context, this);
         post.execute(user, id, academic_year);
     }
@@ -159,5 +188,33 @@ public class FRSPresenter{
 
         deleteEnrolMatkul deleteT = new deleteEnrolMatkul(this.context, this);
         deleteT.execute(user, id, academic_year);
+    }
+
+    public void searchActiveYear(){
+//        user = new Mahasiswa("reinasya@mail.com", "1q2w3e45", "student");
+//        this.user.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOiJkZWYyZjkwNC0wZTFiLTQyNDctYTM5Yi00NjdjZTRmMDk1ZGYiLCJyb2xlIjoic3R1ZGVudCJ9LCJpYXQiOjE2NzMzMjY5NjB9.TkCb0-ofNsCrUvhSJRYgP9h_gJARHRgRdqXOvEV0c18");
+
+        Context context = this.context;
+        CharSequence text = "Harap tunggu!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        getAcademicYear getActive = new getAcademicYear(this.context, this);
+        getActive.execute(user);
+    }
+
+    public int getActiveYear(){
+        if(active_year>1){
+            return active_year;
+        }
+        else{
+            searchActiveYear();
+            return active_year;
+        }
+    }
+
+    public void setActive_year(int active_year) {
+        this.active_year = active_year;
     }
 }

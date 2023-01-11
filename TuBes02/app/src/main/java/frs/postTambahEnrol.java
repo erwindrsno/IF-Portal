@@ -2,6 +2,7 @@ package frs;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -58,6 +59,13 @@ public class postTambahEnrol {
             public void onResponse(JSONObject response) {
                 Log.d("respon api enroll", response.toString());
                 presenter.setMatkulSemestertoAdapter(academic_year);
+
+                Context context = presenter.context;
+                CharSequence text = "berhasil tambah mata kuliah!";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
             }
         }, new Response.ErrorListener() {
             @Override

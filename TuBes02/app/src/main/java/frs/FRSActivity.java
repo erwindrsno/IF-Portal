@@ -25,6 +25,7 @@ public class FRSActivity extends AppCompatActivity implements UIFRSemester, UIMa
     private FRSMainFragment frsMainFragment;
     private FRSperSemesterFragment frsperSemesterFragment;
     private FRSDialogAddMatkul frsDialogAddMatkulFragment;
+    private FRSDosenFragment frsDosenFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +45,21 @@ public class FRSActivity extends AppCompatActivity implements UIFRSemester, UIMa
         frsMainFragment = FRSMainFragment.newInstance("FRSMainFragment", frsPresenter);
         frsDialogAddMatkulFragment = FRSDialogAddMatkul.newInstance("FRSDialogAddMatkul", frsPresenter);
         frsperSemesterFragment = FRSperSemesterFragment.newInstance("FRSperSemesterFragment", frsPresenter, frsDialogAddMatkulFragment);
+        frsDosenFragment = FRSDosenFragment.newInstance("FRSDosenFragment");
 
 
 
         this.fm = this.getSupportFragmentManager();
         FragmentTransaction ft = this.fm.beginTransaction();
 
-        ft.add(binding.fragmentContainer.getId(), this.frsMainFragment)
-                .commit();
+        if(this.user.getRole().equals("student")){
+            ft.add(binding.fragmentContainer.getId(), this.frsMainFragment)
+                    .commit();
+        }
+        else{
+            ft.add(binding.fragmentContainer.getId(), this.frsDosenFragment)
+                    .commit();
+        }
 
         this.getSupportFragmentManager().setFragmentResultListener("changePage", this, new FragmentResultListener() {
             @Override
@@ -65,7 +73,7 @@ public class FRSActivity extends AppCompatActivity implements UIFRSemester, UIMa
 
     private void changePage(String page) {
         FragmentTransaction ft = this.fm.beginTransaction();
-        if(page.equals("FRSMainFragment")){
+        if(page.equals("FRSMainFragment")&&this.user.getRole().equals("student")){
             if(this.frsMainFragment.isAdded()){
                 ft.show(this.frsMainFragment);
             }
@@ -76,7 +84,7 @@ public class FRSActivity extends AppCompatActivity implements UIFRSemester, UIMa
                 ft.hide(frsperSemesterFragment);
             }
         }
-        else if(page.equals("FRSperSemesterFragment")){
+        else if(page.equals("FRSperSemesterFragment")&&this.user.getRole().equals("student")){
             Log.d("masuk fragment", "masuk");
             if(this.frsperSemesterFragment.isAdded()){
                 ft.show(this.frsperSemesterFragment);

@@ -1,6 +1,7 @@
 package frs;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,9 @@ public class FRSMainFragment extends Fragment implements UIFRSemester{
         this.binding.listSemester.setAdapter(adapterSemester);
 
         //load data semester disini
+        presenter.searchActiveYear();
         presenter.getSemestertoAdapter();
+        Log.d("presenteractive", presenter.active_year+"");
 
         return binding.getRoot();
     }

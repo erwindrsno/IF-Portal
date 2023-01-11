@@ -1,10 +1,12 @@
 package frs;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -51,6 +53,16 @@ public class FRSperSemesterFragment extends Fragment implements UIMatkulSemester
                 positionSemester = result.getInt("position");
                 academic_year = result.getInt("academic_year");
                 binding.tvSemester.setText(academic_year+"");
+
+                if(academic_year!=presenter.getActiveYear()){
+                    binding.btnMatkulEnroll.setClickable(false);
+                    Context context = presenter.context;
+                    CharSequence text = "Bukan Semester Aktif!";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+
                 Log.d("fragment per semester academic", academic_year+"");
                 createAdapter(academic_year);
                 presenter.setMatkulSemestertoAdapter(academic_year);
