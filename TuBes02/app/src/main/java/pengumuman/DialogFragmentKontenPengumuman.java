@@ -14,6 +14,7 @@ import drawer.SignOutDialogFragment;
 public class DialogFragmentKontenPengumuman extends DialogFragment {
     private String title;
     private String konten;
+    private String id;
     private FragmentDialogPengumumanBinding binding;
 
     public static DialogFragmentKontenPengumuman newInstance(String title){
@@ -45,5 +46,9 @@ public class DialogFragmentKontenPengumuman extends DialogFragment {
 
     public void setContent(String konten){
         this.konten = konten;
+    }
+
+    public void setId(String id){
+        this.id = id;
     }
 }
