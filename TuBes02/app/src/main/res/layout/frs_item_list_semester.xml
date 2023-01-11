@@ -11,14 +11,14 @@
         android:id="@+id/container_semester"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SEMESTER"
+            android:text="Semester"
             android:textColor="@color/normal_text"
             android:textSize="18dp"
             >
@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textColor="@color/normal_text"
-            android:text="aaaa">
+            android:text="aaaa"
+            android:paddingLeft="10sp">
         </TextView>
     </LinearLayout>
 

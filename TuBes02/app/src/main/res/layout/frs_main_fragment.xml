@@ -49,7 +49,7 @@
             android:id="@+id/list_semester"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:dividerHeight="10dp"
+            android:dividerHeight="20dp"
             android:footerDividersEnabled="true"
             android:headerDividersEnabled="true"
             android:divider="@color/white"
