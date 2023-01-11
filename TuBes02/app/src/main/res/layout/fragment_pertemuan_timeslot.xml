@@ -97,7 +97,8 @@
                 <ListView
                     android:id="@+id/lv_monday"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:divider="@color/white"/>
 
                 <TextView
                     android:id="@+id/tv_notif_monday"
@@ -129,7 +130,8 @@
                 <ListView
                     android:id="@+id/lv_tuesday"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:divider="@color/white"/>
 
                 <TextView
                     android:id="@+id/tv_notif_tuesday"
@@ -162,7 +164,8 @@
                 <ListView
                     android:id="@+id/lv_wednesday"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:divider="@color/white"/>
 
                 <TextView
                     android:id="@+id/tv_notif_wednesday"
@@ -194,7 +197,9 @@
                 <ListView
                     android:id="@+id/lv_thursday"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:divider="@color/white"
+                    />
 
                 <TextView
                     android:id="@+id/tv_notif_thursday"
@@ -226,7 +231,8 @@
                 <ListView
                     android:id="@+id/lv_friday"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:divider="@color/white"/>
 
                 <TextView
                     android:id="@+id/tv_notif_friday"
@@ -259,7 +265,8 @@
                 <ListView
                     android:id="@+id/lv_saturday"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:divider="@color/white"/>
 
                 <TextView
                     android:id="@+id/tv_notif_saturday"
@@ -291,7 +298,8 @@
                 <ListView
                     android:id="@+id/lv_sunday"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:divider="@color/white"/>
 
                 <TextView
                     android:id="@+id/tv_notif_sunday"
