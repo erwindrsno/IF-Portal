@@ -149,13 +149,15 @@ public class PertemuanAPIWorker {
                 .build();
         URL requestURL = new URL(URI.toString());
 
+        Log.d("debug", ""+idUndangan.size());
+
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
                 requestURL.toString(), jsonBody,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         String idPertemuan = getAppointmentId(response);
-                        if (idUndangan != null) {
+                        if (idUndangan != null && idUndangan.size() > 0) {
                             presenter.createInvitation(idPertemuan, idUndangan);
                         } else {
                             presenter.showPertemuanCreationSuccess();
