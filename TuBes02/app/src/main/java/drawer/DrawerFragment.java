@@ -28,7 +28,6 @@ public class DrawerFragment extends Fragment implements HomeUI {
         this.adapter = new MenuAdapter(this,inflater);
         binding.lvMenu.setAdapter(adapter);
         this.adapter.addList("Home");
-        this.adapter.addList("Settings");
         this.adapter.addList("Sign Out");
         return view;
     }

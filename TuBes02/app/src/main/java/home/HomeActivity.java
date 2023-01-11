@@ -90,6 +90,7 @@ public class HomeActivity extends AppCompatActivity implements HomeUI{
             @Override
             public void onFragmentResult(String requestKey, Bundle result){
                 String page = result.getString("page");
+                Log.d("pagenya ngab",page);
                 changePage(page);
             }
         });
@@ -178,6 +179,12 @@ public class HomeActivity extends AppCompatActivity implements HomeUI{
             DrawerLayout drawerLayout = findViewById(drawer.getId());
             drawerLayout.closeDrawers();
         }
+//        else if(page.equals("make_announcement")){
+//            ft.replace(binding.fragmentContainer.getId(),this.)
+//                    .addToBackStack(null);
+//            DrawerLayout drawerLayout = findViewById(drawer.getId());
+//            drawerLayout.closeDrawers();
+//        }
         ft.commit();
     }
 
