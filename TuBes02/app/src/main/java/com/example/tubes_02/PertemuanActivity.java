@@ -38,7 +38,7 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
         this.binding = ActivityPengumumanBinding.inflate(this.getLayoutInflater());
         this.fragments = new HashMap<>();
         this.manager = this.getSupportFragmentManager();
-        this.presenter = new PertemuanPresenter(user);
+        this.presenter = new PertemuanPresenter(this, user);
 
         // Buat fragment-fragment, masukkan ke Hash<ap
         Fragment home = PertemuanHomeFragment.newInstance(this.presenter);
