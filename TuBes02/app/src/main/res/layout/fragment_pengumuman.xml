@@ -16,13 +16,25 @@
         android:layout_marginTop="10dp"
         />
     <LinearLayout
+        android:id="@+id/bar_header"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_title">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bar_header"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/layout_search"
-        android:layout_below="@+id/tv_title"
+        android:layout_below="@+id/bar_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:focusable="false"
         android:focusableInTouchMode="true"
+        android:layout_marginTop="10dp"
         >
         <Spinner
             android:id="@+id/spinner"
@@ -53,7 +65,8 @@
         android:layout_below="@+id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
         <ListView
             android:id="@+id/list_pengumuman"
             android:layout_width="match_parent"

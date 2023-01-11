@@ -8,6 +8,7 @@
         android:id="@+id/btn_terima"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/fragment_pertemuan_detail_btn_terima_text" />
+        android:text="@string/fragment_pertemuan_detail_btn_terima_text"
+        android:backgroundTint="@color/button_accept"/>
 
 </LinearLayout>
