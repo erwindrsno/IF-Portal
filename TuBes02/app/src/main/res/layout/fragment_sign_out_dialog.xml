@@ -15,7 +15,8 @@
             android:textSize="15sp"
             android:layout_marginStart="22dp"
             android:text="@string/sign_out"
-            android:textColor="@color/normal_text">
+            android:textColor="@color/normal_text"
+            android:textStyle="bold">
 
         </TextView>
 

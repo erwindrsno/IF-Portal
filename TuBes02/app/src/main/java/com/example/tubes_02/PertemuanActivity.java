@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,14 +33,13 @@ public class PertemuanActivity extends AppCompatActivity implements PertemuanPre
         super.onCreate(savedInstanceState);
 
         Intent receivedIntent = getIntent();
+        User user = receivedIntent.getParcelableExtra("user");
 
         // Inisialisasi atribut-atribut
         this.binding = ActivityPengumumanBinding.inflate(this.getLayoutInflater());
         this.fragments = new HashMap<>();
         this.manager = this.getSupportFragmentManager();
-        this.presenter = new PertemuanPresenter(this,
-                (User) receivedIntent.getParcelableExtra("user"));
-        this.presenter = new PertemuanPresenter(this, null);
+        this.presenter = new PertemuanPresenter(this, user);
 
         // Buat fragment-fragment, masukkan ke Hash<ap
         Fragment home = PertemuanHomeFragment.newInstance(this.presenter);

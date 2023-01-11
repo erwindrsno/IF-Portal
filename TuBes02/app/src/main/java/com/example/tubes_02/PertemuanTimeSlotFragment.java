@@ -145,7 +145,7 @@ public class PertemuanTimeSlotFragment extends Fragment {
                     R.layout.item_list_time_slot, sundaySlots));
             this.binding.tvNotifSunday.setText("");
         } else {
-            lvSaturday.setAdapter(null);
+            lvSunday.setAdapter(null);
             this.binding.tvNotifSunday.setText(notifText);
         }
     }

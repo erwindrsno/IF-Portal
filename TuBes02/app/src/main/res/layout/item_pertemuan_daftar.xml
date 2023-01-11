@@ -7,12 +7,14 @@
         android:id="@+id/tv_judul_pertemuan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/item_pertemuan_judul_text_size" />
+        android:textSize="17sp"
+        android:textColor="@color/normal_text"/>
 
     <TextView
         android:id="@+id/tv_waktu_pertemuan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/item_pertemaun_subjudul_text_size"
-        android:layout_below="@+id/tv_judul_pertemuan" />
+        android:textSize="15sp"
+        android:layout_below="@+id/tv_judul_pertemuan"
+        android:textColor="@color/normal_text"/>
 </RelativeLayout>

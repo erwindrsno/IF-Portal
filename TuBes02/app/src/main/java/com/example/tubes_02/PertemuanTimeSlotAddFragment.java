@@ -53,7 +53,12 @@ public class PertemuanTimeSlotAddFragment extends Fragment {
         String startTime = this.binding.etJamMulai.getText().toString();
         String endTime = this.binding.etJamSelesai.getText().toString();
         int dayIdx = this.binding.spinnerDay.getSelectedItemPosition();
-        this.presenter.addTimeSlot(dayIdx, startTime, endTime);
+        if (startTime.length() > 0 && endTime.length() > 0) {
+            this.presenter.addTimeSlot(dayIdx, startTime, endTime);
+        } else {
+            Toast.makeText(getActivity(), "Semua field wajib diisi.",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
 

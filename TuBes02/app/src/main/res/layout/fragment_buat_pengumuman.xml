@@ -21,6 +21,15 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bar_header"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
@@ -30,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Judul"
-            android:textColor="@color/normal_text"/>
+            android:textColor="@color/title_form"
+            android:textSize="@dimen/title_form"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,11 +58,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/normal_text"
+            android:textColor="@color/title_form"
+            android:textSize="@dimen/title_form"
             android:text="Tags"/>
     </LinearLayout>
     <LinearLayout
@@ -71,12 +83,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Deskripsi"
-            android:textColor="@color/normal_text"/>
+            android:textColor="@color/title_form"
+            android:textSize="@dimen/title_form"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,7 +118,8 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
+            android:layout_marginRight="15dp"
+            android:backgroundTint="@color/button_form"/>
 
     </LinearLayout>
 

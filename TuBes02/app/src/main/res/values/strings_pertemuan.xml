@@ -35,7 +35,6 @@
     <string name="fragment_jadwal_dosen_hari_text">Hari</string>
     <string name="fragment_jadwal_dosen_tambah_judul_text">Tambah Time Slot</string>
     <string name="fragment_jadwal_dosen_tambah_nama_text">Nama Dosen</string>
-
     <string name="hari_senin">Senin</string>
     <string name="hari_selasa">Selasa</string>
     <string name="hari_rabu">Rabu</string>
@@ -43,6 +42,5 @@
     <string name="hari_jumat">Jumat</string>
     <string name="hari_sabtu">Sabtu</string>
     <string name="hari_minggu">Minggu</string>
-
 
 </resources>

@@ -13,15 +13,15 @@ public class Mahasiswa extends User implements Parcelable {
         super(in);
     }
 
-    public static final Creator<Admin> CREATOR = new Creator<Admin>() {
+    public static final Creator<Mahasiswa> CREATOR = new Creator<Mahasiswa>() {
         @Override
-        public Admin createFromParcel(Parcel in) {
-            return new Admin(in);
+        public Mahasiswa createFromParcel(Parcel in) {
+            return new Mahasiswa(in);
         }
 
         @Override
-        public Admin[] newArray(int size) {
-            return new Admin[size];
+        public Mahasiswa[] newArray(int size) {
+            return new Mahasiswa[size];
         }
     };
 
