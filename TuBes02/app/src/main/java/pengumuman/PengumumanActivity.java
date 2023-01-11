@@ -18,12 +18,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.tubes_02.PertemuanActivity;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityPengumumanBinding;
 
 import java.util.ArrayList;
 
 import Users.User;
+import drawer.SignOutDialogFragment;
+import frs.FRSActivity;
 import home.HomeActivity;
 import login.LoginActivity;
 import pengumuman.model.Pengumuman;
@@ -39,6 +42,7 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle abdt;
+    private SignOutDialogFragment signOutDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +76,13 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
         //instantiate fragment
         this.dialogFragmentKontenPengumuman = DialogFragmentKontenPengumuman.newInstance("Dialog Konten Pengumuman");
         this.pengumumanFragment = PengumumanFragment.newInstance(this.presenter, this.dialogFragmentKontenPengumuman);
+        this.signOutDialogFragment = SignOutDialogFragment.newInstance("exitAppDialogFragment");
 //        this.buatPengumumanFragment = BuatPengumumanFragment.newInstance(this);
 
         if(getIntent().getExtras() != null){
             this.user = getIntent().getParcelableExtra("user");
             this.presenter.setUser(this.user);
-            this.presenter.executeGetPengumumanAPI();
+            this.presenter.executeGetPengumumanAPI(true);
         }
 
         this.fragmentManager = this.getSupportFragmentManager();
@@ -87,15 +92,16 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
                 .addToBackStack(null)
                 .commit();
 
-//        this.getSupportFragmentManager().setFragmentResultListener(
-//                "changePage", this, new FragmentResultListener() {
-//                    @Override
-//                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-//                        String page = result.getString("page");
-//                        changePage(page);
-//                    }
-//                }
-//        );
+        this.getSupportFragmentManager().setFragmentResultListener(
+                "changePage", this, new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        String page = result.getString("page");
+                        changePage(page);
+                    }
+                }
+        );
+
         this.getSupportFragmentManager().setFragmentResultListener("changeActivity",this, new FragmentResultListener(){
             @Override
             public void onFragmentResult(String requestKey, Bundle result){
@@ -117,6 +123,9 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
 
             case "frs/prs":
                 Log.d("actFrs/prs",true+"");
+                intent = new Intent(this, FRSActivity.class);
+                intent.putExtra("user", (Parcelable) this.user);
+                startActivity(intent);
                 break;
 
             case "pengumuman":
@@ -127,6 +136,9 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
 
             case "pertemuan":
                 Log.d("actPertemuan",true+"");
+                intent = new Intent(this, PertemuanActivity.class);
+                intent.putExtra("user", (Parcelable) this.user);
+                startActivity(intent);
                 break;
 
             case "login":
@@ -152,7 +164,12 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
             ft.replace(binding.fragmentContainer.getId(),this.buatPengumumanFragment)
                     .addToBackStack(null);
         }
-
+        else if(page.equals("exit")){
+            this.signOutDialogFragment.show(this.fragmentManager,"dialog");
+            ft.addToBackStack(null);
+            DrawerLayout drawerLayout = findViewById(drawer.getId());
+            drawerLayout.closeDrawers();
+        }
         ft.commit();
     }
 

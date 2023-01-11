@@ -23,16 +23,26 @@ import java.util.Map;
 
 import pengumuman.model.Pengumuman;
 
-public class GetPengumumanNext {
+public class GetPengumumanFilterSearch {
     private String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
     private final Context context;
     private final Gson gson;
     private PengumumanPresenter presenter;
+    private String next;
 
-    public GetPengumumanNext(Context context, PengumumanPresenter presenter){
+    public GetPengumumanFilterSearch(Context context, PengumumanPresenter presenter, String preference, String text){
         this.context = context;
         this.gson = new Gson();
         this.presenter = presenter;
+        this.next = next;
+    }
+
+    public GetPengumumanFilterSearch(Context context, PengumumanPresenter presenter, String preference, String text, String next){
+        this.context = context;
+        this.gson = new Gson();
+        this.presenter = presenter;
+        this.next = next;
+
     }
 
     public void execute(){

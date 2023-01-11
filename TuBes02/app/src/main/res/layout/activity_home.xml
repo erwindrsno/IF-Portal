@@ -37,6 +37,13 @@
         android:layout_height="match_parent"
         android:layout_gravity="start" >
 
+        <FrameLayout
+            android:id="@+id/fragment_drawer_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
         <fragment
             android:id="@+id/fragment_left"
             android:name="drawer.DrawerFragment"

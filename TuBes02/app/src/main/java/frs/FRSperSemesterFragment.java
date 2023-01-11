@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -14,7 +16,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.FrsPerSemesterBinding;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
@@ -46,6 +50,31 @@ public class FRSperSemesterFragment extends Fragment implements UIMatkulSemester
         binding = FrsPerSemesterBinding.inflate(inflater);
 
         Log.d("fragment frs persemester", "masuk");
+
+        Menu menu = this.binding.bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(1);
+        menuItem.setChecked(true);
+
+        this.binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Bundle result = new Bundle();
+                if(item.getItemId() == R.id.nav_btn_home){
+                    result.putString("activity","home");
+                }
+                if(item.getItemId() == R.id.nav_btn_frs_prs){
+                    result.putString("activity","frs/prs");
+                }
+                else if(item.getItemId() == R.id.nav_btn_pengumuman){
+                    result.putString("activity","pengumuman");
+                }
+                else if(item.getItemId() == R.id.nav_btn_pertemuan){
+                    result.putString("activity","pertemuan");
+                }
+                getParentFragmentManager().setFragmentResult("changeActivity",result);
+                return true;
+            }
+        });
 
         this.getParentFragmentManager().setFragmentResultListener("semesterPosition", this, new FragmentResultListener() {
             @Override

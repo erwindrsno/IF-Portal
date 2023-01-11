@@ -29,6 +29,13 @@
         android:layout_height="match_parent"
         android:layout_gravity="start" >
 
+        <fragment
+            android:id="@+id/fragment_left"
+            android:name="drawer.DrawerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
