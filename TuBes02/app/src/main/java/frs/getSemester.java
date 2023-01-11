@@ -78,22 +78,22 @@ public class getSemester {
             }
         };
 
-        stringRequest.setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 55000;
-            }
-
-            @Override
-            public int getCurrentRetryCount() {
-                return 55000;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
-            }
-        });
+//        stringRequest.setRetryPolicy(new RetryPolicy() {
+//            @Override
+//            public int getCurrentTimeout() {
+//                return 55000;
+//            }
+//
+//            @Override
+//            public int getCurrentRetryCount() {
+//                return 55000;
+//            }
+//
+//            @Override
+//            public void retry(VolleyError error) throws VolleyError {
+//
+//            }
+//        });
         request.add(stringRequest);
     }
 }

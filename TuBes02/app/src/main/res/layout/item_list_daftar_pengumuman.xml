@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="@color/normal_text"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             >
@@ -29,7 +28,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="30sp">
+                android:textSize="18sp"
+                android:textColor="@color/normal_text">
             </TextView>
 
             <!--            <ImageView-->
