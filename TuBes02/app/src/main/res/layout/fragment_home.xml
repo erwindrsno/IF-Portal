@@ -12,46 +12,77 @@
         android:text="@string/tv_home"
         android:textSize="50sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="70dp"
         android:textColor="@color/normal_text"
-        android:textStyle="bold">
+        android:textStyle="bold"
+        android:letterSpacing="0.8"
+        android:shadowColor="@color/home_text_color"
+        android:shadowDx="5"
+        android:shadowDy="9"
+        android:shadowRadius="12">
 
     </TextView>
-
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_width="300dp"
-        android:layout_height="250dp"
         android:layout_centerInParent="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_margin="15dp"
+        android:background="@color/title_form"
+        android:padding="17dp">
 
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_frs_prs">
-        </Button>
+            android:orientation="horizontal"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="@string/btn_frs_prs"
+                android:backgroundTint="@color/bar_header"
+                android:layout_marginRight="7dp"
+                >
+            </Button>
 
-        <Button
-            android:layout_width="wrap_content"
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="@string/btn_pengumuman"
+                android:backgroundTint="@color/button_form"
+                android:layout_marginLeft="7dp"
+                >
+            </Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_pengumuman">
-        </Button>
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/btn_pertemuan"
+                android:backgroundTint="@color/button_form"
+                android:layout_weight="1"
+                android:layout_marginRight="7dp"
+                >
+            </Button>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_pertemuan">
-        </Button>
-
-        <Button
-            android:id="@+id/btn_coba"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="COBA">
-        </Button>
-
+            <Button
+                android:id="@+id/btn_coba"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="COBA"
+                android:backgroundTint="@color/bar_header"
+                android:layout_marginLeft="7dp"
+                >
+            </Button>
+        </LinearLayout>
     </LinearLayout>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"

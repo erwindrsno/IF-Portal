@@ -2,6 +2,8 @@ package FiturAdmin;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -30,6 +32,9 @@ public class HomeAdminFragment extends Fragment {
         binding = FragmentHomeAdminBinding.inflate(inflater);
         View view = binding.getRoot();
         this.binding.btnAddUser.setOnClickListener(this::onclick);
+        Menu menu = this.binding.bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
         return view;
     }
 

@@ -15,13 +15,24 @@
         android:textColor="@color/normal_text"
         android:textStyle="bold"
         android:textAlignment="center"/>
-
+    <LinearLayout
+        android:id="@+id/bar_header"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_title">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bar_header"/>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_title"
-        android:weightSum="2">
+        android:layout_below="@id/bar_header"
+        android:weightSum="2"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/tv_menu_attending"
@@ -33,7 +44,10 @@
             android:text="@string/fragment_pertemuan_home_tv_attending_text"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+            android:textSize="@dimen/fragment_pertemuan_form_text_size"
+            android:padding="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:id="@+id/tv_menu_invitation"
@@ -45,14 +59,20 @@
             android:text="@string/fragment_pertemuan_home_tv_invitation_text"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+            android:textSize="@dimen/fragment_pertemuan_form_text_size"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
     </LinearLayout>
 
     <ListView
         android:id="@+id/lv_pertemuan_daftar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_menu" />
+        android:layout_below="@+id/ll_menu"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_tambah"
@@ -61,5 +81,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/text_info"
         android:src="@android:drawable/ic_input_add" />
 </RelativeLayout>

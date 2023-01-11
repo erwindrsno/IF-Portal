@@ -77,21 +77,17 @@ public class MenuAdapter extends BaseAdapter {
             Bundle result = new Bundle();
             Log.d("debugMasukOnClick","masukOnClick");
             if(view.getId() == this.binding.tvMenu.getId()){
-                if(this.binding.tvMenu.getText().equals("My Profile")){
+                if(this.binding.tvMenu.getText().equals("Home")){
                     Log.d("masuk menu my profile","true");
-//                    result.putString("page","homeFragment");
+                    result.putString("page","homeFragment");
                 }
                 else if(binding.tvMenu.getText().equals("Settings")){
                     Log.d("masuk menu settings","true");
-//                    result.putString("page","pertemuanFragment");
+                    result.putString("page","fitur_admin");
                 }
                 else if(binding.tvMenu.getText().equals("Sign Out")){
                     Log.d("masuk menu sign out","true");
                     result.putString("page","exit");
-                }
-                else if(binding.tvMenu.getText().equals("Admin Features")){
-                    Log.d("masuk menu Admin Features","true");
-                    result.putString("page","fitur_admin");
                 }
                 drawerFragment.getParentFragmentManager().setFragmentResult("changePage",result);
             }

@@ -9,18 +9,29 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="1"
+        android:layout_weight="0.6"
         android:text="@string/fragment_jadwal_dosen_tambah_judul_text"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textSize="30sp"
         android:textColor="@color/normal_text"
         android:textStyle="bold"
         android:textAlignment="center"/>
-
+    <LinearLayout
+        android:id="@+id/bar_header"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_title">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bar_header"/>
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="8">
+        android:layout_weight="8.4"
+        android:layout_marginTop="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,33 +44,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fragment_jadwal_dosen_tambah_nama_text"
-                android:textColor="@color/blue_grey"
+                android:textColor="@color/title_form"
                 android:textSize="@dimen/fragment_pertemuan_form_text_size" />
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+                android:textSize="@dimen/fragment_pertemuan_form_text_size"
+                android:layout_marginTop="4dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fragment_jadwal_dosen_hari_text"
-                android:textColor="@color/blue_grey"
-                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+                android:textColor="@color/title_form"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size"
+                android:layout_marginTop="8dp"/>
 
             <Spinner
                 android:id="@+id/spinner_day"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fragment_pertemuan_tambah_tv_waktu_text"
-                android:textColor="@color/blue_grey"
-                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+                android:textColor="@color/title_form"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size"
+                android:layout_marginTop="8dp"/>
 
             <EditText
                 android:id="@+id/et_jam_mulai"
@@ -70,14 +85,16 @@
                 android:cursorVisible="false"
                 android:drawableEnd="@android:drawable/ic_menu_recent_history"
                 android:focusable="false"
-                android:hint="@string/fragment_pertemuan_tambah_et_jam_hint" />
+                android:hint="@string/fragment_pertemuan_tambah_et_jam_hint"
+                android:layout_marginTop="4dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fragment_pertemuan_tambah_tv_waktu_selesai_text"
-                android:textColor="@color/blue_grey"
-                android:textSize="@dimen/fragment_pertemuan_form_text_size" />
+                android:textColor="@color/title_form"
+                android:textSize="@dimen/fragment_pertemuan_form_text_size"
+                android:layout_marginTop="8dp"/>
 
             <EditText
                 android:focusableInTouchMode="false"
@@ -90,7 +107,8 @@
                 android:cursorVisible="false"
                 android:drawableEnd="@android:drawable/ic_menu_recent_history"
                 android:focusable="false"
-                android:hint="@string/fragment_pertemuan_tambah_et_jam_hint" />
+                android:hint="@string/fragment_pertemuan_tambah_et_jam_hint"
+                android:layout_marginTop="4dp"/>
 
             <LinearLayout
                 android:id="@+id/ll_field_partisipan"
@@ -118,7 +136,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/btn_simpan_text" />
+            android:text="@string/btn_simpan_text"
+            android:backgroundTint="@color/button_form"/>
 
     </LinearLayout>
 

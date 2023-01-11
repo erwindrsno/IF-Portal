@@ -18,4 +18,6 @@
     <color name="button_form">#2F4858</color>
     <color name="button_accept">#20BF55</color>
     <color name="text_info">#EC4E20</color>
+    <color name="home_text_color">#a4a5a6</color>
+    <color name="jadwal_tidak_ditemukan">#a61107</color>
 </resources>

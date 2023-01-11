@@ -147,14 +147,11 @@ public class HomeActivity extends AppCompatActivity {
     public void changePage(String page){
         FragmentTransaction ft = this.fm.beginTransaction();
         if(page.equals("homeFragment")){
-            if(this.homeFragment.isAdded()){
-                ft.show(this.homeFragment);
-            }
-            else{
-                ft.add(this.binding.fragmentContainer.getId(),this.homeFragment)
-                        .addToBackStack(null);
 
-            }
+            ft.replace(binding.fragmentContainer.getId(),this.homeFragment)
+                    .addToBackStack(null);
+            DrawerLayout drawerLayout = findViewById(drawer.getId());
+            drawerLayout.closeDrawers();
 //            if(this.buatPertemuanFragment.isAdded()){
 //                ft.hide(this.buatPertemuanFragment);
 //            }
@@ -162,16 +159,21 @@ public class HomeActivity extends AppCompatActivity {
         else if(page.equals("exit")){
             this.signOutDialogFragment.show(this.fm,"dialog");
                 ft.addToBackStack(null);
+            DrawerLayout drawerLayout = findViewById(drawer.getId());
+            drawerLayout.closeDrawers();
         }
         else if(page.equals("fitur_admin")){
             ft.replace(binding.fragmentContainer.getId(),this.homeAdminFragment)
                     .addToBackStack(null);
+            DrawerLayout drawerLayout = findViewById(drawer.getId());
+            drawerLayout.closeDrawers();
         }
         else if(page.equals("add_user")){
 
             ft.replace(binding.fragmentContainer.getId(),this.addUserFragment)
                     .addToBackStack(null);
-
+            DrawerLayout drawerLayout = findViewById(drawer.getId());
+            drawerLayout.closeDrawers();
         }
         ft.commit();
     }
