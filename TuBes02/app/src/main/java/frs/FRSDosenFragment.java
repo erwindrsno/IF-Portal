@@ -35,7 +35,7 @@ public class FRSDosenFragment extends Fragment {
         this.binding = FrsDosenFragmentBinding.inflate(inflater);
 
         Menu menu = this.binding.bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(0);
+        MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
         this.binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

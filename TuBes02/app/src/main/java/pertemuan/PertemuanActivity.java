@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package pertemuan;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityPengumumanBinding;
 
 import java.util.ArrayList;
@@ -28,7 +29,6 @@ import Users.User;
 import drawer.SignOutDialogFragment;
 import frs.FRSActivity;
 import home.HomeActivity;
-import home.HomePresenter;
 import login.LoginActivity;
 import pengumuman.PengumumanActivity;
 

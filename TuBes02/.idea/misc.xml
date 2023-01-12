@@ -22,6 +22,7 @@
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/activity_pengumuman.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/activity_pertemuan.xml" value="0.3269927536231884" />
+        <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/btn_pertemuan_detail.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/fragment_add_user.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/fragment_buat_pengumuman.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/fragment_detail_pengumuman.xml" value="0.36666666666666664" />
@@ -35,6 +36,7 @@
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/fragment_pertemuan_home.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/fragment_pertemuan_tambah.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/fragment_pertemuan_tambah_role_dialog.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/fragment_pertemuan_timeslot.xml" value="0.22327898550724637" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/frs_dosen_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/frs_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Erwin Darsono/Desktop/IF-Portal/TuBes02/app/src/main/res/layout/frs_main_fragment.xml" value="0.36666666666666664" />
