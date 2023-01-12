@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package pertemuan;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ItemListPertemuanBinding;
 
 import java.util.ArrayList;

@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.tubes_02.PertemuanActivity;
+import pertemuan.PertemuanActivity;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityHomeBinding;
 

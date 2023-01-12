@@ -1,13 +1,10 @@
 package pengumuman;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,7 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.tubes_02.PertemuanActivity;
+import pertemuan.PertemuanActivity;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityPengumumanBinding;
 

@@ -1,4 +1,4 @@
-package com.example.tubes_02;
+package pertemuan;
 
 public class TimeSlot implements Comparable<TimeSlot> {
     private String id;
