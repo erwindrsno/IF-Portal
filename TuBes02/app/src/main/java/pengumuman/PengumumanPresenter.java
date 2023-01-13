@@ -129,12 +129,18 @@ public class PengumumanPresenter {
         }
     }
 
-    public boolean checkDuplicate(String id){
-        for (int i = 0; i < this.tagList.size(); i++) {
-            if(this.tagList.get(i).getId().equals(id)){
-                return true;
-            }
-        }
-        return false;
+    public void getTagsAPI(){
+        GetTag task1 = new GetTag(this.context,this);
+        task1.execute();
+    }
+
+    public void sendTag(ArrayList<Tag> tags){
+        this.tagList = tags;
+        this.ui.updateTag(this.tagList);
+    }
+
+    public void addPengumuman(String title, String content, String tagId){
+        PostPengumuman task1 = new PostPengumuman(this.context,this);
+        task1.execute(title,content,tagId);
     }
 }

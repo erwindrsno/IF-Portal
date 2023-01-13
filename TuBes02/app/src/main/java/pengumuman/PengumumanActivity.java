@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
+import pengumuman.model.Tag;
 import pertemuan.PertemuanActivity;
 import com.example.tubes_02.R;
 import com.example.tubes_02.databinding.ActivityPengumumanBinding;
@@ -179,5 +180,10 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
     @Override
     public void updateDialogView(Pengumuman pengumuman) {
         this.pengumumanFragment.openDialog(pengumuman);
+    }
+
+    @Override
+    public void updateTag(ArrayList<Tag> tagArrayList) {
+        this.buatPengumumanFragment.updateTagToAdapter(tagArrayList);
     }
 }

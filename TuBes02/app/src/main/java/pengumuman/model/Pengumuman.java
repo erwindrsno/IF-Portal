@@ -15,6 +15,14 @@ public class Pengumuman {
         this.title = title;
         this.updated_at = updated_at;
         this.created_at = created_at;
+        this.tags = new ArrayList<>();
+    }
+
+    public Pengumuman(String title, String content, String tags){
+        this.tags = new ArrayList<>();
+        this.title = title;
+        this.content = content;
+        this.tags.add(new Tag(tags));
     }
 
     public String getId() {

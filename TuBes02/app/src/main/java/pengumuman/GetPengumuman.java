@@ -67,7 +67,6 @@ public class GetPengumuman {
                     String nextPage = objResponse.getJSONObject("metadata").getString("next");
                     arrData = objResponse.getJSONArray("data");
                     ArrayList<Pengumuman> arrPengumuman = new ArrayList<>();
-                    ArrayList<Tag> arrTag = new ArrayList<>();
                     for (int i = 0; i < arrData.length(); i++) {
                         Pengumuman pengumuman = gson.fromJson(arrData.getString(i), Pengumuman.class);
                         arrPengumuman.add(pengumuman);

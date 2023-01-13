@@ -22,33 +22,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 import pengumuman.model.Pengumuman;
+import pengumuman.model.Tag;
 
-public class GetPengumumanFilterSearch {
-    private String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
+public class GetTag {
+    private String BASE_URL = "https://ifportal.labftis.net/api/v1/tags";
     private final Context context;
     private final Gson gson;
     private PengumumanPresenter presenter;
-    private String next;
+    private String page;
 
-    public GetPengumumanFilterSearch(Context context, PengumumanPresenter presenter, String preference, String text){
+    public GetTag(Context context, PengumumanPresenter presenter){
         this.context = context;
         this.gson = new Gson();
         this.presenter = presenter;
-        this.next = next;
-    }
-
-    public GetPengumumanFilterSearch(Context context, PengumumanPresenter presenter, String preference, String text, String next){
-        this.BASE_URL = this.BASE_URL + "?filter=" + text + "&cursor=" + next + "?limit=5";
-        this.context = context;
-        this.gson = new Gson();
-        this.presenter = presenter;
-        this.next = next;
     }
 
     public void execute(){
+        Log.d("masukGetTag",true+"");
         try{
-            Log.d("masukTaskAnnouncements",true+"");
-            Log.d("tokenpresenter",this.presenter.user.getToken());
             callVolley();
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,18 +52,18 @@ public class GetPengumumanFilterSearch {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                JSONObject objResponse;
-                JSONArray arrData = new JSONArray();
+//                JSONObject objResponse;
+                JSONArray arrTag;
                 try{
-                    objResponse = new JSONObject(response);
-                    arrData = objResponse.getJSONArray("data");
-                    ArrayList<Pengumuman> arrPengumuman = new ArrayList<>();
-                    for (int i = 0; i < arrData.length(); i++) {
-                        Pengumuman pengumuman = gson.fromJson(arrData.getString(i), Pengumuman.class);
-                        arrPengumuman.add(pengumuman);
-                        Log.d("muncul sekali",true+"");
+//                    objResponse = new JSONObject(response);
+                    arrTag = new JSONArray(response);
+                    Log.d("objResponse",arrTag.getString(0));
+                    ArrayList<Tag> arrayListTag = new ArrayList<>();
+                    for (int i = 0; i < arrTag.length(); i++) {
+                        Tag tag = gson.fromJson(arrTag.getString(i), Tag.class);
+                        arrayListTag.add(tag);
                     }
-                    presenter.getListFromAPI(arrPengumuman);
+                    presenter.sendTag(arrayListTag);
                 } catch(JSONException ex){
                     ex.printStackTrace();
                 }

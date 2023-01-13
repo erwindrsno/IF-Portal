@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
@@ -30,152 +31,53 @@ public class PostPengumuman {
     private final Gson gson;
     private PengumumanPresenter presenter;
     private String page;
-    private int counter;
-    private boolean flag; //true untuk konstruktor 1 false konstruktor 2
+    private Pengumuman pengumumanBaru;
 
     public PostPengumuman(Context context, PengumumanPresenter presenter){
         this.context = context;
         this.gson = new Gson();
         this.presenter = presenter;
-        this.flag = true;
     }
 
-    public PostPengumuman(Context context, PengumumanPresenter presenter, String page){
-        this.context = context;
-        this.gson = new Gson();
-        this.presenter = presenter;
-        this.page = page;
-        this.BASE_URL = this.BASE_URL + "?cursor=" + page + "&limit=5";
-        this.flag = false;
-        Log.d("url",this.BASE_URL);
-    }
-
-    public void execute(){
+    public void execute(String title, String content, String tagId){
         try{
-            callVolley();
+            this.pengumumanBaru = new Pengumuman(title,content,tagId);
+            Log.d("psotjudul",title);
+            Log.d("psotisi",content);
+            JSONObject json = new JSONObject(this.gson.toJson(pengumumanBaru));
+            Log.d("printJSON", json.toString(4));
+//            callVolley(json);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void callVolley() {
+    public void callVolley(JSONObject json) {
         RequestQueue request = Volley.newRequestQueue(this.context);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL, new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BASE_URL, json, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-                JSONObject objResponse;
-                JSONArray arrData = new JSONArray();
-                try{
-                    objResponse = new JSONObject(response);
-                    String nextPage = objResponse.getJSONObject("metadata").getString("next");
-                    arrData = objResponse.getJSONArray("data");
-                    ArrayList<Pengumuman> arrPengumuman = new ArrayList<>();
-                    ArrayList<Tag> arrTag = new ArrayList<>();
-                    for (int i = 0; i < arrData.length(); i++) {
-                        Pengumuman pengumuman = gson.fromJson(arrData.getString(i), Pengumuman.class);
-                        arrPengumuman.add(pengumuman);
-
-                        for (int j = 0; j < pengumuman.getTags().size(); j++) {
-                            String tagId = pengumuman.getTags().get(i).getId();
-                            boolean duplicate = presenter.checkDuplicate(tagId);
-                            if(!duplicate){
-                                arrTag.add(pengumuman.getTags().get(i));
-                            }
-                        }
-                    }
-                    if(!nextPage.equals(null)){
-                        presenter.addNextPage(nextPage);
-                        Log.d("masuk pindah page",true+"");
-                    }
-                    else{
-                        presenter.setNextPageFalse(false);
-                    }
-                    presenter.getListFromAPI(arrPengumuman);
-                } catch(JSONException ex){
-                    ex.printStackTrace();
-                }
+            public void onResponse(JSONObject response) {
+//                Log.d("token user post", user.getToken());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                try {
-                    String body = new String(error.networkResponse.data,"UTF-8");
-                    Log.d("bodyErrorResponse",body);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+                Log.d("errorBang",error.toString());
             }
-        }){
+        });
+
+        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.POST, BASE_URL, json, new Response.Listener<JSONObject>() {
             @Override
-            public Map<String,String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Authorization", "Bearer " + presenter.user.getToken());
-                return headers;
+            public void onResponse(JSONObject response) {
+//                Log.d("token user post", user.getToken());
             }
-        };
-
-
-
-//        StringRequest stringRequest1 = new StringRequest(Request.Method.GET, BASE_URL, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                JSONObject objResponse;
-//                JSONArray arrData = new JSONArray();
-//                try{
-//                    objResponse = new JSONObject(response);
-//                    String nextPage = objResponse.getJSONObject("metadata").getString("next");
-//                    arrData = objResponse.getJSONArray("data");
-//                    ArrayList<Pengumuman> arrPengumuman = new ArrayList<>();
-//                    ArrayList<Tag> arrTag = new ArrayList<>();
-//                    for (int i = 0; i < arrData.length(); i++) {
-//                        Pengumuman pengumuman = gson.fromJson(arrData.getString(i), Pengumuman.class);
-//                        arrPengumuman.add(pengumuman);
-//
-//                        for (int j = 0; j < pengumuman.getTags().size(); j++) {
-//                            String tagId = pengumuman.getTags().get(i).getId();
-//                            boolean duplicate = presenter.checkDuplicate(tagId);
-//                            if(!duplicate){
-//                                arrTag.add(pengumuman.getTags().get(i));
-//                            }
-//                        }
-//                    }
-//                    if(!nextPage.equals(null)){
-//                        presenter.addNextPage(nextPage);
-//                        Log.d("masuk pindah page",true+"");
-//                    }
-//                    else{
-//                        presenter.setNextPageFalse(false);
-//                    }
-//                    presenter.getListFromAPI(arrPengumuman);
-//                } catch(JSONException ex){
-//                    ex.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                try {
-//                    String body = new String(error.networkResponse.data,"UTF-8");
-//                    Log.d("bodyErrorResponse",body);
-//                } catch (UnsupportedEncodingException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }){
-//            @Override
-//            public Map<String,String> getHeaders() throws AuthFailureError {
-//                HashMap<String, String> headers = new HashMap<String, String>();
-//                headers.put("Authorization", "Bearer " + presenter.user.getToken());
-//                return headers;
-//            }
-//        };
-//        if(this.flag){
-//            request.add(stringRequest);
-//        }
-//        else{
-//            request.add(stringRequest1);
-//        }
-        request.add(stringRequest);
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("errorBang",error.toString());
+            }
+        });
+        request.add(jsonObjectRequest);
     }
 }
