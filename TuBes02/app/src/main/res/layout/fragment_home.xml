@@ -38,6 +38,7 @@
             android:orientation="horizontal"
             >
             <Button
+                android:id="@+id/btn_home_frs"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight="1"
@@ -48,6 +49,7 @@
             </Button>
 
             <Button
+                android:id="@+id/btn_home_pengumuman"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight="1"
@@ -62,6 +64,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/btn_home_pertemuan"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:text="@string/btn_pertemuan"
@@ -72,11 +75,11 @@
             </Button>
 
             <Button
-                android:id="@+id/btn_coba"
+                android:id="@+id/btn_home_signout"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight="1"
-                android:text="EXIT"
+                android:text="SIGN OUT"
                 android:backgroundTint="@color/bar_header"
                 android:layout_marginLeft="7dp"
                 >

@@ -55,13 +55,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            String password2 = "1q2w3e45";
 //            String role2 = "mahasiswa";
 
-//            String email2 = "default.admin@domain.local";
-//            String password2 = "mu8XyUogLi6Dk7";
-//            String role2 = "admin";
+            String email2 = "default.admin@domain.local";
+            String password2 = "mu8XyUogLi6Dk7";
+            String role2 = "admin";
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
-//            this.presenter.validateUser(email2,password2,role2);
-            this.presenter.validateUser(this.email,this.password,this.role);
+            this.presenter.validateUser(email2,password2,role2);
+//            this.presenter.validateUser(this.email,this.password,this.role);
         }
     }
 

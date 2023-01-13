@@ -38,6 +38,7 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
     private SharedPreferences.Editor editor;
     private String preference;
     private boolean useFilter;
+    private boolean isAdmin;
     public PengumumanFragment(){
     }
 
@@ -77,6 +78,13 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
         this.binding.btnFilter.setOnClickListener(this);
         this.binding.spinner.setOnItemSelectedListener(this);
 
+        this.isAdmin = this.presenter.isAdmin();
+        if(this.isAdmin){
+            this.binding.fabPengumuman.setOnClickListener(this);
+        }
+        else{
+            this.binding.fabPengumuman.setVisibility(View.GONE);
+        }
 
         FragmentManager fm = this.getParentFragmentManager();
         this.getParentFragmentManager().setFragmentResultListener("openDialogKonten", this, new FragmentResultListener() {
@@ -177,6 +185,11 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
             this.presenter.clearPengumumanList();
             this.adapter.clearList();
             this.presenter.executeGetPengumumanFilterSearch(this.preference, this.binding.etFilter.getText().toString(), false);
+        }
+        else if(view.getId() == this.binding.fabPengumuman.getId()){
+            Bundle result = new Bundle();
+            result.putString("page","buat_pengumuman");
+            this.getParentFragmentManager().setFragmentResult("changePage",result);
         }
     }
 

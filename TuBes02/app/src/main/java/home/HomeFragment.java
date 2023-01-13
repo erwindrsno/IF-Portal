@@ -25,7 +25,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.binding = FragmentHomeBinding.inflate(inflater);
-        this.binding.btnCoba.setOnClickListener(this);
+        this.binding.btnHomeSignout.setOnClickListener(this);
+
+        this.binding.btnHomeFrs.setOnClickListener(this);
+        this.binding.btnHomePengumuman.setOnClickListener(this);
+        this.binding.btnHomePertemuan.setOnClickListener(this);
+        this.binding.btnHomeSignout.setOnClickListener(this);
 
         Menu menu = this.binding.bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
@@ -64,10 +69,25 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == this.binding.btnCoba.getId()){
+        if(view.getId() == this.binding.btnHomeSignout.getId()){
             Bundle result = new Bundle();
             result.putString("page","exit");
             this.getParentFragmentManager().setFragmentResult("changePage",result);
+        }
+        else if(view.getId() == this.binding.btnHomeFrs.getId()){
+            Bundle result = new Bundle();
+            result.putString("activity","frs/prs");
+            this.getParentFragmentManager().setFragmentResult("changeActivity",result);
+        }
+        else if(view.getId() == this.binding.btnHomePertemuan.getId()){
+            Bundle result = new Bundle();
+            result.putString("activity","pertemuan");
+            this.getParentFragmentManager().setFragmentResult("changeActivity",result);
+        }
+        else if(view.getId() == this.binding.btnHomePengumuman.getId()){
+            Bundle result = new Bundle();
+            result.putString("activity","pengumuman");
+            this.getParentFragmentManager().setFragmentResult("changeActivity",result);
         }
     }
 

@@ -7,12 +7,14 @@ import java.util.ArrayList;
 
 import Users.User;
 import pengumuman.model.Pengumuman;
+import pengumuman.model.Tag;
 
 public class PengumumanPresenter {
     protected ListPengumumanUI ui;
     protected Context context;
     protected User user;
     protected ArrayList<Pengumuman> daftarPengumuman;
+    protected ArrayList<Tag> tagList;
     protected String page;
     protected ArrayList<String> strPage;
     protected boolean hasNext;
@@ -24,6 +26,7 @@ public class PengumumanPresenter {
         this.hasNext = false;
         this.position = 0;
         this.strPage = new ArrayList<>();
+        this.tagList = new ArrayList<>();
     }
 
     public Context getContext(){
@@ -115,5 +118,23 @@ public class PengumumanPresenter {
 
     public void sendPengumuman(Pengumuman pengumuman){
         this.ui.updateDialogView(pengumuman);
+    }
+
+    public boolean isAdmin(){
+        if(!this.getUser().getRole().equalsIgnoreCase("admin")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean checkDuplicate(String id){
+        for (int i = 0; i < this.tagList.size(); i++) {
+            if(this.tagList.get(i).getId().equals(id)){
+                return true;
+            }
+        }
+        return false;
     }
 }

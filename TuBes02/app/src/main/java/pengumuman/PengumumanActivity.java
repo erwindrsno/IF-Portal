@@ -74,7 +74,7 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
         this.dialogFragmentKontenPengumuman = DialogFragmentKontenPengumuman.newInstance("Dialog Konten Pengumuman");
         this.pengumumanFragment = PengumumanFragment.newInstance(this.presenter, this.dialogFragmentKontenPengumuman);
         this.signOutDialogFragment = SignOutDialogFragment.newInstance("exitAppDialogFragment");
-//        this.buatPengumumanFragment = BuatPengumumanFragment.newInstance(this);
+        this.buatPengumumanFragment = BuatPengumumanFragment.newInstance(this.presenter);
 
         if(getIntent().getExtras() != null){
             this.user = getIntent().getParcelableExtra("user");
@@ -94,6 +94,7 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         String page = result.getString("page");
+                        Log.d("page",page);
                         changePage(page);
                     }
                 }
@@ -157,7 +158,7 @@ public class PengumumanActivity extends AppCompatActivity implements ListPengumu
             ft.replace(binding.fragmentContainer.getId(),this.pengumumanFragment)
                     .addToBackStack(null);
         }
-        if(page.equals("buat_pengumuman")){
+        else if(page.equals("buat_pengumuman")){
             ft.replace(binding.fragmentContainer.getId(),this.buatPengumumanFragment)
                     .addToBackStack(null);
         }

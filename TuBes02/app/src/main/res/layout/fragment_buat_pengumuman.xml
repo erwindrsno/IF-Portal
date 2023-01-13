@@ -49,6 +49,7 @@
         android:layout_marginRight="15dp">
 
         <EditText
+            android:id="@+id/et_input_judul"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Tulis judul disini"
@@ -74,6 +75,7 @@
         android:layout_marginRight="15dp">
 
         <EditText
+            android:id="@+id/et_input_tags"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Tulis tags disini"
@@ -99,6 +101,7 @@
         android:layout_marginRight="15dp">
 
         <EditText
+            android:id="@+id/et_input_deskripsi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Tulis Deskripsi Disini"
@@ -111,6 +114,7 @@
         android:gravity="center|bottom"
         >
         <Button
+            android:id="@+id/btn_add_announcement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Simpan"

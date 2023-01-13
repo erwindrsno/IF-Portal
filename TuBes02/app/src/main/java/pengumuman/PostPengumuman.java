@@ -24,25 +24,29 @@ import java.util.Map;
 import pengumuman.model.Pengumuman;
 import pengumuman.model.Tag;
 
-public class GetPengumuman {
+public class PostPengumuman {
     private String BASE_URL = "https://ifportal.labftis.net/api/v1/announcements";
     private final Context context;
     private final Gson gson;
     private PengumumanPresenter presenter;
     private String page;
+    private int counter;
+    private boolean flag; //true untuk konstruktor 1 false konstruktor 2
 
-    public GetPengumuman(Context context, PengumumanPresenter presenter){
+    public PostPengumuman(Context context, PengumumanPresenter presenter){
         this.context = context;
         this.gson = new Gson();
         this.presenter = presenter;
+        this.flag = true;
     }
 
-    public GetPengumuman(Context context, PengumumanPresenter presenter, String page){
+    public PostPengumuman(Context context, PengumumanPresenter presenter, String page){
         this.context = context;
         this.gson = new Gson();
         this.presenter = presenter;
         this.page = page;
         this.BASE_URL = this.BASE_URL + "?cursor=" + page + "&limit=5";
+        this.flag = false;
         Log.d("url",this.BASE_URL);
     }
 
@@ -71,6 +75,14 @@ public class GetPengumuman {
                     for (int i = 0; i < arrData.length(); i++) {
                         Pengumuman pengumuman = gson.fromJson(arrData.getString(i), Pengumuman.class);
                         arrPengumuman.add(pengumuman);
+
+                        for (int j = 0; j < pengumuman.getTags().size(); j++) {
+                            String tagId = pengumuman.getTags().get(i).getId();
+                            boolean duplicate = presenter.checkDuplicate(tagId);
+                            if(!duplicate){
+                                arrTag.add(pengumuman.getTags().get(i));
+                            }
+                        }
                     }
                     if(!nextPage.equals(null)){
                         presenter.addNextPage(nextPage);
@@ -102,6 +114,68 @@ public class GetPengumuman {
                 return headers;
             }
         };
+
+
+
+//        StringRequest stringRequest1 = new StringRequest(Request.Method.GET, BASE_URL, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                JSONObject objResponse;
+//                JSONArray arrData = new JSONArray();
+//                try{
+//                    objResponse = new JSONObject(response);
+//                    String nextPage = objResponse.getJSONObject("metadata").getString("next");
+//                    arrData = objResponse.getJSONArray("data");
+//                    ArrayList<Pengumuman> arrPengumuman = new ArrayList<>();
+//                    ArrayList<Tag> arrTag = new ArrayList<>();
+//                    for (int i = 0; i < arrData.length(); i++) {
+//                        Pengumuman pengumuman = gson.fromJson(arrData.getString(i), Pengumuman.class);
+//                        arrPengumuman.add(pengumuman);
+//
+//                        for (int j = 0; j < pengumuman.getTags().size(); j++) {
+//                            String tagId = pengumuman.getTags().get(i).getId();
+//                            boolean duplicate = presenter.checkDuplicate(tagId);
+//                            if(!duplicate){
+//                                arrTag.add(pengumuman.getTags().get(i));
+//                            }
+//                        }
+//                    }
+//                    if(!nextPage.equals(null)){
+//                        presenter.addNextPage(nextPage);
+//                        Log.d("masuk pindah page",true+"");
+//                    }
+//                    else{
+//                        presenter.setNextPageFalse(false);
+//                    }
+//                    presenter.getListFromAPI(arrPengumuman);
+//                } catch(JSONException ex){
+//                    ex.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                try {
+//                    String body = new String(error.networkResponse.data,"UTF-8");
+//                    Log.d("bodyErrorResponse",body);
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }){
+//            @Override
+//            public Map<String,String> getHeaders() throws AuthFailureError {
+//                HashMap<String, String> headers = new HashMap<String, String>();
+//                headers.put("Authorization", "Bearer " + presenter.user.getToken());
+//                return headers;
+//            }
+//        };
+//        if(this.flag){
+//            request.add(stringRequest);
+//        }
+//        else{
+//            request.add(stringRequest1);
+//        }
         request.add(stringRequest);
     }
 }
